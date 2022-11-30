@@ -1,0 +1,23 @@
+.about {
+    height: 80%;
+    width: 90vw;
+  }
+
+.details {
+    position: absolute;
+    padding: 10px;
+    top: 48%;
+    left: 50%;
+    height: 77%;
+    width: 50vw;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+  }
+  .details p, h3{
+    font-size: large;
+    line-height: 1.5;
+  }
