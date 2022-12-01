@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "http://localhost:5000/users";
+const url = "http://localhost:4000/users";
 
 const initialState = {
 users:""
@@ -26,7 +26,19 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
-  extraReducers: { },
+  extraReducers: {
+    [getUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [getUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
+      state.loading = false;
+      state.token = payload;
+    },
+    [getUser.rejected]: (state) => {
+      state.loading = false;
+    },
+  },
 });
 
 const userReducer = userSlice.reducer;

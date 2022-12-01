@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {addusers} from '../Redux/Slices/UserSlice'
 
 
 import "./signup.css";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const dispatch=useDispatch()
   const [signUpInput, setSignup] = useState({
-    name: "",
+    Name: "",
     user_name: "",
     email: "",
     user_password: "",
@@ -21,13 +24,14 @@ export default function Signup() {
 
   const validataion = () => {
     if (
-      signUpInput.name === "" ||
+      signUpInput.Name === "" ||
       signUpInput.user_name === "" ||
       signUpInput.email === "" ||
       signUpInput.user_password === ""
     ) {
       alert(" You missed");
     } else {
+      dispatch(addusers(signUpInput))
       navigate("/");
       clearForm();
     }
@@ -35,7 +39,7 @@ export default function Signup() {
 
   const clearForm = () => {
     setSignup({
-      name: "",
+      Name: "",
       user_name: "",
       email: "",
       user_password: "",
@@ -56,8 +60,8 @@ export default function Signup() {
             id="user"
             className="input"
             type="text"
-            name="name"
-            value={signUpInput.name}
+            name="Name"
+            value={signUpInput.Name}
             onChange={handleInputChange}
             required
           />

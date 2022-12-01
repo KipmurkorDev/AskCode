@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {addQuestion} from '../Redux/Slices/QuestionSlice'
 import "./ask.css";
 export default function Askform() {
   const naviagate = useNavigate();
+  const dispatch=useDispatch()
   const [question, setQuestion] = useState({
     title: "",
     description: "",
@@ -18,6 +21,7 @@ export default function Askform() {
     if (question.title === "" || question.description === "") {
       alert(" You missed");
     } else {
+      dispatch(addQuestion(question))
       clearForm();
       naviagate("/home");
     }
