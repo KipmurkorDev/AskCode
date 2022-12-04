@@ -1,0 +1,110 @@
+.conatiner_answer {
+  height: 80vh;
+  width: 100vw;
+}
+.answer_question {
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  align-items: center;
+}
+.question-3 {
+  width: 99%;
+  text-align: left;
+  padding-left: 10px;
+  border-bottom: 1px dotted black;
+}
+.answer-box {
+  border: 1px solid #90adc6;
+  width: 70%;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.answe_1 {
+  font-size: 14px;
+  width: 90%;
+  text-align: left;
+  padding-left: 30px;
+  padding-bottom: 10px;
+}
+.comment-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+.btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+.content-1{
+    display: flex;
+    gap: 20px;
+}
+.btn button{
+background-color: white;
+border: none;
+}
+.content {
+  margin-top: 20px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  width: 30%;
+  height: 40%;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 30px 35px 40px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color:#90adc6 ;
+}
+.click-me {
+  padding: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#click {
+  background-color: white;
+  display: none;
+}
+#click:checked ~ .content {
+  opacity: 1;
+  visibility: visible;
+}
+.content > input, textarea {
+  display: block;
+  text-align: left;
+  margin: 10px;
+}
+.content > label {
+  display: block;
+  text-align: left;
+  margin: 10px;
+}
+.content > input[type="submit"] {
+  width: 30%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.content-comment{
+  margin-top: 20px;
+  position: absolute;
+  top: 59%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  width: 30%;
+  height: 40%;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 30px 35px 40px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color:#90adc6 ;
+}
