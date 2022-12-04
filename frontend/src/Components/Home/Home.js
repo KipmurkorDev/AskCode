@@ -1,19 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuestions } from "../Redux/Slices/QuestionSlice";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 export default function Home() {
   const dispatch = useDispatch();
+  const navigate =useNavigate()
   const Questions = useSelector((state) => state.question.Questions);
   console.log(Questions);
-  useEffect(() => {
-    dispatch(getQuestions());
-  }, [dispatch]);
-  function handlesearch(e) {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      alert("Enter was pressed was presses");
-    }
+  // useEffect(() => {
+  //   dispatch(getQuestions());
+  // }, [dispatch]);
+  // function handlesearch(e) {
+  //   if (e.keyCode === 13) {
+  //     e.preventDefault();
+  //     alert("Enter was pressed was presses");
+  //   }
+  // }
+  const handleAnswers=()=>{
+    navigate("/answers")
   }
   return (
     <div className="conatiner_home">
@@ -25,19 +30,31 @@ export default function Home() {
           // value="hello"
           // onChange=""
           placeholder="search"
-          onKeyDown={handlesearch}
+          // onKeyDown={handlesearch}
         />
       </div>
 
       <div>
         <div className="question">
-          {Questions.map((item) => (
-            <div className="question-1">
-              <div>
-                <p>{item.title}</p>
-              </div>
+          {/* {Questions.map((item) => ( */}
+          <div className="question-1" onClick={handleAnswers}>
+            <div>
+              <button>
+                <p>
+                  How can I print the number as elements of a list without the
+                  quotes and square brackets should be their?
+                </p>
+              </button>
+              <button>
+                <p>
+                  How can I print the number as elements of a list without the
+                  quotes and square brackets should be their?
+                </p>
+              </button>
+              {/* <p>{item.title}</p> */}
             </div>
-          ))}
+          </div>
+          {/* ))} */}
         </div>
       </div>
     </div>

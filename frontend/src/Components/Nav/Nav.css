@@ -20,7 +20,17 @@
 .btn-nav-2 {
   margin-left: 20px;
   width: 40%;
+  display: flex;
 }
-.btn-nav-2 button{
-margin-left: 10px;
+.btn-nav-3 {
+  height: 30px;
+  margin-left: 20px;
+}
+.header-profile {
+  height: 34px;
+  width: 34px;
+  background-color: #e9eaec;
+  margin-left: 10px;
+  font-size: 14px;
+  border-radius: 50%;
 }

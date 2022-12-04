@@ -8,7 +8,7 @@ const initialState = {
 };
 export const getQuestions = createAsyncThunk("questions", async () => {
   let Questions = [];
-  const response = await axios.get(url, {headers:authHeader()}).then((data) => data.data);
+  const response = await axios.get(url).then((data) => data.data);
   Questions = [...response];
   return Questions;
 });

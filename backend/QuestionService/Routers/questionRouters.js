@@ -4,7 +4,7 @@ const {addQuestion, getQuestions}=require('../Controlers/index')
 const {verification}=require('../Midleware/tokenVerification')
 
 questionRouter.post('/', verification, addQuestion);
-questionRouter.get('/', verification, getQuestions);
+questionRouter.get('/', getQuestions);
 
 module.exports = {
     questionRouter,
