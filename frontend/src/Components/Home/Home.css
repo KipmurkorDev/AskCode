@@ -10,29 +10,36 @@
   padding-left: 10px;
 }
 ::placeholder {
-color: black;
-opacity: 1;
-padding: 10px;
+  color: black;
+  opacity: 1;
+  padding: 10px;
 }
 
-.question{
+.question {
   margin: 10px;
   display: flex;
   height: 80%;
   flex-direction: column;
   align-items: center;
 }
-.question-1{
+.question-1 {
   padding: 20px;
   margin: 5px;
   height: 10%;
   display: inline-block;
   border-radius: 10px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   width: 70%;
   text-align: left;
 }
-.question-1 button{
+.question-1 button {
   background-color: white;
   border: none;
+  cursor: pointer;
+}
+.question-1 button:hover {
+  color: #90adc6;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
 }

@@ -12,7 +12,7 @@
   width: 99%;
   text-align: left;
   padding-left: 10px;
-  border-bottom: 1px dotted black;
+  /* border-bottom: 1px dotted black; */
 }
 .answer-box {
   border: 1px solid #90adc6;
@@ -24,7 +24,7 @@
   font-size: 14px;
   width: 90%;
   text-align: left;
-  padding-left: 30px;
+  padding-left: 10px;
   padding-bottom: 10px;
 }
 .comment-btn{
@@ -35,7 +35,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px;
+}
+.btn button{
+cursor: pointer;
 }
 .content-1{
     display: flex;
@@ -107,4 +110,9 @@ border: none;
   box-sizing: border-box;
   border-radius: 10px;
   background-color:#90adc6 ;
+}
+.addAnswer{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 90px;
 }

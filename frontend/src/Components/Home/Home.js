@@ -8,15 +8,15 @@ export default function Home() {
   const navigate =useNavigate()
   const Questions = useSelector((state) => state.question.Questions);
   console.log(Questions);
-  // useEffect(() => {
-  //   dispatch(getQuestions());
-  // }, [dispatch]);
-  // function handlesearch(e) {
-  //   if (e.keyCode === 13) {
-  //     e.preventDefault();
-  //     alert("Enter was pressed was presses");
-  //   }
-  // }
+  useEffect(() => {
+    dispatch(getQuestions());
+  }, [dispatch]);
+  function handlesearch(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      alert("Enter was pressed was presses");
+    }
+  }
   const handleAnswers=()=>{
     navigate("/answers")
   }
@@ -28,27 +28,30 @@ export default function Home() {
           type="text"
           name="search"
           // value="hello"
-          // onChange=""
+          onChange=""
           placeholder="search"
-          // onKeyDown={handlesearch}
+          onKeyDown={handlesearch}
         />
       </div>
 
       <div>
+
         <div className="question">
+        <h3 style={{textAlign:"left", width:"70%", margin:"0px"}}> Questions</h3>
+
           {/* {Questions.map((item) => ( */}
           <div className="question-1" onClick={handleAnswers}>
             <div>
               <button>
                 <p>
                   How can I print the number as elements of a list without the
-                  quotes and square brackets should be their?
+                  quotes and square brackets should be their? <b> <sub>3 days ago </sub></b>
                 </p>
               </button>
               <button>
                 <p>
                   How can I print the number as elements of a list without the
-                  quotes and square brackets should be their?
+                  quotes and square brackets should be their? <b> <sub>3 days ago </sub></b>
                 </p>
               </button>
               {/* <p>{item.title}</p> */}

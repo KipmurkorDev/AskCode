@@ -17,6 +17,9 @@
 .btn-nav {
   width: 20%;
 }
+.btn-nav button{
+height: 30px;
+}
 .btn-nav-2 {
   margin-left: 20px;
   width: 40%;
@@ -27,8 +30,8 @@
   margin-left: 20px;
 }
 .header-profile {
-  height: 34px;
-  width: 34px;
+  height: 30px;
+  width: 30px;
   background-color: #e9eaec;
   margin-left: 10px;
   font-size: 14px;
