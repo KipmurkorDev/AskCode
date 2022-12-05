@@ -72,7 +72,7 @@ export default function Login() {
           />
         </div >
         <div className="input-container-2">
-        <p> Not yet resistered? <Link to="/signup">Sign up</Link></p>
+        <p> Not yet registered? <Link to="/signup">Sign up</Link></p>
           <button
             type="text"
             className="submit-2"
