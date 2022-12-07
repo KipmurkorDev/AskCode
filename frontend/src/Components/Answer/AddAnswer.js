@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addAnswer } from "../Redux/Slices/AnswerSlice";
 
-export default function Form({ sendData }) {
+export default function Form({ question_id }) {
   const [formInputs, setFormInputs] = useState({
-    description: "",
+    answer_descprition: "",
   });
   const [isActive, setIsActive] = useState({});
-
+  const dispatch = useDispatch();
   const handleInputChange = (e) => {
     setFormInputs((prev) => ({
       ...prev,
@@ -14,17 +16,16 @@ export default function Form({ sendData }) {
   };
 
   const validate = (e) => {
-    if (formInputs.description === "") {
+    if (formInputs.answer_descprition === "") {
       alert(" You did not complete  the form, kindly do so.");
     } else {
       submitHandle();
-      console.log(formInputs);
-      sendData(formInputs);
+      dispatch(addAnswer({ ...formInputs, question_id: question_id }));
       clearForm();
     }
   };
   const clearForm = () => {
-    setFormInputs({ description: "" });
+    setFormInputs({ answer_descprition: "" });
   };
 
   const submitHandle = () => {
@@ -49,14 +50,14 @@ export default function Form({ sendData }) {
       </label>
 
       <div className="content" style={isActive}>
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="answer_descprition">Description:</label>
         <textarea
           rows="9"
           cols="39"
           type="text"
-          name="description"
-          id="description"
-          value={formInputs.description}
+          name="answer_descprition"
+          id="answer_descprition"
+          value={formInputs.answer_descprition}
           onChange={handleInputChange}
         />
         <input

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuestions } from "../Redux/Slices/QuestionSlice";
+import {getAnswers} from '../Redux/Slices/AnswerSlice'
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 export default function Home() {
@@ -17,7 +18,8 @@ export default function Home() {
       alert("Enter was pressed was presses");
     }
   }
-  const handleAnswers=()=>{
+  const handleAnswers=(question_id)=>{
+    dispatch(getAnswers(question_id))
     navigate("/answers")
   }
   return (
@@ -39,25 +41,17 @@ export default function Home() {
         <div className="question">
         <h3 style={{textAlign:"left", width:"70%", margin:"0px"}}> Questions</h3>
 
-          {/* {Questions.map((item) => ( */}
-          <div className="question-1" onClick={handleAnswers}>
+          {Questions.map((item) => (
+          <div className="question-1" onClick={()=>handleAnswers(item.question_id)}>
             <div>
               <button>
-                <p>
-                  How can I print the number as elements of a list without the
-                  quotes and square brackets should be their? <b> <sub>3 days ago </sub></b>
+                <p> {item.title}<b> <sub>3 days ago </sub></b>
                 </p>
               </button>
-              <button>
-                <p>
-                  How can I print the number as elements of a list without the
-                  quotes and square brackets should be their? <b> <sub>3 days ago </sub></b>
-                </p>
-              </button>
-              {/* <p>{item.title}</p> */}
+              
             </div>
           </div>
-          {/* ))} */}
+          ))}
         </div>
       </div>
     </div>

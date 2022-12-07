@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+
+
 export default function AddComment({ sendData }) {
   const [formInputs, setFormInputs] = useState({
     description: "",
@@ -19,7 +21,6 @@ export default function AddComment({ sendData }) {
     } else {
       submitHandle();
       console.log(formInputs);
-      sendData(formInputs);
       clearForm();
     }
   };
@@ -52,7 +53,7 @@ export default function AddComment({ sendData }) {
         <label htmlFor="description">Description:</label>
         <textarea
           rows="9"
-          cols="39"
+          cols="90%"
           type="text"
           name="description"
           id="description"
