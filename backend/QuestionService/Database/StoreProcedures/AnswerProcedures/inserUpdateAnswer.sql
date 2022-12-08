@@ -1,8 +1,11 @@
-CREATE PROCEDURE insertUpdateAnswer(
+CREATE or ALTER PROCEDURE insertUpdateAnswer(
     @user_id VARCHAR(200),
     @question_id VARCHAR(100),
     @answer_id VARCHAR(400),
-    @answer_descprition VARCHAR(400)
+    @answer_descprition VARCHAR(400),
+    @upvote INT =0,
+    @downvote INT=0
+
     )
 AS
 BEGIN
@@ -12,7 +15,7 @@ BEGIN
     WHERE answer_id = @answer_id AND question_id=@question_id)
     BEGIN
         UPDATE Answer
-         SET answer_descprition=@answer_descprition
+         SET answer_descprition=@answer_descprition, upvote=@upvote, downvote=@downvote
          WHERE answer_id = @answer_id AND question_id=@question_id
     END
 ELSE BEGIN

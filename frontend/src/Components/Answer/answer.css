@@ -55,9 +55,9 @@
   transform: translate(-50%, -50%);
   visibility: hidden;
   width: 30%;
-  height: 40%;
+  height: 30%;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  padding: 30px 35px 40px;
+  padding-left: 10px;
   box-sizing: border-box;
   border-radius: 10px;
   background-color: #90adc6;
@@ -80,6 +80,7 @@ textarea {
   display: block;
   text-align: left;
   margin: 10px;
+  width: 87%;
 }
 .content > label {
   display: block;
@@ -88,7 +89,6 @@ textarea {
 }
 .content > input[type="submit"] {
   width: 30%;
-  background-color: #4caf50;
   color: white;
   padding: 10px;
   margin: 3px 0;
@@ -96,21 +96,7 @@ textarea {
   border-radius: 4px;
   cursor: pointer;
 }
-.content-comment {
-  margin-top: 20px;
-  position: absolute;
-  top: 59%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  visibility: hidden;
-  width: 30%;
-  height: 40%;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  padding: 30px 35px 40px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  background-color: #90adc6;
-}
+
 .addAnswer {
   display: flex;
   justify-content: flex-end;

@@ -3,29 +3,29 @@ import { useDispatch } from "react-redux";
 import { addAnswer } from "../Redux/Slices/AnswerSlice";
 
 export default function Form({ question_id }) {
-  const [formInputs, setFormInputs] = useState({
+  const [answerInput, setAnswerInput] = useState({
     answer_descprition: "",
   });
   const [isActive, setIsActive] = useState({});
   const dispatch = useDispatch();
   const handleInputChange = (e) => {
-    setFormInputs((prev) => ({
+    setAnswerInput((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
   const validate = (e) => {
-    if (formInputs.answer_descprition === "") {
+    if (answerInput.answer_descprition === "") {
       alert(" You did not complete  the form, kindly do so.");
     } else {
       submitHandle();
-      dispatch(addAnswer({ ...formInputs, question_id: question_id }));
+      dispatch(addAnswer({ ...answerInput, question_id: question_id }));
       clearForm();
     }
   };
   const clearForm = () => {
-    setFormInputs({ answer_descprition: "" });
+    setAnswerInput({ answer_descprition: "" });
   };
 
   const submitHandle = () => {
@@ -57,15 +57,15 @@ export default function Form({ question_id }) {
           type="text"
           name="answer_descprition"
           id="answer_descprition"
-          value={formInputs.answer_descprition}
+          value={answerInput.answer_descprition}
           onChange={handleInputChange}
         />
-        <input
+        <div> <input
           type="submit"
           onClick={() => {
             validate();
           }}
-        />
+        /></div>
       </div>
     </div>
   );

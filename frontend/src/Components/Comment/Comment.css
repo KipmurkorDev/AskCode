@@ -1,0 +1,50 @@
+.content-comment1 {
+    /* margin-top: 10px; */
+    position: absolute;
+    top: 59%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    width: 30%;
+    height: 30%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #90adc6;
+  }
+  .click-me1 {
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #click1 {
+    background-color: white;
+    display: none;
+  }
+  #click1:checked ~ .content-comment1 {
+    opacity: 1;
+    visibility: visible;
+  }
+  .content-comment1 > input,
+  textarea {
+    display: block;
+    text-align: left;
+    margin: 10px;
+    width: 90%;
+    height: 65%;
+  }
+  .content-comment1 > label {
+    display: block;
+    text-align: left;
+    margin: 10px;
+  }
+  .content-comment1 > input[type="submit"] {
+    width: 40%;
+    color: white;
+    padding: 10px;
+    margin: 3px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

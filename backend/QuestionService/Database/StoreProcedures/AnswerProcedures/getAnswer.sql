@@ -3,7 +3,7 @@ CREATE or ALTER  PROCEDURE getAnswer(
 )
   AS
   BEGIN
-  SELECT Answer.answer_id,Question.question_id,  Question.title,Question.description,  Answer.answer_descprition
+  SELECT Question.user_id,Question.question_id,Answer.answer_id, Answer.answer_descprition, Answer.upvote, Answer.downvote, Question.title,Question.description 
     FROM Question
     left JOIN Answer
     on Question.question_id=Answer.question_id
