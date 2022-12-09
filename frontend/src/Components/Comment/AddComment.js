@@ -6,7 +6,7 @@ import './Comment.css'
 export default function AddComment({answer_id}) {
   const dispatch=useDispatch()
   const [comment, setComment] = useState({
-    description: "",
+    comment_descprition: "",
   });
   const [open, setClose] = useState({});
 
@@ -18,7 +18,7 @@ export default function AddComment({answer_id}) {
   };
 
   const validate = (e) => {
-    if (comment.description === "") {
+    if (comment.comment_descprition === "") {
       alert(" You did not complete  the form, kindly do so.");
     } else {
       submitHandle1();
@@ -27,7 +27,7 @@ export default function AddComment({answer_id}) {
     }
   };
   const clearForm = () => {
-    setComment({description: "" });
+    setComment({comment_descprition: "" });
   };
 
   const submitHandle1 = () => {
@@ -48,18 +48,18 @@ export default function AddComment({answer_id}) {
       <input type="checkbox" id="click1" />
 
       <label htmlFor="click1" className="click-me1" onClick={handleModal1}>
-        Comment
+        Add Comment
       </label>
 
       <div className="content-comment1" style={open}>
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="comment_descprition">Description:</label>
         <textarea
           rows="9"
           cols="90%"
           type="text"
-          name="description"
-          id="description"
-          value={comment.description}
+          name="comment_descprition"
+          id="comment_descprition"
+          value={comment.comment_descprition}
           onChange={handleInputChange}
         />
         <div> <input

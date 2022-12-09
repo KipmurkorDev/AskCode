@@ -4,27 +4,29 @@ const uuid = require("uuid");
 require("dotenv").config();
 
 const addQuestion = async (req, res) => {
-    try {
-      const user_id = req.headers["user_id"];
-      const question_id = uuid.v4();
-      const {title, description } =req.body;
-      const pool = await sql.connect(sqlConfig);
-      await pool
-        .request()
-        .input("user_id", user_id)
-        .input("question_id", question_id)
-        .input("title", title)
-        .input("description", description)
-        .execute("insertUpdate");
-  
-      res.status(201).json({ message: "Question Inserted to database" });
-    } catch (error) {
-      res.status(404).json({ error: error.message });
-    }
-  };
+  try {
+    const user_id = req.headers["user_id"];
+    const question_id = uuid.v4();
+    const { title, description } = req.body;
+    const pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("user_id", user_id)
+      .input("question_id", question_id)
+      .input("title", title)
+      .input("description", description)
+      .execute("insertUpdate");
+
+    res.status(201).json({ message: "Question Inserted to database" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 const getQuestions = async (req, res) => {
   try {
+    const user_id = req.headers["user_id"];
+
     const pool = await sql.connect(sqlConfig);
     const response = await pool.request().execute("getQuestions");
     const questions = await response.recordset;
@@ -101,10 +103,11 @@ const getQuestions = async (req, res) => {
 //         .status(404)
 //         .json({ message: `Product with id ${id_product} does not exist` });
 //     }
-  // } catch (error) {
-  //   res.status(404).json({ error: error.message });
-  // }
+// } catch (error) {
+//   res.status(404).json({ error: error.message });
+// }
 // };
 module.exports = {
-  addQuestion, getQuestions
+  addQuestion,
+  getQuestions,
 };

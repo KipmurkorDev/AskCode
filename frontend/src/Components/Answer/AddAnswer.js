@@ -60,12 +60,15 @@ export default function Form({ question_id }) {
           value={answerInput.answer_descprition}
           onChange={handleInputChange}
         />
-        <div> <input
-          type="submit"
-          onClick={() => {
-            validate();
-          }}
-        /></div>
+        <div>
+          {" "}
+          <input
+            type="submit"
+            onClick={() => {
+              validate();
+            }}
+          />
+        </div>
       </div>
     </div>
   );

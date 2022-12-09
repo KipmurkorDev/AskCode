@@ -20,6 +20,7 @@ export default function Home() {
   }
   const handleAnswers=(question_id)=>{
     dispatch(getAnswers(question_id))
+
     navigate("/answers")
   }
   return (

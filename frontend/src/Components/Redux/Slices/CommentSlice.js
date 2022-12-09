@@ -7,7 +7,7 @@ const initialState = {
   Comments: [],
   isLoading: true,
 };
-export const getComments = createAsyncThunk("aswers", async (data) => {
+export const getComments = createAsyncThunk("comments", async (data) => {
   let Comments = [];
   const response = await axios
     .post(`${url}/${data}`, data)

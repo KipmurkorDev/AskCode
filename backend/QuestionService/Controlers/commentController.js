@@ -15,7 +15,7 @@ const addComment = async (req, res) => {
       .input("answer_id", answer_id)
       .input("comment_id", comment_id)
       .input("comment_descprition", comment_descprition)
-      .execute("insertUpdateAnswer");
+      .execute("insertUpdateComment");
 
     res.status(201).json({ message: "Answerr Inserted to database" });
   } catch (error) {
@@ -23,16 +23,16 @@ const addComment = async (req, res) => {
   }
 };
 
-const getAnswer = async (req, res) => {
+const getComments = async (req, res) => {
   try {
-    const { question_id } = req.params;
+    const { answer_id } = req.params;
     const pool = await sql.connect(sqlConfig);
     const response = await pool
       .request()
-      .input("question_id", sql.VarChar(100), question_id)
-      .execute("getAnswer");
-    const answers = await response.recordset;
-    res.json(answers);
+      .input("answer_id", sql.VarChar(100), answer_id)
+      .execute("getComments");
+    const comments = await response.recordset;
+    res.json(comments);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -59,7 +59,6 @@ const updateAnswer = async (req, res) => {
 };
 
 module.exports = {
-  addAnswer,
-  getAnswer,
-  updateAnswer,
+  addComment,
+  getComments
 };
