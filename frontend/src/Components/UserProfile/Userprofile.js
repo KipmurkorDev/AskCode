@@ -1,18 +1,23 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 export default function Userprofile() {
-  return (
+  const user=useSelector(state=>state.profile.Profile)
+  const loading = useSelector((state) => state.profile.isLoading);
 
+  console.log(loading);
+
+  if (!loading) return <>Loading</>;
+  return (
       <div className="answers">
         <div className="answe-0">
           <p>
-            <b> Name :</b> <span> Emmanuel Kipmurkor</span>
+            <b> Name :</b> <span> {user[0][0]?.Name}</span>
           </p>
           <p>
-            <b> User Name:</b> <span>Kipmurkor</span>
+            <b> User Name:</b> <span>{user[0][0]?.user_name}</span>
           </p>
           <p>
-            <b> Email:</b> <span>Kipmurkor@gmail.com</span>
+            <b> Email:</b> <span>{user[0][0]?.email}</span>
           </p>
         </div>
       </div>

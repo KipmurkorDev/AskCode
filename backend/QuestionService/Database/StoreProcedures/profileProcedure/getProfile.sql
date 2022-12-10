@@ -3,10 +3,8 @@ CREATE  or Alter PROCEDURE getProfile(
 )
   AS
   BEGIN
-  SELECT Users.user_name, Users.email, Users.Name,Question.description, Answer.answer_descprition, Comment.comment_descprition
-    FROM Users
-    LEFT JOIN Question on Users.user_id=Question.user_id
-    LEFT JOIN Answer on Users.user_id=Answer.user_id
-    LEFT JOIN Comment on Users.user_id=Comment.user_id
-    WHERE  Users.user_id=@user_id
+  SELECT Users.user_name, Users.email, Users.Name FROM Users WHERE Users.user_id=@user_id
+  SELECT Question.title, Question.question_id FROM Question WHERE Question.user_id=@user_id
+  SELECT Answer.answer_descprition, Answer.answer_id FROM Answer WHERE Answer.user_id=@user_id
+  SELECT Comment.comment_descprition  FROM Comment WHERE Comment.user_id=@user_id
 END

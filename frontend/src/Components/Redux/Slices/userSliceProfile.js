@@ -9,11 +9,17 @@ const initialState = {
 };
 export const getUserProfile = createAsyncThunk("aswers", async () => {
   let Profile = [];
-// let user_id=authHeader()
-  const response = await axios.post(url,{headers:authHeader()}).then((data) => data.data);
+  const response = await axios
+    .post(`${url}/${authHeader().user_id}`)
+    .then((data) => data.data);
   Profile = [...response];
   console.log(Profile);
   return Profile;
+});
+
+export const deleteQuestion = createAsyncThunk("delequestion", async (data) => {
+  console.log(data);
+  await axios.delete(url, data).then((data) => data.data);
 });
 
 export const profileSlice = createSlice({
