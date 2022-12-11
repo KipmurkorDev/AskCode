@@ -7,6 +7,7 @@ export default function UserQuestions() {
   const user = useSelector((state) => state.profile.Profile);
   const loading = useSelector((state) => state.profile.isLoading);
   const deletequestion=(data)=>{
+    console.log(data);
   dispatch(deleteQuestion(data))
   }
   if (!loading) return <>Loading</>;
@@ -25,7 +26,7 @@ export default function UserQuestions() {
                 <div className="btn_user">
                   <i class="fas fa-edit"></i>
                 </div>
-                <div className="btn_user" onClick={()=>deletequestion({...item, answer_id:user[2][0]?.answer_id})}>
+                <div className="btn_user" onClick={()=>deletequestion(item)}>
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 </div>
               </div>

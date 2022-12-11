@@ -17,20 +17,44 @@ const getprofile = async (req, res) => {
 };
 const deleQuestion = async (req, res) => {
   try {
-    const { question_id, answer_id } = req.body;
+    const {question_id}  = req.params;
     const pool = await sql.connect(sqlConfig);
     await pool
       .request()
       .input("question_id", question_id)
-      .input("answer_id", answer_id)
       .execute("deleQuestion");
-    res.json({ message: "deletae successfull" });
+    res.json({ message: "delete successfull" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
-
+const deleteAnswer = async (req, res) => {
+  try {
+    const {answer_id}  = req.params;
+    const pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("answer_id", answer_id)
+      .execute("deleAnswer");
+    res.json({ message: "deleted successfull" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const deletecomment = async (req, res) => {
+  try {
+    const {comment_id}  = req.params;
+    const pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("comment_id", comment_id)
+      .execute("deleComment");
+    res.json({ message: "deleted successfull" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 module.exports = {
   getprofile,
-  deleQuestion
+  deleQuestion, deleteAnswer, deletecomment
 };

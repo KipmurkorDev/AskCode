@@ -7,12 +7,13 @@ const addComment = async (req, res) => {
   try {
     const user_id = req.headers["user_id"];
     const comment_id= uuid.v4();
-    const { comment_descprition, answer_id} = req.body;
+    const { question_id, comment_descprition, answer_id} = req.body;
     const pool = await sql.connect(sqlConfig);
     await pool
       .request()
       .input("user_id", user_id)
       .input("answer_id", answer_id)
+      .input("question_id", question_id)
       .input("comment_id", comment_id)
       .input("comment_descprition", comment_descprition)
       .execute("insertUpdateComment");

@@ -20,6 +20,18 @@ export const addQuestion = createAsyncThunk(
   },
   getQuestions()
 );
+export const searchQuestions = createAsyncThunk(
+  "searchquestions",
+  async (data) => {
+    console.log(data);
+    let Questions = [];
+    const response = await axios.post(`${url}/search`, data).then((data) => data.json());
+    Questions = [...response];
+    console.log(Questions);
+    return Questions;  
+  },
+);
+
 export const questionSlice = createSlice({
   name: "question",
   initialState,
@@ -33,6 +45,17 @@ export const questionSlice = createSlice({
       state.Questions = payload;
     },
     [getQuestions.rejected]: (state) => {
+      state.loading = false;
+    },
+    [searchQuestions.pending]: (state) => {
+      state.loading = true;
+    },
+    [searchQuestions.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      console.log(payload);
+      state.Questions = payload;
+    },
+    [searchQuestions.rejected]: (state) => {
       state.loading = false;
     },
   },

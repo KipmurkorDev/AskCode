@@ -1,9 +1,11 @@
 import React from "react";
 import Profile from "./Profile";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAnswer } from "../Redux/Slices/userSliceProfile";
 export default function UserAnswer() {
 const user = useSelector((state) => state.profile.Profile);
 const loading = useSelector((state) => state.profile.isLoading);
+const dispatch =useDispatch()
 
 console.log(user);
 
@@ -17,12 +19,12 @@ if (!loading) return <>Loading</>;
         <div className="answe-0">
           {user[2]?.map((item) => (
             <div className="user-answer">
-              <div className="usercontent"> {item.answer_descprition}</div>
+              <div className="usercontent"> {item?.answer_descprition}</div>
               <div className="editbtn">
                 <div className="btn_user">
                   <i class="fas fa-edit"></i>
                 </div>
-                <div className="btn_user">
+                <div className="btn_user" onClick={()=>dispatch(deleteAnswer(item?.answer_id))}>
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 </div>
               </div>

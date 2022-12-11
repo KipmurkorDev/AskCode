@@ -1,10 +1,12 @@
 const express = require("express");
-const { getprofile, deleQuestion } = require("../Controlers/profileController");
+const { getprofile, deleQuestion, deleteAnswer, deletecomment } = require("../Controlers/profileController");
 const profileRouter = express.Router();
 
 profileRouter.post('/:user_id',getprofile)
 
-profileRouter.delete('',deleQuestion)
+profileRouter.delete('/:question_id',deleQuestion)
+profileRouter.delete('/answers/:answer_id',deleteAnswer)
+profileRouter.delete('/comments/:comment_id',deletecomment)
 
 
 

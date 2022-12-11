@@ -108,3 +108,8 @@ textarea {
 .comment_add {
   display: flex;
   }
+  .question-3 span{
+    padding-left: 10px;
+    font-weight: 300;
+    font-size: 14px;
+  }

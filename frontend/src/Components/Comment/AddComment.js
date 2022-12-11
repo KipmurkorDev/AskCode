@@ -3,7 +3,7 @@ import { addComment } from "../Redux/Slices/CommentSlice";
 import { useDispatch } from "react-redux";
 import './Comment.css'
 
-export default function AddComment({answer_id}) {
+export default function AddComment({answer_id, question_id}) {
   const dispatch=useDispatch()
   const [comment, setComment] = useState({
     comment_descprition: "",
@@ -22,7 +22,7 @@ export default function AddComment({answer_id}) {
       alert(" You did not complete  the form, kindly do so.");
     } else {
       submitHandle1();
-      dispatch(addComment({...comment, answer_id:answer_id}))
+      dispatch(addComment({...comment, answer_id:answer_id, question_id:question_id}))
       clearForm();
     }
   };

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateAnswer } from "../Redux/Slices/AnswerSlice";
 import Form from "./AddAnswer";
 import Comment from "../Comment/Comment";
+import moment from "moment";
 import "./answer.css";
 
 export default function Answer() {
@@ -28,13 +29,11 @@ export default function Answer() {
       <div className="answer_question">
         <div className="answer-box">
           <div className="question-3">
-            <div>
+            <div >
               <h4>
                 {Answers[0]?.title}
-                <b>
-                  <sub>3 days ago </sub>
-                </b>
-              </h4>
+                <span >{moment(Answers[0]?.created).fromNow()}</span>
+              </h4> 
             </div>
             <div className="addAnswer">
               <button>
@@ -81,7 +80,7 @@ export default function Answer() {
                 </button>
               </div>
               <div className="comment_add">
-                {show ? <Comment answer_id={item.answer_id} /> : null}
+                {show ? <Comment answer_id={item?.answer_id}  question_id={item?.question_id}/> : null}
               </div>
             </div>
           ))}

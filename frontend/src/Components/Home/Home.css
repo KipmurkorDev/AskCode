@@ -5,7 +5,9 @@
 .search_btn input {
   width: 60%;
   height: 30px;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
   color: black;
   padding-left: 10px;
 }
@@ -42,4 +44,16 @@
   border: none;
   cursor: pointer;
   font-weight: 900;
+}
+.search_btn button {
+  height: 36px;
+  width: 40px;
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: 0cm;
+}
+.question-1 span{
+  font-size: 12px;
+  padding-left: 10px;
 }
