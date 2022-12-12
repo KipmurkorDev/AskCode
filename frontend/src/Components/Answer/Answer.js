@@ -12,7 +12,7 @@ export default function Answer() {
   const Answers = useSelector((state) => state.answer.Answers);
   const loading = useSelector((state) => state.answer.isLoading);
 
-
+console.log(Answers);
   const handleupdVote = (item) => {
     let newitem={...item,upvote:1, downvote:0}
     dispatch(addVote(newitem));
@@ -56,7 +56,7 @@ export default function Answer() {
                   >
                     <i class="fas fa-caret-up" style={{ fontSize: "40px" }}></i>
                   </button>
-                  <span style={{ paddingLeft: "2px" }}>5</span>
+                  <span style={{ paddingLeft: "2px" }}>5 {item?.isAccepted===true? <i class="fa fa-check"></i>:<i class="fa fa-check" style={{ color: "green", fontSize:"20px"}}></i>}</span>
                   <button
                     onClick={() => {
                       handledownvote(item);
