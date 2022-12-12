@@ -13,6 +13,8 @@ import Profile from "./Components/UserProfile/Profile";
 import UserQuestions from "./Components/UserProfile/userQuestions";
 import UserAnswer from "./Components/UserProfile/UserAnswer";
 import Userprofile from "./Components/UserProfile/Userprofile";
+import UserComment from "./Components/UserProfile/userComment";
+import Search from "./Components/Search/Search";
 function App() {
   const location = useLocation();
 
@@ -27,6 +29,8 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/answers" element={<Answer />} />
+        <Route exact path="/searches" element={<Search />} />
+
         <Route
           exact
           path="/profile"
@@ -39,7 +43,7 @@ function App() {
         />
         <Route exact path="/userquestions" element={<UserQuestions />} />
         <Route exact path="/useranswer" element={<UserAnswer />} />
-        {/* <Route exact path="/userprofile" element={< Userprofile/>} /> */}
+        <Route exact path="/usercomments" element={<UserComment />} />
 
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/ask" element={<Askform />} />

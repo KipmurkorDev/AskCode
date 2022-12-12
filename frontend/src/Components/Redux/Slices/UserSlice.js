@@ -31,7 +31,6 @@ const userSlice = createSlice({
       state.loading = true;
     },
     [getUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.loading = false;
       state.token = payload;
     },

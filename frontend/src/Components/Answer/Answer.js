@@ -1,55 +1,92 @@
-import React from "react";
-
-import "./answer.css";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addVote } from "../Redux/Slices/AnswerSlice";
 import Form from "./AddAnswer";
-import AddComment from "./AddComment";
-import Comment from "./Comment";
+import Comment from "../Comment/Comment";
+import moment from "moment";
+import "./answer.css";
+
 export default function Answer() {
+  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+  const Answers = useSelector((state) => state.answer.Answers);
+  const loading = useSelector((state) => state.answer.isLoading);
+
+console.log(Answers);
+  const handleupdVote = (item) => {
+    let newitem={...item,upvote:1, downvote:0}
+    dispatch(addVote(newitem));
+  };
+  const handledownvote = (item) => {
+    let newitem={...item,upvote:0, downvote:1}
+    dispatch(addVote(newitem));
+  };
+  const getComentHandler = () => {
+    setShow((prev) => !prev);
+  };
+  if (!loading) return <>Loading</>;
   return (
     <div className="conatiner_answer">
       <div className="answer_question">
         <div className="answer-box">
           <div className="question-3">
-            <div>
+            <div >
               <h4>
-                How can I print the number as elements of a list without the
-                quotes and square brackets should be their? <b> <sub>3 days ago </sub></b>
-              </h4>
+                {Answers[0]?.title}
+                <span >{moment(Answers[0]?.created).fromNow()}</span>
+              </h4> 
             </div>
-            <div className="addAnswer"> <button>
-              <Form />
-            </button>
-            </div>
-            
-          </div>
-          <h5 style={{ textAlign: "left" }}> Answers</h5>
-          <div className="answe_1">
-            <div className="content-1">
-              <div className="btn">
-                <button>
-                  4<i class="fas fa-caret-up" style={{ fontSize: "40px" }}></i>{" "}
-                </button>
-               <span style={{paddingLeft:"2px"}}>-1</span> 
-                <button>
-                  <i class="fas fa-caret-down" style={{ fontSize: "40px" }}></i>
-                  5
-                </button>
-              </div>
-              <div>
-                <p>
-                  Hello is first recorded in the early 1800s, but was originally
-                  used to attract attention or express surprise (“Well, hello!
-                  What do we have here?”)?   <b> <sub>3 days ago </sub></b>
-                </p>
-              </div>
-            </div>
-
-            <div className="comment-btn">
+            <div className="addAnswer">
               <button>
-                <AddComment/>
+                <Form question_id={Answers[0]?.question_id} />
               </button>
             </div>
           </div>
+          <h5 style={{ textAlign: "left" }}> Answers</h5>
+          {Answers[0]?.answer_id===null? (
+          <p> There is no answer for this question</p>
+        ) :Answers?.map((item) => (
+            <div className="answe_1">
+              <div className="content-1">
+                <div className="btn">
+                  <button
+                    onClick={() => {
+                      handleupdVote(item);
+                    }}
+                  >
+                    <i class="fas fa-caret-up" style={{ fontSize: "40px" }}></i>
+                  </button>
+                  <span style={{ paddingLeft: "2px" }}>5 {item?.isAccepted===true? <i class="fa fa-check"></i>:<i class="fa fa-check" style={{ color: "green", fontSize:"20px"}}></i>}</span>
+                  <button
+                    onClick={() => {
+                      handledownvote(item);
+                    }}
+                  >
+                    <i
+                      class="fas fa-caret-down"
+                      style={{ fontSize: "40px" }}
+                    ></i>
+                  </button>
+                </div>
+                <div className="anwer_details">
+                  <p>{item?.answer_descprition} <span>{moment(item.answer_created).fromNow()}</span> </p> 
+                </div>
+              </div>
+
+              <div className="comment-btn">
+                <button
+                  onClick={() => {
+                    getComentHandler();
+                  }}
+                >
+                  {show ? <span>Hide</span> : <span>Comments</span>}
+                </button>
+              </div>
+              <div className="comment_add">
+                {show ? <Comment answer_id={item?.answer_id}  question_id={item?.question_id}/> : null}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

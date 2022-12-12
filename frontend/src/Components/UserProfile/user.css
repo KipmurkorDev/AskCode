@@ -54,6 +54,20 @@
   margin-left: 40px;
   text-align: left;
 }
-.user-answer{
+.user-answer {
   padding: 5px;
+  display: flex;
+  align-content: space-around;
+}
+.usercontent {
+  width: 95%;
+}
+.editbtn {
+  width: 5%;
+  padding-left: 10px;
+}
+.btn_user{
+   font-size: 14px;
+   margin-bottom: 4px;
+   cursor: pointer;
 }

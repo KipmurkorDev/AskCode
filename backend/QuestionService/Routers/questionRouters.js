@@ -1,11 +1,16 @@
 const express = require("express");
 const questionRouter = express.Router();
-const {addQuestion, getQuestions}=require('../Controlers/index')
-const {verification}=require('../Midleware/tokenVerification')
+const {
+  addQuestion,
+  getQuestions,
+  searchQuestions,
+} = require("../Controlers/questionController");
+const { verification } = require("../Midleware/tokenVerification");
 
-questionRouter.post('/', verification, addQuestion);
-questionRouter.get('/', getQuestions);
+questionRouter.get("/", getQuestions);
+questionRouter.post("/", verification, addQuestion);
+questionRouter.post("/search", searchQuestions);
 
 module.exports = {
-    questionRouter,
+  questionRouter,
 };

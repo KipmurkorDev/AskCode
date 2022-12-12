@@ -16,7 +16,6 @@ export default function Askform() {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(question);
   const validataion = () => {
     if (question.title === "" || question.description === "") {
       alert(" You missed");
