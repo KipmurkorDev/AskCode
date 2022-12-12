@@ -3,7 +3,8 @@ CREATE or ALTER PROCEDURE insertUpdateComment(
     @answer_id VARCHAR(100),
      @question_id VARCHAR(100),
     @comment_id VARCHAR(100),
-    @comment_descprition VARCHAR(400)
+    @comment_descprition VARCHAR(400),
+    @comment_created VARCHAR(100)
     )
 AS
 BEGIN
@@ -18,9 +19,9 @@ BEGIN
     END
 ELSE BEGIN
         INSERT INTO Comment
-            (user_id, answer_id,question_id, comment_id, comment_descprition )
+            (user_id, answer_id,question_id, comment_id, comment_descprition, comment_created)
         VALUES
-            (@user_id, @answer_id,@question_id, @comment_id, @comment_descprition)
+            (@user_id, @answer_id,@question_id, @comment_id, @comment_descprition, @comment_created)
     END
 
 END

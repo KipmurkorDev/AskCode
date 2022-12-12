@@ -5,7 +5,8 @@ import "./user.css";
 export default function Profile() {
   const Profile = useSelector((state) => state.profile.Profile);
   const loading = useSelector((state) => state.profile.isLoading);
-  console.log(Profile);
+
+
   if (!loading) return <>Loading</>;
   return (
     <div className="container-profile">

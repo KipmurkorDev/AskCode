@@ -13,14 +13,11 @@ export const getAnswers = createAsyncThunk("aswers", async (data) => {
     .post(`${url}/${data}`, data)
     .then((data) => data.data);
   Answers = [...response];
-  console.log(Answers);
   return Answers;
 });
-
 export const addAnswer = createAsyncThunk(
   "postanswer",
   async (data) => {
-    console.log(data);
     const response = await axios
       .post(url, data, { headers: authHeader() })
       .then((data) => data.json());
@@ -28,18 +25,12 @@ export const addAnswer = createAsyncThunk(
   },
   getAnswers()
 );
-
-export const updateAnswer = createAsyncThunk(
-  "updateanswer",
-  async (data) => {
-    console.log(data);
-    const response = await axios
-      .put(`${url}/${data.answer_id}`, data)
-      .then((data) => data.data);
-    return response;
-  },
-  getAnswers()
-);
+export const addVote = createAsyncThunk("votes", async (data) => {
+  const response = await axios
+    .post(`${url}/vote/${data.answer_id}`, data)
+    .then((data) => data.data);
+  return response;
+});
 export const answerSlice = createSlice({
   name: "answer",
   initialState,
@@ -50,7 +41,6 @@ export const answerSlice = createSlice({
     },
     [getAnswers.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      console.log(payload);
       state.Answers = payload;
     },
     [getAnswers.rejected]: (state) => {

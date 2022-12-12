@@ -13,7 +13,6 @@ export const getUserProfile = createAsyncThunk("aswers", async () => {
     .post(`${url}/${authHeader().user_id}`)
     .then((data) => data.data);
   Profile = [...response];
-  console.log(Profile);
   return Profile;
 });
 
@@ -39,7 +38,6 @@ export const profileSlice = createSlice({
     },
     [getUserProfile.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      console.log(payload);
       state.Profile = payload;
     },
     [getUserProfile.rejected]: (state) => {

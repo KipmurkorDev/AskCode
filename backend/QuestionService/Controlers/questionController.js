@@ -46,8 +46,8 @@ const searchQuestions = async (req, res) => {
       .request()
       .input("search_value", search_value)
       .execute("getsearchQuestions");
-    const questions = await response.recordset;
-    res.json(questions);
+    const searches = await response.recordset;
+    res.json(searches);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

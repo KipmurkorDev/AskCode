@@ -3,8 +3,7 @@ CREATE or ALTER PROCEDURE insertUpdateAnswer(
     @question_id VARCHAR(100),
     @answer_id VARCHAR(400),
     @answer_descprition VARCHAR(400),
-    @upvote INT =0,
-    @downvote INT=0
+    @answer_created VARCHAR(100)
 
     )
 AS
@@ -15,14 +14,14 @@ BEGIN
     WHERE answer_id = @answer_id AND question_id=@question_id)
     BEGIN
         UPDATE Answer
-         SET answer_descprition=@answer_descprition, upvote=@upvote, downvote=@downvote
+         SET answer_descprition=@answer_descprition
          WHERE answer_id = @answer_id AND question_id=@question_id
     END
 ELSE BEGIN
         INSERT INTO Answer
-            (user_id, question_id, answer_id, answer_descprition )
+            (user_id, question_id, answer_id, answer_descprition, answer_created )
         VALUES
-            (@user_id, @question_id, @answer_id, @answer_descprition)
+            (@user_id, @question_id, @answer_id, @answer_descprition, @answer_created)
     END
 
 END

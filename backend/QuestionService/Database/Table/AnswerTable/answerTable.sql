@@ -4,7 +4,5 @@ CREATE TABLE Answer(
     answer_id VARCHAR(100),
     answer_descprition VARCHAR(400),
     isDelete BIT DEFAULT '0',
-    upvote int DEFAULT '0',
-    downvote int DEFAULT '0'
-
+    answer_created VARCHAR(100)
 )

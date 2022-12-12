@@ -4,5 +4,6 @@ CREATE TABLE Comment (
     question_id VARCHAR(100),
     comment_id VARCHAR(100),
     comment_descprition VARCHAR(400),
-    isDelete BIT DEFAULT '0'
+    isDelete BIT DEFAULT '0',
+    comment_created VARCHAR(100)
 )

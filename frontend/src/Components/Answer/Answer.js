@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateAnswer } from "../Redux/Slices/AnswerSlice";
+import { addVote } from "../Redux/Slices/AnswerSlice";
 import Form from "./AddAnswer";
 import Comment from "../Comment/Comment";
 import moment from "moment";
@@ -11,18 +11,19 @@ export default function Answer() {
   const dispatch = useDispatch();
   const Answers = useSelector((state) => state.answer.Answers);
   const loading = useSelector((state) => state.answer.isLoading);
+
+
   const handleupdVote = (item) => {
-    let newItem = { ...item, upvote: item.upvote + 1 };
-    dispatch(updateAnswer(newItem));
+    let newitem={...item,upvote:1, downvote:0}
+    dispatch(addVote(newitem));
   };
   const handledownvote = (item) => {
-    let newItem = { ...item, downvote: item.downvote + 1 };
-    dispatch(updateAnswer(newItem));
+    let newitem={...item,upvote:0, downvote:1}
+    dispatch(addVote(newitem));
   };
   const getComentHandler = () => {
     setShow((prev) => !prev);
   };
-  console.log(Answers);
   if (!loading) return <>Loading</>;
   return (
     <div className="conatiner_answer">
@@ -42,7 +43,9 @@ export default function Answer() {
             </div>
           </div>
           <h5 style={{ textAlign: "left" }}> Answers</h5>
-          {Answers.map((item) => (
+          {Answers[0]?.answer_id===null? (
+          <p> There is no answer for this question</p>
+        ) :Answers?.map((item) => (
             <div className="answe_1">
               <div className="content-1">
                 <div className="btn">
@@ -66,7 +69,7 @@ export default function Answer() {
                   </button>
                 </div>
                 <div className="anwer_details">
-                  <p>{item?.answer_descprition} </p>
+                  <p>{item?.answer_descprition} <span>{moment(item.answer_created).fromNow()}</span> </p> 
                 </div>
               </div>
 

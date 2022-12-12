@@ -61,7 +61,6 @@ export default function Form({ question_id }) {
           onChange={handleInputChange}
         />
         <div>
-          {" "}
           <input
             type="submit"
             onClick={() => {

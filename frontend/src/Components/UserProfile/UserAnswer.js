@@ -7,7 +7,6 @@ const user = useSelector((state) => state.profile.Profile);
 const loading = useSelector((state) => state.profile.isLoading);
 const dispatch =useDispatch()
 
-console.log(user);
 
 if (!loading) return <>Loading</>;
   return (

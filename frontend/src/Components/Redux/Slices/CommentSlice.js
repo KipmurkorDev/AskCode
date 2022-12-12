@@ -13,7 +13,6 @@ export const getComments = createAsyncThunk("comments", async (data) => {
     .post(`${url}/${data}`, data)
     .then((data) => data.data);
   Comments = [...response];
-  console.log(Comments)
   return Comments;
 });
 
@@ -40,7 +39,6 @@ export const commentSlice = createSlice({
     },
     [getComments.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      console.log(payload);
       state.Comments = payload;
     },
     [getComments.rejected]: (state) => {

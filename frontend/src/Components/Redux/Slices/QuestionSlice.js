@@ -5,6 +5,7 @@ const url = "http://localhost:4040/questions";
 
 const initialState = {
   Questions: [],
+  Searches:[]
 };
 export const getQuestions = createAsyncThunk("questions", async () => {
   let Questions = [];
@@ -15,7 +16,7 @@ export const getQuestions = createAsyncThunk("questions", async () => {
 export const addQuestion = createAsyncThunk(
   "postquestion",
   async (data) => {
-    const response = await axios.post(url, data, {headers:authHeader()}).then((data) => data.json());
+    const response = await axios.post(url, data, {headers:authHeader()}).then((data) => data.data)
     return response;
   },
   getQuestions()
@@ -23,12 +24,10 @@ export const addQuestion = createAsyncThunk(
 export const searchQuestions = createAsyncThunk(
   "searchquestions",
   async (data) => {
-    console.log(data);
-    let Questions = [];
-    const response = await axios.post(`${url}/search`, data).then((data) => data.json());
-    Questions = [...response];
-    console.log(Questions);
-    return Questions;  
+    let Searches = [];
+    const response = await axios.post(`${url}/search`, data).then((data) =>data.data);
+    Searches = [...response];
+    return Searches;  
   },
 );
 
@@ -51,9 +50,7 @@ export const questionSlice = createSlice({
       state.loading = true;
     },
     [searchQuestions.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      console.log(payload);
-      state.Questions = payload;
+      state.Searches = payload;
     },
     [searchQuestions.rejected]: (state) => {
       state.loading = false;

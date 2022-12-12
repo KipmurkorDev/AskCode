@@ -1,5 +1,6 @@
 const sqlConfig = require("../Config/config");
 const sql = require("mssql");
+const moment = require("moment");
 const uuid = require("uuid");
 require("dotenv").config();
 
@@ -7,6 +8,7 @@ const addAnswer = async (req, res) => {
   try {
     const user_id = req.headers["user_id"];
     const answer_id = uuid.v4();
+    const answer_created = moment().format();
     const { answer_descprition, question_id } = req.body;
     const pool = await sql.connect(sqlConfig);
     await pool
@@ -15,6 +17,7 @@ const addAnswer = async (req, res) => {
       .input("question_id", question_id)
       .input("answer_id", answer_id)
       .input("answer_descprition", answer_descprition)
+      .input("answer_created", answer_created)
       .execute("insertUpdateAnswer");
 
     res.status(201).json({ message: "Answerr Inserted to database" });
@@ -37,29 +40,26 @@ const getAnswer = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-const updateAnswer = async (req, res) => {
+
+const downUpvote = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
-    const {answer_id} = req.params;
-    const { question_id, answer_descprition, upvote, downvote } = req.body;
+    const { user_id, question_id, answer_id, upvote, downvote } = req.body;
     const pool = await sql.connect(sqlConfig);
     await pool
       .request()
       .input("user_id", user_id)
+      .input("answer_id", answer_id)
       .input("question_id", question_id)
-      .input("answer_id",sql.VarChar(100), answer_id)
-      .input("answer_descprition", answer_descprition)
       .input("upvote", upvote)
       .input("downvote", downvote)
-      .execute("insertUpdateAnswer");
-    res.status(201).json({ message: "Answerr Inserted to database" });
+      .execute("inserUpdateVote");
+    res.status(201).json({ message: "Your vote counted" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
-
 module.exports = {
   addAnswer,
   getAnswer,
-  updateAnswer,
+  downUpvote,
 };
