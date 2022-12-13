@@ -69,9 +69,21 @@ const updateQuestion = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const mostAnswerdQuestion=async (req, res) => {
+  try {
+
+    const pool = await sql.connect(sqlConfig);
+    const response = await pool.request().execute("mostAnswerQuestion");
+    const questions = await response.recordset;
+    res.json(questions);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 module.exports = {
   addQuestion,
   getQuestions,
   searchQuestions,
-  updateQuestion
+  updateQuestion,
+  mostAnswerdQuestion
 };
