@@ -13,7 +13,7 @@ BEGIN
     WHERE answer_id = @answer_id AND user_id = @user_id) 
     BEGIN
         UPDATE downUpVote
-         SET upvote = @upvote ,downvote=@downvote
+         SET upvote = @upvote, downvote=@downvote
          WHERE answer_id = @answer_id AND user_id = @user_id;
     END
 ELSE BEGIN
