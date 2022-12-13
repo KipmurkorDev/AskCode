@@ -1,10 +1,10 @@
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { deleteComment } from "../Redux/Slices/userSliceProfile";
 import Profile from "./Profile";
 export default function UserComment() {
   const user = useSelector((state) => state.profile.Profile);
   const loading = useSelector((state) => state.profile.isLoading);
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
 
   if (!loading) return <>Loading</>;
   return (
@@ -21,8 +21,11 @@ export default function UserComment() {
                 <div className="btn_user">
                   <i class="fas fa-edit"></i>
                 </div>
-                <div className="btn_user" onClick={()=>dispatch(deleteComment(item?.comment_id))}>
-                <i class="fa fa-trash" aria-hidden="true"></i>
+                <div
+                  className="btn_user"
+                  onClick={() => dispatch(deleteComment(item?.comment_id))}
+                >
+                  <i class="fa fa-trash" aria-hidden="true"></i>
                 </div>
               </div>
             </div>

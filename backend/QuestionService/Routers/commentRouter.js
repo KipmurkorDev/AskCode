@@ -1,9 +1,10 @@
 const express = require("express");
 const commentRouter = express.Router();
-const {addComment,getComments} =require('../Controlers/commentController')
+const {addComment,getComments, updateComment} =require('../Controlers/commentController')
 
 commentRouter.post('',addComment)
-commentRouter.post('/:answer_id', getComments)
+commentRouter.get('/:answer_id', getComments)
+commentRouter.put('/',updateComment)
 
 
 

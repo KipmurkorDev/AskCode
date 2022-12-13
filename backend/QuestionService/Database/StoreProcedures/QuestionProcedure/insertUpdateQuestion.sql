@@ -1,4 +1,4 @@
-CREATE or Alter PROCEDURE insertUpdate(
+CREATE or Alter PROCEDURE insertUpdateQuestion(
     @user_id VARCHAR(200),
     @question_id VARCHAR(100),
     @title VARCHAR(400),

@@ -10,7 +10,7 @@ const initialState = {
 export const getAnswers = createAsyncThunk("aswers", async (data) => {
   let Answers = [];
   const response = await axios
-    .post(`${url}/${data}`, data)
+    .get(`${url}/${data}`)
     .then((data) => data.data);
   Answers = [...response];
   return Answers;

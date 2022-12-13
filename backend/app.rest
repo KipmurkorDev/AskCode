@@ -1,0 +1,151 @@
+#### add and retiving a user from database
+post http://localhost:4000/users/signup
+Content-Type: application/json
+
+{
+    "Name":"Emmanuel",
+    "user_name":"Kipmurkor",
+    "email":"emmanuelkipmurkor@gmail.com",
+    "user_password": "kim8717166"
+
+}
+
+
+###
+post http://localhost:4000/users/login
+Content-Type: application/json
+
+{
+    "email":"emmanuelkipmurkor@gmail.com",
+    "user_password": "kim8717166"
+
+}
+###geting and adding posting questions
+GET http://localhost:4040/questions
+
+
+###
+post http://localhost:4040/questions
+Content-Type:  application/json
+
+{
+    "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
+    "title":"do javscript run outside the browser?",
+    "description": " it runs outside the browser throug nodejs"
+}
+
+### search question in databases 
+post http://localhost:4040/questions/search
+Content-Type: application/json
+
+{
+    "search_value": "flutter"
+}
+
+#### geting and posting answers
+GET  http://localhost:4040/answers/7b63c7c6-3c60-4595-aafe-9964d1983466
+
+
+###
+POST http://localhost:4040/answers
+Content-Type: application/json
+
+{
+    "user_id": "fb636bab-b196-4f43-824b-e797044f4875",
+    "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+    "answer_descprition": " i think you should consider deleoping stored procedue by passing use id by headers"
+}
+
+###getting and posting comments
+###
+get http://localhost:4040/comments/ff6ebd89-9a41-44cb-a7ba-c41a980308fd
+
+###
+POST http://localhost:4040/comments
+Content-Type: application/json
+
+{
+    "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
+     "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
+      "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+      "comment_descprition": " i think you should consider deleoping stored procedue by passing use id by headers"
+
+}
+
+### up and down votes by users
+post http://localhost:4040/answers/vote/ff6ebd89-9a41-44cb-a7ba-c41a980308fd
+Content-Type: application/json
+
+{
+    "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
+    "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
+     "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+     "upvote":"1"
+}
+
+###
+post http://localhost:4040/answers/vote/ff6ebd89-9a41-44cb-a7ba-c41a980308fd
+Content-Type: application/json
+
+{
+    "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
+    "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
+     "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+     "downvote":"1"
+}
+
+#### update the accepted answer state
+put http://localhost:4040/answers/accepted
+Content-Type: application/json
+{
+    "answer_id":"9596f051-8e16-4a56-9b64-d4efb056ad55"
+}
+
+###users can delete   questions, answers and comments they posted
+
+GET http://localhost:4040/profile/fb636bab-b196-4f43-824b-e797044f4875
+
+###
+delete http://localhost:4040/profile/01f5ae10-5d72-4ab1-b6bf-9c1dea456f9c
+
+###
+DELETE http://localhost:4040/profile/answers/9596f051-8e16-4a56-9b64-d4efb056ad55
+
+###
+DELETE http://localhost:4040/profile/comments/9596f051-8e16-4a56-9b64-d4efb056ad55
+
+
+#### users can update the question , answers and comments they posted
+put  http://localhost:4040/questions
+Content-Type: application/json
+
+{
+    "user_id": "fb636bab-b196-4f43-824b-e797044f4875",
+    "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+    "title": "How to fix RangeError Invalid value: Not in inclusive range 0..1: 2?",
+    "description": "How to wait for a certain value coming from a react-native hook before proceeding?",
+    "created": "2022-12-11T16:31:23+03:00"
+}
+###
+put http://localhost:4040/answers/
+Content-Type:  application/json
+
+{
+     "user_id": "fb636bab-b196-4f43-824b-e797044f4875",
+    "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+     "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
+    "answer_descprition": " i think you should consider deleoping stored procedue by passing use id by headers"
+}
+
+###
+put  http://localhost:4040/comments/
+Content-Type: application/json
+
+ {
+    "user_id": "fb636bab-b196-4f43-824b-e797044f4875",
+    "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
+    "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
+    "comment_id": "06b3b864-ce08-4b12-97d0-e81b49642b5f",
+    "comment_descprition": " i think you should consider deleoping stored procedue by passing use id by headers",
+    "comment_created": "2022-12-13T10:10:03+03:00"
+  }
