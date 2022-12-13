@@ -7,10 +7,10 @@ require("dotenv").config();
 
 const addComment = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
+    // const user_id = req.headers["user_id"];
     const comment_id = uuid.v4();
     const comment_created = moment().format();
-    const { question_id, comment_descprition, answer_id } = req.body;
+    const { user_id, question_id, comment_descprition, answer_id } = req.body;
     const pool = await sql.connect(sqlConfig);
     await pool
       .request()

@@ -6,10 +6,10 @@ require("dotenv").config();
 
 const addAnswer = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
+    // const user_id = req.headers["user_id"];
     const answer_id = uuid.v4();
     const answer_created = moment().format();
-    const { answer_descprition, question_id } = req.body;
+    const {user_id,  answer_descprition, question_id } = req.body;
     const pool = await sql.connect(sqlConfig);
     await pool
       .request()

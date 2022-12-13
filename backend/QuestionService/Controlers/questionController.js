@@ -6,10 +6,10 @@ require("dotenv").config();
 
 const addQuestion = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
+    // const user_id = req.headers["user_id"];
     const question_id = uuid.v4();
     const created = moment().format();
-    const { title, description } = req.body;
+    const { user_id, title, description } = req.body;
     const pool = await sql.connect(sqlConfig);
     await pool
       .request()
@@ -18,7 +18,7 @@ const addQuestion = async (req, res) => {
       .input("title", title)
       .input("description", description)
       .input("created", created)
-      .execute("updateQuestion");
+      .execute("insertUpdateQuestion");
 
     res.status(201).json({ message: "Question Inserted to database" });
   } catch (error) {
@@ -28,7 +28,7 @@ const addQuestion = async (req, res) => {
 
 const getQuestions = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
+    const user_id = req.body;
 
     const pool = await sql.connect(sqlConfig);
     const response = await pool.request().execute("getQuestions");
