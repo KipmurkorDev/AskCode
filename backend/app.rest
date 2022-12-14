@@ -1,4 +1,4 @@
-#### add and retiving a user from database
+#### add and retrieving a user from database
 post http://localhost:4000/users/signup
 Content-Type: application/json
 
@@ -39,11 +39,11 @@ post http://localhost:4040/questions/search
 Content-Type: application/json
 
 {
-    "search_value": "flutter"
+    "search_value": "Unable"
 }
 
 #### geting and posting answers
-GET  http://localhost:4040/answers/7b63c7c6-3c60-4595-aafe-9964d1983466
+GET  http://localhost:4040/answers/c2609ed0-704b-4ddf-a719-8e2417a4cfe8
 
 
 ###
@@ -65,7 +65,7 @@ POST http://localhost:4040/comments
 Content-Type: application/json
 
 {
-    "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
+    "user_id":"e1c38d61-1b3e-437f-93a1-73987ec438e9",
      "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
       "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
       "comment_descprition": " i think you should consider deleoping stored procedue by passing use id by headers"
@@ -94,18 +94,18 @@ Content-Type: application/json
      "downvote":"1"
 }
 
-#### update the accepted answer state
+#### update the accepted answer
 put http://localhost:4040/answers/accepted
 Content-Type: application/json
+
 {
     "answer_id":"9596f051-8e16-4a56-9b64-d4efb056ad55"
 }
 
-###users can delete   questions, answers and comments they posted
-
+### get all questions, answers and comments for posted by the current user
 GET http://localhost:4040/profile/fb636bab-b196-4f43-824b-e797044f4875
 
-###
+###users can delete  questions, answers and comments they posted
 delete http://localhost:4040/profile/01f5ae10-5d72-4ab1-b6bf-9c1dea456f9c
 
 ###
@@ -149,3 +149,10 @@ Content-Type: application/json
     "comment_descprition": " i think you should consider deleoping stored procedue by passing use id by headers",
     "comment_created": "2022-12-13T10:10:03+03:00"
   }
+
+
+
+###
+  ### getting questions with the most answers
+  GET http://localhost:4040/questions/most
+  
