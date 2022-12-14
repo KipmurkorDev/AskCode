@@ -20,7 +20,7 @@ const addAnswer = async (req, res) => {
       .input("answer_created", answer_created)
       .execute("insertUpdateAnswer");
 
-    res.status(201).json({ message: "Answerr Inserted to database" });
+    res.status(201).json({ message: "Answer Inserted to database" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -58,8 +58,42 @@ const downUpvote = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const iseacceptedAnswer=async (req, res) => {
+  try {
+    const {answer_id}  = req.body;
+    const pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("answer_id", answer_id)
+      .execute("acceptedAnswer");
+    res.json({ message: "Accepted answer updated" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+}
+const updateAnswer = async (req, res) => {
+  try {
+  
+    const { user_id, answer_id, answer_descprition, question_id , answer_created} = req.body;
+    const pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("user_id", user_id)
+      .input("question_id", question_id)
+      .input("answer_id", answer_id)
+      .input("answer_descprition", answer_descprition)
+      .input("answer_created", answer_created)
+      .execute("insertUpdateAnswer");
+
+    res.status(201).json({ message: "Answer updated to database" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 module.exports = {
   addAnswer,
   getAnswer,
   downUpvote,
+  iseacceptedAnswer,
+  updateAnswer
 };

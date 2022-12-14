@@ -12,7 +12,6 @@ export default function Home() {
   const navigate = useNavigate();
   const [search, setSearch] = useState({ search_value: "" });
   const Questions = useSelector((state) => state.question.Questions);
-
   useEffect(() => {
     dispatch(getQuestions());
   }, [dispatch]);

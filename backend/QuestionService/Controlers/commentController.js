@@ -21,7 +21,7 @@ const addComment = async (req, res) => {
       .input("comment_descprition", comment_descprition)
       .input("comment_created", comment_created)
       .execute("insertUpdateComment");
-    res.status(201).json({ message: "Answerr Inserted to database" });
+    res.status(201).json({ message: "Comment Inserted to database" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -41,8 +41,27 @@ const getComments = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-
+const updateComment = async (req, res) => {
+  try {
+  
+    const {user_id, comment_id,comment_created,  question_id, comment_descprition, answer_id } = req.body;
+    const pool = await sql.connect(sqlConfig);
+    await pool
+      .request()
+      .input("user_id", user_id)
+      .input("answer_id", answer_id)
+      .input("question_id", question_id)
+      .input("comment_id", comment_id)
+      .input("comment_descprition", comment_descprition)
+      .input("comment_created", comment_created)
+      .execute("insertUpdateComment");
+    res.status(201).json({ message: "Comment updated in the database" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 module.exports = {
   addComment,
   getComments,
+  updateComment
 };

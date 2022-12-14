@@ -10,7 +10,7 @@ const initialState = {
 export const getUserProfile = createAsyncThunk("aswers", async () => {
   let Profile = [];
   const response = await axios
-    .post(`${url}/${authHeader().user_id}`)
+    .get(`${url}/${authHeader().user_id}`)
     .then((data) => data.data);
   Profile = [...response];
   return Profile;
