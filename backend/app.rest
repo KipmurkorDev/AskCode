@@ -107,7 +107,7 @@ Content-Type: application/json
 GET http://localhost:4040/profile/fb636bab-b196-4f43-824b-e797044f4875
 
 ###users can delete  questions, answers and comments they posted
-delete http://localhost:4040/profile/c2609ed0-704b-4ddf-a719-8e2417a4cfe8
+delete http://localhost:4040/profile/d6ebc1dd-1fe0-471c-b13c-070685953325
 
 ###
 DELETE http://localhost:4040/profile/answers/9596f051-8e16-4a56-9b64-d4efb056ad55

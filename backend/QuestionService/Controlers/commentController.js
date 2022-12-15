@@ -44,8 +44,10 @@ const updateComment = async (req, res) => {
       comment_descprition,
       answer_id,
     } = req.body;
-    const commentExist=await (await exec("getComment", {comment_id})).recordset;
-    if(commentExist.length){
+    const commentExist = await (
+      await exec("getComment", { comment_id })
+    ).recordset;
+    if (commentExist.length) {
       await (
         await exec("insertUpdateComment", {
           answer_id,
@@ -56,12 +58,9 @@ const updateComment = async (req, res) => {
         })
       ).recordset;
       res.status(201).json({ message: "Comment updated in the database" });
-    }
-    else{
+    } else {
       res.status(201).json({ message: "Comment not existing in the database" });
-
     }
-  
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
