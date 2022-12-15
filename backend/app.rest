@@ -3,7 +3,7 @@ post http://localhost:4000/users/signup
 Content-Type: application/json
 
 {
-    "Name":"Emmanuel",
+    "Name":"Emmanuel kipmurkor",
     "user_name":"Kipmurkor",
     "email":"emmanuelkipmurkor@gmail.com",
     "user_password": "kim8717166"
@@ -80,7 +80,8 @@ Content-Type: application/json
     "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
     "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
      "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
-     "upvote":"1"
+     "upvote":"1",
+     "downvote":"1"
 }
 
 ###
@@ -89,7 +90,7 @@ Content-Type: application/json
 
 {
     "user_id":"fb636bab-b196-4f43-824b-e797044f4875",
-    "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
+    "answer_id": "441e23a2-8e9c-45ba-a80d-aa6f14b805d9",
      "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
      "downvote":"1"
 }
@@ -99,14 +100,14 @@ put http://localhost:4040/answers/accepted
 Content-Type: application/json
 
 {
-    "answer_id":"9596f051-8e16-4a56-9b64-d4efb056ad55"
+    "answer_id":"611020b5-be2c-4ff1-ac3a-690fcc8fed48"
 }
 
 ### get all questions, answers and comments for posted by the current user
 GET http://localhost:4040/profile/fb636bab-b196-4f43-824b-e797044f4875
 
 ###users can delete  questions, answers and comments they posted
-delete http://localhost:4040/profile/01f5ae10-5d72-4ab1-b6bf-9c1dea456f9c
+delete http://localhost:4040/profile/d6ebc1dd-1fe0-471c-b13c-070685953325
 
 ###
 DELETE http://localhost:4040/profile/answers/9596f051-8e16-4a56-9b64-d4efb056ad55
@@ -120,7 +121,6 @@ put  http://localhost:4040/questions
 Content-Type: application/json
 
 {
-    "user_id": "fb636bab-b196-4f43-824b-e797044f4875",
     "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
     "title": "How to fix RangeError Invalid value: Not in inclusive range 0..1: 2?",
     "description": "How to wait for a certain value coming from a react-native hook before proceeding?",
@@ -145,7 +145,7 @@ Content-Type: application/json
     "user_id": "fb636bab-b196-4f43-824b-e797044f4875",
     "answer_id": "ff6ebd89-9a41-44cb-a7ba-c41a980308fd",
     "question_id": "7b63c7c6-3c60-4595-aafe-9964d1983466",
-    "comment_id": "06b3b864-ce08-4b12-97d0-e81b49642b5f",
+    "comment_id": "aa42eec6-b0c4-4b89-ba9f-d0305bae12ff",
     "comment_descprition": " i think you should consider deleoping stored procedue by passing use id by headers",
     "comment_created": "2022-12-13T10:10:03+03:00"
   }

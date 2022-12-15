@@ -1,24 +1,23 @@
-const sqlConfig = require("../Config/config");
 const moment = require("moment");
-const sql = require("mssql");
+const { exec } = require("../DatabaseHelplers/databaseHelpers");
 const uuid = require("uuid");
 require("dotenv").config();
 
 const addQuestion = async (req, res) => {
   try {
-    // const user_id = req.headers["user_id"];
+    const user_id = req.headers["user_id"];
     const question_id = uuid.v4();
     const created = moment().format();
-    const { user_id, title, description } = req.body;
-    const pool = await sql.connect(sqlConfig);
-    await pool
-      .request()
-      .input("user_id", user_id)
-      .input("question_id", question_id)
-      .input("title", title)
-      .input("description", description)
-      .input("created", created)
-      .execute("insertUpdateQuestion");
+    const { title, description } = req.body;
+    await (
+      await exec("insertUpdateQuestion", {
+        user_id,
+        question_id,
+        title,
+        description,
+        created,
+      })
+    ).recordset;
 
     res.status(201).json({ message: "Question Inserted to database" });
   } catch (error) {
@@ -28,11 +27,7 @@ const addQuestion = async (req, res) => {
 
 const getQuestions = async (req, res) => {
   try {
-    const user_id = req.body;
-
-    const pool = await sql.connect(sqlConfig);
-    const response = await pool.request().execute("getQuestions");
-    const questions = await response.recordset;
+    const questions = await (await exec("getQuestions")).recordset;
     res.json(questions);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -41,12 +36,9 @@ const getQuestions = async (req, res) => {
 const searchQuestions = async (req, res) => {
   try {
     const { search_value } = req.body;
-    const pool = await sql.connect(sqlConfig);
-    const response = await pool
-      .request()
-      .input("search_value", search_value)
-      .execute("getsearchQuestions");
-    const searches = await response.recordset;
+    const searches = await (
+      await exec("getsearchQuestions", { search_value })
+    ).recordset;
     res.json(searches);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -55,25 +47,33 @@ const searchQuestions = async (req, res) => {
 const updateQuestion = async (req, res) => {
   try {
     const { user_id, question_id, title, description, created } = req.body;
-    const pool = await sql.connect(sqlConfig);
-    await pool
-      .request()
-      .input("user_id", user_id)
-      .input("question_id", question_id)
-      .input("title", title)
-      .input("description", description)
-      .input("created", created)
-      .execute("insertUpdateQuestion");
+
+    const questionsExist = await (
+      await exec("getQuestion", { question_id })
+    ).recordset;
+    if (questionsExist.length) {
+      await (
+        await exec("insertUpdateQuestion", {
+          user_id,
+          question_id,
+          title,
+          description,
+          created,
+        })
+      ).recordset;
+      res.json({ message: "Question updated on database" });
+    } else {
+      res.json({ message: "Question does not exist" });
+    }
+
     res.json({ message: "Question updated successfull" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
-const mostAnswerdQuestion=async (req, res) => {
+const mostAnswerdQuestion = async (req, res) => {
   try {
-
-    const pool = await sql.connect(sqlConfig);
-    const response = await pool.request().execute("mostAnswerQuestion");
+    const response = await exec("mostAnswerQuestion");
     const questions = await response.recordset;
     res.json(questions);
   } catch (error) {
@@ -85,5 +85,5 @@ module.exports = {
   getQuestions,
   searchQuestions,
   updateQuestion,
-  mostAnswerdQuestion
+  mostAnswerdQuestion,
 };
