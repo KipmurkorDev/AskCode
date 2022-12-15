@@ -2,8 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const verification = (req, res, next) => {
-  // const token = req.headers["x-access-token"];
-const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtbWFudWVsa2lwbXVya29yQGdtYWlsLmNvbSIsInVzZXJfcGFzc3dvcmQiOiIkMmIkMDgkaGFFd2xzRFlXVjlqSG5IVVI5UFNLZUduVXlnelVNTEFqYTNLOUZRNmN0SEQ4QWtYb3ZIMUMiLCJpYXQiOjE2NzA5Mjg5NjgsImV4cCI6MTY3MDkzNjE2OH0.7wHmqBLFxHmtJ3RwGV99WNGouKh7pEujUClHqyC9BmU"
+  const token = req.headers["x-access-token"];
   if (!token) {
     return res.status(403).send("A token is required for authentication");
   }

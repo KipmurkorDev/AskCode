@@ -1,15 +1,9 @@
-const sqlConfig = require("../Config/config");
-const sql = require("mssql");
+const { exec } = require("../DatabaseHelplers/databaseHelpers");
 
 const getprofile = async (req, res) => {
   try {
     const { user_id } = req.params;
-    const pool = await sql.connect(sqlConfig);
-    const response = await pool
-      .request()
-      .input("user_id", user_id)
-      .execute("getProfile");
-    const profile = await response.recordsets;
+    const profile = await (await exec("getProfile", { user_id })).recordsets;
     res.json(profile);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -18,12 +12,15 @@ const getprofile = async (req, res) => {
 const deleQuestion = async (req, res) => {
   try {
     const { question_id } = req.params;
-    const pool = await sql.connect(sqlConfig);
-    await pool
-      .request()
-      .input("question_id", question_id)
-      .execute("deleQuestion");
-    res.json({ message: " Question deleted successfull" });
+    const exist = await (await exec("getQuestion", { question_id })).recordset;
+    if (exist.length) {
+      await (
+        await exec("deleQuestion", { question_id })
+      ).recordsets;
+      res.json({ message: " Question deleted successfull" });
+    } else {
+      res.json({ message: " Question already deleted " });
+    }
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -31,9 +28,16 @@ const deleQuestion = async (req, res) => {
 const deleteAnswer = async (req, res) => {
   try {
     const { answer_id } = req.params;
-    const pool = await sql.connect(sqlConfig);
-    await pool.request().input("answer_id", answer_id).execute("deleAnswer");
-    res.json({ message: "Answer deleted successfull" });
+    const exist = await (await exec("getAnswers", { answer_id })).recordset;
+
+    if (exist.length) {
+      await (
+        await exec("deleAnswer", { answer_id })
+      ).recordset;
+      res.json({ message: "Answer deleted successfull" });
+    } else {
+      res.json({ message: " Answer already deleted " });
+    }
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -41,21 +45,24 @@ const deleteAnswer = async (req, res) => {
 const deletecomment = async (req, res) => {
   try {
     const { comment_id } = req.params;
-    const pool = await sql.connect(sqlConfig);
-    await pool.request().input("comment_id", comment_id).execute("deleComment");
-    res.json({ message: "Comment deleted successfull" });
+    const exist = await (await exec("getComment", { comment_id })).recordset;
+    console.log(exist);
+    if (exist.length) {
+      await (
+        await exec("deleComment", { comment_id })
+      ).recordset;
+      res.json({ message: "Comment deleted successfull" });
+    } else {
+      res.json({ message: " Comment already deleted " });
+    }
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
 };
-
-
-
 
 module.exports = {
   getprofile,
   deleQuestion,
   deleteAnswer,
   deletecomment,
-  
 };
