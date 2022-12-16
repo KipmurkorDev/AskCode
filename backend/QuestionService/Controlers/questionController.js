@@ -38,7 +38,7 @@ const getQuestions = async (req, res) => {
 };
 const searchQuestions = async (req, res) => {
   try {
-    const { search_value } = req.body;
+    const { search_value } = req.params;
     const searches = await (
       await exec("getsearchQuestions", { search_value })
     ).recordset;
@@ -47,8 +47,11 @@ const searchQuestions = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+
 const updateQuestion = async (req, res) => {
   try {
+
     const { user_id, question_id, title, description, created } = req.body;
 
     const questionsExist = await (

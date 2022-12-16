@@ -25,7 +25,7 @@ export const searchQuestions = createAsyncThunk(
   "searchquestions",
   async (data) => {
     let Searches = [];
-    const response = await axios.post(`${url}/search`, data).then((data) =>data.data);
+    const response = await axios.post(`${url}/search/${data}`, data).then((data) =>data.data);
     Searches = [...response];
     return Searches;  
   },

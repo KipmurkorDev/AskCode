@@ -10,7 +10,7 @@ const initialState = {
 export const getComments = createAsyncThunk("comments", async (data) => {
   let Comments = [];
   const response = await axios
-    .get(`${url}/${data}`)
+    .get(`${url}/comment/${data}`)
     .then((data) => data.data);
   Comments = [...response];
   return Comments;
@@ -20,7 +20,7 @@ export const addComment = createAsyncThunk(
   "postanswer",
   async (data) => {
     const response = await axios
-      .post(url, data, { headers: authHeader() })
+      .post(`${url}/comment`, data, { headers: authHeader() })
       .then((data) => data.json());
     return response;
   },
