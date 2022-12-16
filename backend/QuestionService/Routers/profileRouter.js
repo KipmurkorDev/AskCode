@@ -7,7 +7,7 @@ const {
 } = require("../Controlers/profileController");
 const profileRouter = express.Router();
 
-profileRouter.get("/:user_id", getprofile);
+profileRouter.get("/user", getprofile);
 profileRouter.delete("/:question_id", deleQuestion);
 profileRouter.delete("/answers/:answer_id", deleteAnswer);
 profileRouter.delete("/comments/:comment_id", deletecomment);

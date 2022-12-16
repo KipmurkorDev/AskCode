@@ -9,7 +9,7 @@ const initialState = {
 };
 export const getQuestions = createAsyncThunk("questions", async () => {
   let Questions = [];
-  const response = await axios.get(url).then((data) => data.data);
+  const response = await axios.get(url, { headers: authHeader() }).then((data) => data.data);
   Questions = [...response];
   return Questions;
 });
@@ -25,7 +25,7 @@ export const searchQuestions = createAsyncThunk(
   "searchquestions",
   async (data) => {
     let Searches = [];
-    const response = await axios.post(`${url}/search/${data}`, data).then((data) =>data.data);
+    const response = await axios.post(`${url}/search/${data}`, data, { headers: authHeader() }).then((data) =>data.data);
     Searches = [...response];
     return Searches;  
   },

@@ -6,7 +6,6 @@ export default function Profile() {
   const Profile = useSelector((state) => state.profile.Profile);
   const loading = useSelector((state) => state.profile.isLoading);
 
-
   if (!loading) return <>Loading</>;
   return (
     <div className="container-profile">
@@ -14,13 +13,13 @@ export default function Profile() {
         <h1> Your Performances </h1>
         <div className="comment-profile">
           <div>
-            <p> Question {Profile[1]?.length}</p>
+            <p> Question {Profile[1]?.userQuestions?.length}</p>
           </div>
           <div>
-            <p> Answers {Profile[2]?.length}</p>
+            <p> Answers {Profile[2]?.userAnswers?.length}</p>
           </div>
           <div>
-            <p> Comments {Profile[3]?.length}</p>
+            <p> Comments {Profile[3]?.userComments?.length}</p>
           </div>
         </div>
         <div className="profile-content">

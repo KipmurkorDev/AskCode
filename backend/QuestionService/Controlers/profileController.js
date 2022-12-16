@@ -6,7 +6,12 @@ const getprofile = async (req, res) => {
     const token = req.headers["x-access-token"];
     const decoded=jwt_decode(token);  
     const user_id=decoded.user_id   
-    const profile = await (await exec("getProfile", { user_id })).recordsets;
+    const response = await (await exec("getProfile", { user_id })).recordsets;
+    let user={user:response[0]}
+    let userQuestions={userQuestions:response[1]}
+    let userAnswers={userAnswers:response[2]}
+    let  userComments={userComments:response[3]}
+    let profile=[user, userQuestions, userAnswers, userComments]
     res.json(profile);
   } catch (error) {
     res.status(404).json({ error: error.message });

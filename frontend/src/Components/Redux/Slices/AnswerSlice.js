@@ -10,7 +10,7 @@ const initialState = {
 export const getAnswers = createAsyncThunk("aswers", async (data) => {
   let Answers = [];
   const response = await axios
-    .get(`${url}/question/${data}`)
+    .get(`${url}/question/${data}`, { headers: authHeader() })
     .then((data) => data.data);
   Answers = [...response];
   return Answers;
@@ -27,7 +27,7 @@ export const addAnswer = createAsyncThunk(
 );
 export const addVote = createAsyncThunk("votes", async (data) => {
   const response = await axios
-    .post(`${url}/answer/vote/${data.answer_id}`, data)
+    .post(`${url}/answer/vote/${data.answer_id}`, data, { headers: authHeader() })
     .then((data) => data.data);
   return response;
 });

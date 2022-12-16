@@ -7,5 +7,6 @@ CREATE PROCEDURE adduser (
 )
 AS
 BEGIN
-INSERT users(user_id,Name, user_name, email, user_password) VALUES (@user_id,@Name, @user_name,  @email, @user_password)
+INSERT users(user_id,Name, user_name, email, user_password) 
+VALUES (@user_id,@Name, @user_name,  @email, @user_password)
 END

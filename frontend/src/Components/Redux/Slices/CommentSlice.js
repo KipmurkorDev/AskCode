@@ -10,7 +10,7 @@ const initialState = {
 export const getComments = createAsyncThunk("comments", async (data) => {
   let Comments = [];
   const response = await axios
-    .get(`${url}/comment/${data}`)
+    .get(`${url}/comment/${data}`, { headers: authHeader() })
     .then((data) => data.data);
   Comments = [...response];
   return Comments;
