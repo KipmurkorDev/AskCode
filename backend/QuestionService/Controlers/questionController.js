@@ -38,7 +38,7 @@ const getQuestions = async (req, res) => {
 };
 const searchQuestions = async (req, res) => {
   try {
-    const { search_value } = req.params;
+    const { search_value } = req.body;
     const searches = await (
       await exec("getsearchQuestions", { search_value })
     ).recordset;

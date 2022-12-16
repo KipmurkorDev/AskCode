@@ -13,7 +13,7 @@ export default function Profile() {
         <h1> Your Performances </h1>
         <div className="comment-profile">
           <div>
-            <p> Question {Profile[1]?.userQuestions?.length}</p>
+            <p> Questions {Profile[1]?.userQuestions?.length}</p>
           </div>
           <div>
             <p> Answers {Profile[2]?.userAnswers?.length}</p>

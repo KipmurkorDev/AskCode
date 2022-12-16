@@ -65,7 +65,7 @@ export default function Answer() {
                       ) : (
                         <i
                           class="fa fa-check"
-                          style={{ color: "green", fontSize: "20px" }}
+                          style={{ color: "green", fontSize: "20px", paddingLeft:"6px" }}
                         ></i>
                       )}
                     </span>

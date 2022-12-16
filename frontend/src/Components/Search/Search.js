@@ -17,7 +17,7 @@ export default function Search() {
   };
   useEffect(() => {}, [Searches]);
   const handlesearch = () => {
-    if (search.search_value) {
+    if (search.search_value.length>2) {
       dispatch(searchQuestions(search));
     } else {
       alert(" nothing to search");

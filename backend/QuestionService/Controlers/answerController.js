@@ -34,12 +34,11 @@ const getAnswers = async (req, res) => {
     const response = await (await exec("getAnswers", { question_id })).recordsets;
     let answers=response[0]
     for (let i of response[0]){
+      i.count=0
       for(let j of response[1]){
-        let count=0
-        if(i.user_id===j.user_id&&i.answer_id==j.answer_id){
-            count++
+        if(i.answer_id===j.answer_id){
+            i.count+=1
         }
-        i.count=count
       }
     }
     res.json(answers);
