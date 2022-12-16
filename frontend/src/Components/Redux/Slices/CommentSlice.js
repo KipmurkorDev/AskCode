@@ -19,7 +19,6 @@ export const getComments = createAsyncThunk("comments", async (data) => {
 export const addComment = createAsyncThunk(
   "postanswer",
   async (data) => {
-    console.log(data);
     const response = await axios
       .post(url, data, { headers: authHeader() })
       .then((data) => data.json());

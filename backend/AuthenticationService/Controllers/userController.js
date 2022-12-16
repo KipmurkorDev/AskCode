@@ -37,11 +37,11 @@ const getUser = async (req, res) => {
       );
       if (confirmpassword) {
         const token = jwt.sign(
-          { email: user.email, user_password: user.user_password },
+          { email: user.email,user_id: user.user_id, user_password: user.user_password },
           process.env.SECRET,
           { expiresIn: "2h" }
         );
-        res.status(200).send({ token, user_id: user.user_id });
+        res.status(200).send({ token });
       } else {
         return res.status(400).json({ message: "wrong  password" });
       }

@@ -1,8 +1,11 @@
 const { exec } = require("../DatabaseHelplers/databaseHelpers");
+const jwt_decode = require('jwt-decode');
 
 const getprofile = async (req, res) => {
   try {
-    const { user_id } = req.params;
+    const token = req.headers["x-access-token"];
+    const decoded=jwt_decode(token);  
+    const user_id=decoded.user_id   
     const profile = await (await exec("getProfile", { user_id })).recordsets;
     res.json(profile);
   } catch (error) {
@@ -17,7 +20,7 @@ const deleQuestion = async (req, res) => {
       await (
         await exec("deleQuestion", { question_id })
       ).recordsets;
-      res.json({ message: " Question deleted successfull" });
+      res.json({ message: "Question deleted successfull" });
     } else {
       res.json({ message: " Question already deleted " });
     }

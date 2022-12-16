@@ -1,11 +1,14 @@
 const { exec } = require("../DatabaseHelplers/databaseHelpers");
+const jwt_decode = require('jwt-decode');
 const moment = require("moment");
 const uuid = require("uuid");
 require("dotenv").config();
 
 const addAnswer = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
+    const token = req.headers["x-access-token"];
+    const decoded=jwt_decode(token, { headers: true });
+    const user_id=decoded.user_id
     const answer_id = uuid.v4();
     const answer_created = moment().format();
     const { answer_descprition, question_id } = req.body;
