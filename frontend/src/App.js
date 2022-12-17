@@ -10,10 +10,10 @@ import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Answer from "./Pages/Answer/Answer";
 import Profile from "./Components/UserProfile/Profile";
-import UserQuestions from "./Components/UserProfile/userQuestions";
-import UserAnswer from "./Components/UserProfile/UserAnswer";
-import Userprofile from "./Components/UserProfile/Userprofile";
-import UserComment from "./Components/UserProfile/userComment";
+import UserQuestions from "./Pages/UserProfile/userQuestions";
+import UserAnswer from "./Pages/UserProfile/UserAnswer";
+import Userprofile from "./Pages/UserProfile/Userprofile";
+import UserComment from "./Pages/UserProfile/userComment";
 import Search from "./Pages/Search/Search";
 function App() {
   const location = useLocation();

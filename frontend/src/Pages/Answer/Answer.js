@@ -10,7 +10,6 @@ export default function Answer() {
   const dispatch = useDispatch();
   const Answers = useSelector((state) => state.answer.Answers);
   const loading = useSelector((state) => state.answer.isLoading);
-
   const handleupdVote = (item) => {
     let newitem = { ...item, Vote: 1 };
     dispatch(addVote(newitem));
