@@ -104,13 +104,36 @@ textarea {
   justify-content: flex-end;
 }
 .anwer_details {
-  padding-top: 20px;
+  margin-top: 20px;
+  display: flex;
+  align-content: space-between;
+  padding: 10px;
+  width: 100%;
 }
 .comment_add {
   display: flex;
-  }
-  .question-3 span{
-    padding-left: 10px;
-    font-weight: 300;
-    font-size: 14px;
-  }
+}
+.question-3 span {
+  padding-left: 10px;
+  font-weight: 300;
+  font-size: 14px;
+}
+.answer-div {
+  width: 87%;
+}
+.anwer_details span{
+  padding-left: 7px;
+  font-style: italic;
+  font-size: 13px;
+}
+.btn-accept{
+  width: 2%;
+
+}
+.btn-accept button{
+  margin: 5px;
+  padding-left: 10px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}

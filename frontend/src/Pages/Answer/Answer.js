@@ -1,15 +1,20 @@
 import React, { useState } from "react";
+import authHeader from "../../Redux/Helpers/tokenHeaders";
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../../Redux/Slices/AnswerSlice";
 import AddAnswer from "../../Components/AnswerForm/AddAnswer";
 import Comment from "../Comment/Comment";
+import jwt from "jwt-decode";
 import moment from "moment";
-import '../../Components/AnswerForm/answer.css'
+import "../../Components/AnswerForm/answer.css";
 export default function Answer() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const Answers = useSelector((state) => state.answer.Answers);
   const loading = useSelector((state) => state.answer.isLoading);
+  const token = authHeader()["x-access-token"];
+  const decode = jwt(token, { headers: true });
+  const user_id = decode.user_id;
   const handleupdVote = (item) => {
     let newitem = { ...item, Vote: 1 };
     dispatch(addVote(newitem));
@@ -18,6 +23,7 @@ export default function Answer() {
     let newitem = { ...item, Vote: 0 };
     dispatch(addVote(newitem));
   };
+  console.log(Answers);
   const getComentHandler = () => {
     setShow((prev) => !prev);
   };
@@ -57,15 +63,18 @@ export default function Answer() {
                         style={{ fontSize: "40px" }}
                       ></i>
                     </button>
-                    <span style={{ paddingLeft: "2px" }}>{item.count}
-                        {item?.isAccepted === true ? (
-                        <i class="fa fa-check"></i>
-                      ) : (
+                    <span style={{ paddingLeft: "2px" }}>
+                      {item.count}
+                      {item?.isAccepted === true ? (
                         <i
                           class="fa fa-check"
-                          style={{ color: "green", fontSize: "20px", paddingLeft:"6px" }}
+                          style={{
+                            color: "green",
+                            fontSize: "20px",
+                            paddingLeft: "6px",
+                          }}
                         ></i>
-                      )}
+                      ) : null}
                     </span>
                     <button
                       onClick={() => {
@@ -79,10 +88,35 @@ export default function Answer() {
                     </button>
                   </div>
                   <div className="anwer_details">
-                    <p>
-                      {item?.answer_descprition}{" "}
-                      <span>{moment(item.answer_created).fromNow()}</span>{" "}
-                    </p>
+                    <div className="answer-div">
+                      {item?.answer_descprition}
+                      <b>
+                        <span>{moment(item.answer_created).fromNow()}</span>
+                      </b>
+                    </div>
+                    {user_id === item.user_id ? (
+                      <div className="btn-accept">
+                        <button>
+                          <i
+                            class="fa fa-check"
+                            style={{
+                              color: "green",
+                              fontSize: "14px",
+                            }}
+                          ></i>
+                        </button>
+                        <button>
+                          <i
+                            class="fa fa-times"
+                            aria-hidden="true"
+                            style={{
+                              color: "red",
+                              fontSize: "15px",
+                            }}
+                          ></i>
+                        </button>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
 
