@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../../Redux/Slices/AnswerSlice";
-import Form from "../../Components/AnswerForm/AddAnswer";
+import AddAnswer from "../../Components/AnswerForm/AddAnswer";
 import Comment from "../Comment/Comment";
 import moment from "moment";
 import '../../Components/AnswerForm/answer.css'
@@ -35,7 +35,7 @@ export default function Answer() {
             </div>
             <div className="addAnswer">
               <button>
-                <Form question_id={Answers[0]?.question_id} />
+                <AddAnswer question_id={Answers[0]?.question_id} />
               </button>
             </div>
           </div>
