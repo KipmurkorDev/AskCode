@@ -3,6 +3,7 @@ import authHeader from "../../Redux/Helpers/tokenHeaders";
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../../Redux/Slices/AnswerSlice";
 import AddAnswer from "../../Components/AnswerForm/AddAnswer";
+import { acceptAnswer } from "../../Redux/Slices/AnswerSlice";
 import Comment from "../Comment/Comment";
 import jwt from "jwt-decode";
 import moment from "moment";
@@ -18,6 +19,12 @@ export default function Answer() {
   const handleupdVote = (item) => {
     let newitem = { ...item, Vote: 1 };
     dispatch(addVote(newitem));
+  };
+  const handleAccepted = (data) => {
+    dispatch(acceptAnswer(data));
+  };
+  const updateAcepted = (data) => {
+    dispatch(acceptAnswer(data));
   };
   const handledownvote = (item) => {
     let newitem = { ...item, Vote: 0 };
@@ -98,7 +105,13 @@ export default function Answer() {
                       <div className="btn-accept">
                         <button>
                           <i
-                            class="fa fa-check"
+                            onClick={() => {
+                              handleAccepted({
+                                ...item,
+                                isAccepted: 1,
+                              });
+                            }}
+                            className="fa fa-check"
                             style={{
                               color: "green",
                               fontSize: "14px",
@@ -107,7 +120,13 @@ export default function Answer() {
                         </button>
                         <button>
                           <i
-                            class="fa fa-times"
+                            onClick={() => {
+                              updateAcepted({
+                                ...item,
+                                isAccepted: 0,
+                              });
+                            }}
+                            className="fa fa-times"
                             aria-hidden="true"
                             style={{
                               color: "red",
