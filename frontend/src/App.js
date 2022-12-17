@@ -4,7 +4,7 @@ import Login from "./Components/Sigin/Signin";
 import Navbar from "./Pages/Nav/Nav";
 import Signup from "./Components/Signup/Signup";
 import Home from "./Pages/Home/Home";
-import Askform from "./Components/ASkForm/Askform";
+import Askform from "./Components/QuestionForm/Askform";
 import Footer from "./Pages/Footer/Footer";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
