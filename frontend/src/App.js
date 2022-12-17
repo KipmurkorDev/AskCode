@@ -10,10 +10,10 @@ import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Answer from "./Pages/Answer/Answer";
 import Profile from "./Components/UserProfile/Profile";
-import UserQuestions from "./Pages/UserProfile/userQuestions";
-import UserAnswer from "./Pages/UserProfile/UserAnswer";
-import Userprofile from "./Pages/UserProfile/Userprofile";
-import UserComment from "./Pages/UserProfile/userComment";
+import UserQuestions from "./Pages/User/userQuestions";
+import UserAnswer from "./Pages/User/UserAnswer";
+import Userprofile from "./Pages/User/Userprofile";
+import UserComment from "./Pages/User/userComment";
 import Search from "./Pages/Search/Search";
 function App() {
   const location = useLocation();
@@ -30,7 +30,6 @@ function App() {
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/answers" element={<Answer />} />
         <Route exact path="/searches" element={<Search />} />
-
         <Route
           exact
           path="/profile"

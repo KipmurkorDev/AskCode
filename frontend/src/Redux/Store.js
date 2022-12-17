@@ -1,17 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './Slices/UserSlice'
+import authReducer from './Slices/AuthSlice'
 import questionReducer from './Slices/QuestionSlice'
 import answerReducer from './Slices/AnswerSlice';
 import commentReducer from './Slices/CommentSlice';
-import profileReducer from './Slices/userSliceProfile';
+import userReducer from './Slices/userSlice';
 
 const store = configureStore({
       reducer:{
-        users:userReducer,
+        auth:authReducer,
         question:questionReducer,
         answer:answerReducer,
         comment:commentReducer,
-        profile:profileReducer
+        user:userReducer
     }
 
 })

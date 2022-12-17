@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 export default function Userprofile() {
-  const user = useSelector((state) => state.profile.Profile);
-  const loading = useSelector((state) => state.profile.isLoading);
+  const user = useSelector((state) => state.user.Profile);
+  const loading = useSelector((state) => state.user.isLoading);
 
   useEffect(() => {}, [user, loading]);
   if (!loading) return <>Loading</>;

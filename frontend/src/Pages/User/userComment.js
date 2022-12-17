@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteComment } from "../../Redux/Slices/userSliceProfile";
+import { deleteComment } from "../../Redux/Slices/userSlice";
 import Profile from "../../Components/UserProfile/Profile";
 export default function UserComment() {
-  const user = useSelector((state) => state.profile.Profile);
-  const loading = useSelector((state) => state.profile.isLoading);
+  const user = useSelector((state) => state.user.Profile);
+  const loading = useSelector((state) => state.user.isLoading);
   const dispatch = useDispatch();
 
   if (!loading) return <>Loading</>;
