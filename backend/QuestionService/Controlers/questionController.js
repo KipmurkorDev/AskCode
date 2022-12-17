@@ -1,12 +1,15 @@
 const moment = require("moment");
 const { exec } = require("../DatabaseHelplers/databaseHelpers");
+const jwt_decode = require('jwt-decode');
 const uuid = require("uuid");
 require("dotenv").config();
 
 const addQuestion = async (req, res) => {
   try {
-    const user_id = req.headers["user_id"];
+    const token = req.headers["x-access-token"];
+    const decoded=jwt_decode(token); 
     const question_id = uuid.v4();
+    const user_id=decoded.user_id
     const created = moment().format();
     const { title, description } = req.body;
     await (
@@ -44,8 +47,11 @@ const searchQuestions = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+
 const updateQuestion = async (req, res) => {
   try {
+
     const { user_id, question_id, title, description, created } = req.body;
 
     const questionsExist = await (

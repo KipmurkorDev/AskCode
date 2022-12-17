@@ -9,9 +9,9 @@ const { verification } = require("../Midleware/tokenVerification");
 
 questionRouter.get("/", getQuestions);
 questionRouter.post("/", verification, addQuestion);
-questionRouter.post("/search", searchQuestions);
-questionRouter.put("", updateQuestion);
-questionRouter.get("/most", mostAnswerdQuestion);
+questionRouter.post("/search/:search_value", searchQuestions);
+questionRouter.put("/question/:question_id", updateQuestion);
+questionRouter.get("/most/answers", mostAnswerdQuestion);
 
 module.exports = {
   questionRouter,

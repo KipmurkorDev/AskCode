@@ -8,7 +8,6 @@ users:""
 };
 export const getUser = createAsyncThunk("users", async (data) => {
   await axios.post(`${url}/login`, data).then((response) => {
-    console.log(response);
     if (response.data.token) {
       localStorage.setItem("user", JSON.stringify(response.data));
     }
