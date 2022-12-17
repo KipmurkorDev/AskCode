@@ -4,12 +4,12 @@ import Login from "./Components/Sigin/Signin";
 import Navbar from "./Pages/Nav/Nav";
 import Signup from "./Components/Signup/Signup";
 import Home from "./Pages/Home/Home";
-import Askform from "./Components/ASkForm/Askform";
+import Askform from "./Components/QuestionForm/Askform";
 import Footer from "./Pages/Footer/Footer";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Answer from "./Pages/Answer/Answer";
-import Profile from "./Components/UserProfile/Profile";
+import Profile from "./Pages/User/Profile";
 import UserQuestions from "./Pages/User/userQuestions";
 import UserAnswer from "./Pages/User/UserAnswer";
 import Userprofile from "./Pages/User/Userprofile";
@@ -17,7 +17,6 @@ import UserComment from "./Pages/User/userComment";
 import Search from "./Pages/Search/Search";
 function App() {
   const location = useLocation();
-
   return (
     <div className="App">
       {location.pathname !== "/" && location.pathname !== "/signup" ? (
@@ -43,7 +42,6 @@ function App() {
         <Route exact path="/userquestions" element={<UserQuestions />} />
         <Route exact path="/useranswer" element={<UserAnswer />} />
         <Route exact path="/usercomments" element={<UserComment />} />
-
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/ask" element={<Askform />} />
       </Routes>

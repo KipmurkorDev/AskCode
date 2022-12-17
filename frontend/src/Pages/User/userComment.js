@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { deleteComment } from "../../Redux/Slices/userSlice";
-import Profile from "../../Components/UserProfile/Profile";
+import Profile from "./Profile";
+import moment from "moment";
 export default function UserComment() {
   const user = useSelector((state) => state.user.Profile);
   const loading = useSelector((state) => state.user.isLoading);
@@ -21,8 +22,10 @@ export default function UserComment() {
               {user[3]?.userComments?.map((item) => (
                 <div className="user-answer">
                   <div className="usercontent">
-                    {" "}
-                    {item?.comment_descprition}
+                    {item?.comment_descprition}{" "}
+                    <b>
+                      <span>{moment(item?.comment_created).fromNow()}</span>
+                    </b>
                   </div>
                   <div className="editbtn">
                     <div className="btn_user">

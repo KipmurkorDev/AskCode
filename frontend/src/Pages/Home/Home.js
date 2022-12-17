@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAnswers } from "../../Redux/Slices/AnswerSlice";
-import { searchQuestions, getQuestions } from "../../Redux/Slices/QuestionSlice";
+import {
+  searchQuestions,
+  getQuestions,
+} from "../../Redux/Slices/QuestionSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 

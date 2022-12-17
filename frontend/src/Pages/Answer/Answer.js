@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../../Redux/Slices/AnswerSlice";
-import Form from "../../Components/Answer/AddAnswer";
+import Form from "../../Components/AnswerForm/AddAnswer";
 import Comment from "../Comment/Comment";
 import moment from "moment";
-import '../../Components/Answer/answer.css'
+import '../../Components/AnswerForm/answer.css'
 export default function Answer() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
