@@ -35,11 +35,22 @@ const getAnswers = async (req, res) => {
     let answers=response[0]
     for (let i of response[0]){
       i.count=0
+      let upvote=0
+      let downvote=0
       for(let j of response[1]){
-        if(i.answer_id===j.answer_id){
-            i.count+=1
+        if(i.answer_id===j.answer_id && j.Vote===true){
+          upvote+=1
         }
+        else if(i.answer_id===j.answer_id && j.Vote===false){
+          downvote+=1
+        }
+        else{
+          i.count=0
+
+        }
+        i.count=upvote-downvote
       }
+
     }
     res.json(answers);
   } catch (error) {

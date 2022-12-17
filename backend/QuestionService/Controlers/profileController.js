@@ -36,7 +36,7 @@ const deleQuestion = async (req, res) => {
 const deleteAnswer = async (req, res) => {
   try {
     const { answer_id } = req.params;
-    const exist = await (await exec("getAnswers", { answer_id })).recordset;
+    const exist = await (await exec("getAnswer", { answer_id })).recordset;
 
     if (exist.length) {
       await (
