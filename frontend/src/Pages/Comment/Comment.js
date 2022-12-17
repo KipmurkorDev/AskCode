@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { getComments } from "../../Redux/Slices/CommentSlice";
-import AddComment from "./AddComment";
+import AddComment from "../../Components/Comment/AddComment";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 export default function Comment({ answer_id }) {

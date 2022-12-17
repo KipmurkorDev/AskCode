@@ -8,7 +8,7 @@ import Askform from "./Components/ASkForm/Askform";
 import Footer from "./Pages/Footer/Footer";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
-import Answer from "./Components/Answer/Answer";
+import Answer from "./Pages/Answer/Answer";
 import Profile from "./Components/UserProfile/Profile";
 import UserQuestions from "./Components/UserProfile/userQuestions";
 import UserAnswer from "./Components/UserProfile/UserAnswer";
