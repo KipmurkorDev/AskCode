@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "./Profile";
+import Profile from "../../Components/UserProfile/Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteQuestion } from "../../Redux/Slices/userSliceProfile";
 export default function UserQuestions() {
