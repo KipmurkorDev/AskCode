@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../../Components/UserProfile/Profile";
+import Profile from "./Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAnswer } from "../../Redux/Slices/userSlice";
 import moment from "moment";

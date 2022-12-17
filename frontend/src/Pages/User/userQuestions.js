@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { getAnswers } from "../../Redux/Slices/AnswerSlice";
 import { useNavigate } from "react-router-dom";
-import Profile from "../../Components/UserProfile/Profile";
+import Profile from "./Profile";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteQuestion } from "../../Redux/Slices/userSlice";
 export default function UserQuestions() {

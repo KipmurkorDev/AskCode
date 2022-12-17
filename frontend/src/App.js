@@ -9,7 +9,7 @@ import Footer from "./Pages/Footer/Footer";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Answer from "./Pages/Answer/Answer";
-import Profile from "./Components/UserProfile/Profile";
+import Profile from "./Pages/User/Profile";
 import UserQuestions from "./Pages/User/userQuestions";
 import UserAnswer from "./Pages/User/UserAnswer";
 import Userprofile from "./Pages/User/Userprofile";
