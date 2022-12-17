@@ -50,17 +50,30 @@
 .answe-0 {
   border: 1px solid #90adc6;
   width: 90%;
-  padding-left: 40px;
+  padding: 20px;
   margin-left: 40px;
   text-align: left;
 }
 .user-answer {
   padding: 5px;
+  margin: 5px;
   display: flex;
   align-content: space-around;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+
 }
 .usercontent {
   width: 95%;
+}
+.usercontentquiz {
+  width: 95%;
+  cursor: pointer;
+  padding: 5px;
+}
+.usercontentquiz:hover{
+  color:#90adc6;
+  font-size: 18px;
 }
 .editbtn {
   width: 5%;
