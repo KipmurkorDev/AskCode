@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './sign.css'
- import {getUser} from '../Redux/Slices/UserSlice'
+ import {getUser} from '../../Redux/Slices/UserSlice'
  import { useDispatch } from "react-redux";
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addComment } from "../Redux/Slices/CommentSlice";
+import { addComment } from "../../Redux/Slices/CommentSlice";
 import { useDispatch } from "react-redux";
 import './Comment.css'
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {addQuestion} from '../Redux/Slices/QuestionSlice'
+import {addQuestion} from '../../Redux/Slices/QuestionSlice'
 import "./ask.css";
 export default function Askform() {
   const naviagate = useNavigate();

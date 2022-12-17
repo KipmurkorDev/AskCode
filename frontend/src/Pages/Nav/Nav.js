@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUserProfile } from "../Redux/Slices/userSliceProfile";
+import { getUserProfile } from "../../Redux/Slices/userSliceProfile"
 import "./Nav.css";
 
 export default function Navbar() {

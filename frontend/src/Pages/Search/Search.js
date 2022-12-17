@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAnswers } from "../Redux/Slices/AnswerSlice";
-import { searchQuestions } from "../Redux/Slices/QuestionSlice";
+import { getAnswers } from "../../Redux/Slices/AnswerSlice";
+import { searchQuestions } from "../../Redux/Slices/QuestionSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 export default function Search() {

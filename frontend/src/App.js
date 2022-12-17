@@ -1,20 +1,20 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./Components/Sigin/Signin";
-import Navbar from "./Components/Nav/Nav";
+import Navbar from "./Pages/Nav/Nav";
 import Signup from "./Components/Signup/Signup";
-import Home from "./Components/Home/Home";
+import Home from "./Pages/Home/Home";
 import Askform from "./Components/ASkForm/Askform";
-import Footer from "./Components/Footer/Footer";
-import About from "./Components/About/About";
-import Contact from "./Components/Contact/Contact";
+import Footer from "./Pages/Footer/Footer";
+import About from "./Pages/About/About";
+import Contact from "./Pages/Contact/Contact";
 import Answer from "./Components/Answer/Answer";
 import Profile from "./Components/UserProfile/Profile";
 import UserQuestions from "./Components/UserProfile/userQuestions";
 import UserAnswer from "./Components/UserProfile/UserAnswer";
 import Userprofile from "./Components/UserProfile/Userprofile";
 import UserComment from "./Components/UserProfile/userComment";
-import Search from "./Components/Search/Search";
+import Search from "./Pages/Search/Search";
 function App() {
   const location = useLocation();
 

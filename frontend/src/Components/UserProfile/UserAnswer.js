@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAnswer } from "../Redux/Slices/userSliceProfile";
+import { deleteAnswer } from "../../Redux/Slices/userSliceProfile";
 export default function UserAnswer() {
   const user = useSelector((state) => state.profile.Profile);
   const loading = useSelector((state) => state.profile.isLoading);

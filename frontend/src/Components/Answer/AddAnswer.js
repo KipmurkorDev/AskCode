@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addAnswer } from "../Redux/Slices/AnswerSlice";
+import { addAnswer } from "../../Redux/Slices/AnswerSlice";
 
 export default function Form({ question_id }) {
   const [answerInput, setAnswerInput] = useState({

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getComments } from "../Redux/Slices/CommentSlice";
+import { getComments } from "../../Redux/Slices/CommentSlice";
 import AddComment from "./AddComment";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
