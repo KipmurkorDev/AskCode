@@ -1,45 +1,50 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const url = "http://localhost:4000/users";
+import authHeader from "../Helpers/tokenHeaders";
+const url = "http://localhost:4040/profile";
 
 const initialState = {
-users:""
+  Profile: [],
+  isLoading: true,
 };
-export const getUser = createAsyncThunk("users", async (data) => {
-  await axios.post(`${url}/login`, data).then((response) => {
-    if (response.data.token) {
-      localStorage.setItem("user", JSON.stringify(response.data));
-    }
-    return response.data;
-  });
-});
-
-export const addusers = createAsyncThunk("register", async (data) => {
+export const getUserProfile = createAsyncThunk("aswers", async () => {
+  let Profile = [];
   const response = await axios
-    .post(`${url}/signup`, data)
-    .then((data) => data.json());
-  return response;
+    .get(`${url}/user`, { headers: authHeader() })
+    .then((data) => data.data);
+  Profile = [...response];
+  return Profile;
 });
 
-const userSlice = createSlice({
-  name: "users",
+export const deleteQuestion = createAsyncThunk("delequestion", async (data) => {
+  console.log(data.question_id);
+  await axios.delete(`${url}/${data.question_id}`).then((data) => data.data);
+});
+export const deleteAnswer = createAsyncThunk("delequestion", async (data) => {
+  console.log(data);
+  await axios.delete(`${url}/answers/${data}`).then((data) => data.data);
+});
+export const deleteComment= createAsyncThunk("delequestion", async (data) => {
+  console.log(data);
+  await axios.delete(`${url}/comments/${data}`).then((data) => data.data);
+});
+
+export const profileSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: {
-    [getUser.pending]: (state) => {
+    [getUserProfile.pending]: (state) => {
       state.loading = true;
     },
-    [getUser.fulfilled]: (state, { payload }) => {
+    [getUserProfile.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.token = payload;
+      state.Profile = payload;
     },
-    [getUser.rejected]: (state) => {
-      state.loading = false;
+    [getUserProfile.rejected]: (state) => {
+      state.loading = true;
     },
   },
 });
-
-const userReducer = userSlice.reducer;
-
+const userReducer = profileSlice.reducer;
 export default userReducer;
