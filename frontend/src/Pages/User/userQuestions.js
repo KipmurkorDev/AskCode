@@ -31,11 +31,14 @@ export default function UserQuestions() {
           <div className="answe-0">
             {user[1]?.userQuestions?.map((item) => (
               <div className="user-answer">
-                <div className="usercontentquiz" onClick={() => handleAnswers(item?.question_id)}>
-                    {item?.title}
-                    <b>
-                      <span>{moment(item?.created).fromNow()}</span>
-                    </b>
+                <div
+                  className="usercontentquiz"
+                  onClick={() => handleAnswers(item?.question_id)}
+                >
+                  {item?.title}
+                  <b>
+                    <span>{moment(item?.created).fromNow()}</span>
+                  </b>
                 </div>
                 <div className="editbtn">
                   <div className="btn_user">

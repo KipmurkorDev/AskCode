@@ -60,8 +60,6 @@
   display: flex;
   align-content: space-around;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-
-
 }
 .usercontent {
   width: 95%;
@@ -71,16 +69,21 @@
   cursor: pointer;
   padding: 5px;
 }
-.usercontentquiz:hover{
-  color:#90adc6;
+.usercontentquiz:hover {
+  color: #90adc6;
   font-size: 18px;
+}
+.usercontentquiz span {
+  padding-left: 7px;
+  font-size: 13px;
+  font-style: italic;
 }
 .editbtn {
   width: 5%;
   padding-left: 10px;
 }
-.btn_user{
-   font-size: 14px;
-   margin-bottom: 4px;
-   cursor: pointer;
+.btn_user {
+  font-size: 14px;
+  margin-bottom: 4px;
+  cursor: pointer;
 }

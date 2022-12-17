@@ -17,7 +17,6 @@ import UserComment from "./Pages/User/userComment";
 import Search from "./Pages/Search/Search";
 function App() {
   const location = useLocation();
-
   return (
     <div className="App">
       {location.pathname !== "/" && location.pathname !== "/signup" ? (
@@ -43,7 +42,6 @@ function App() {
         <Route exact path="/userquestions" element={<UserQuestions />} />
         <Route exact path="/useranswer" element={<UserAnswer />} />
         <Route exact path="/usercomments" element={<UserComment />} />
-
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/ask" element={<Askform />} />
       </Routes>
