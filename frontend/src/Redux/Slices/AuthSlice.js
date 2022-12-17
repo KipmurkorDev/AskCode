@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const url = "http://localhost:4000/users";
+const url = "http://localhost:4000/auth";
 
 const initialState = {
 users:""

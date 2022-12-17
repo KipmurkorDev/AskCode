@@ -54,7 +54,6 @@ const deletecomment = async (req, res) => {
   try {
     const { comment_id } = req.params;
     const exist = await (await exec("getComment", { comment_id })).recordset;
-    console.log(exist);
     if (exist.length) {
       await (
         await exec("deleComment", { comment_id })
