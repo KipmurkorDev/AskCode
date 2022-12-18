@@ -25,6 +25,14 @@ export const addAnswer = createAsyncThunk(
   },
   getAnswers()
 );
+export const acceptAnswer = createAsyncThunk("accepted", async (data) => {
+  console.log(data);
+  const response = await axios
+    .put(`${url}/answer/accepted`, data, { headers: authHeader() })
+    .then((data) => data.data);
+  return response;
+});
+
 export const addVote = createAsyncThunk("votes", async (data) => {
   const response = await axios
     .post(`${url}/answer/vote/${data.answer_id}`, data, { headers: authHeader() })

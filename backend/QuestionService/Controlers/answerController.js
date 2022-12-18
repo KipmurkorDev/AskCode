@@ -1,5 +1,5 @@
 const { exec } = require("../DatabaseHelplers/databaseHelpers");
-const jwt_decode = require('jwt-decode');
+const jwt_decode = require("jwt-decode");
 const moment = require("moment");
 const uuid = require("uuid");
 require("dotenv").config();
@@ -7,8 +7,8 @@ require("dotenv").config();
 const addAnswer = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded=jwt_decode(token, { headers: true });
-    const user_id=decoded.user_id
+    const decoded = jwt_decode(token, { headers: true });
+    const user_id = decoded.user_id;
     const answer_id = uuid.v4();
     const answer_created = moment().format();
     const { answer_descprition, question_id } = req.body;
@@ -31,26 +31,24 @@ const addAnswer = async (req, res) => {
 const getAnswers = async (req, res) => {
   try {
     const { question_id } = req.params;
-    const response = await (await exec("getAnswers", { question_id })).recordsets;
-    let answers=response[0]
-    for (let i of response[0]){
-      i.count=0
-      let upvote=0
-      let downvote=0
-      for(let j of response[1]){
-        if(i.answer_id===j.answer_id && j.Vote===true){
-          upvote+=1
+    const response = await (
+      await exec("getAnswers", { question_id })
+    ).recordsets;
+    let answers = response[0];
+    for (let i of response[0]) {
+      i.count = 0;
+      let upvote = 0;
+      let downvote = 0;
+      for (let j of response[1]) {
+        if (i.answer_id === j.answer_id && j.Vote === true) {
+          upvote += 1;
+        } else if (i.answer_id === j.answer_id && j.Vote === false) {
+          downvote += 1;
+        } else {
+          i.count = 0;
         }
-        else if(i.answer_id===j.answer_id && j.Vote===false){
-          downvote+=1
-        }
-        else{
-          i.count=0
-
-        }
-        i.count=upvote-downvote
+        i.count = upvote - downvote;
       }
-
     }
     res.json(answers);
   } catch (error) {
@@ -61,9 +59,9 @@ const getAnswers = async (req, res) => {
 const downUpvote = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded=jwt_decode(token);
-    const user_id=decoded.user_id
-    const { answer_id,Vote } = req.body;
+    const decoded = jwt_decode(token);
+    const user_id = decoded.user_id;
+    const { answer_id, Vote } = req.body;
     await (
       await exec("inserUpdateVote", {
         user_id,
@@ -79,9 +77,9 @@ const downUpvote = async (req, res) => {
 };
 const iseacceptedAnswer = async (req, res) => {
   try {
-    const { answer_id } = req.body;
+    const { answer_id, isAccepted } = req.body;
     await (
-      await exec("acceptedAnswer", { answer_id })
+      await exec("acceptedAnswer", { answer_id, isAccepted })
     ).recordset;
     res.json({ message: "Accepted answer updated" });
   } catch (error) {
