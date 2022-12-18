@@ -77,7 +77,7 @@ const downUpvote = async (req, res) => {
 };
 const iseacceptedAnswer = async (req, res) => {
   try {
-    const { answer_id, isAccepted} = req.body;
+    const { answer_id, isAccepted } = req.body;
     await (
       await exec("acceptedAnswer", { answer_id, isAccepted })
     ).recordset;

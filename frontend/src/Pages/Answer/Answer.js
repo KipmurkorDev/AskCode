@@ -8,8 +8,11 @@ import Comment from "../Comment/Comment";
 import jwt from "jwt-decode";
 import moment from "moment";
 import "../../Components/AnswerForm/answer.css";
+import ReactModal from "../../Components/Modal/Modal";
+import ChildComponent from "../../Components/Modal/ChiildComponent";
 export default function Answer() {
   const [show, setShow] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   const dispatch = useDispatch();
   const Answers = useSelector((state) => state.answer.Answers);
   const loading = useSelector((state) => state.answer.isLoading);
@@ -48,7 +51,12 @@ export default function Answer() {
             </div>
             <div className="addAnswer">
               <button>
-                <AddAnswer question_id={Answers[0]?.question_id} />
+                {/* <AddAnswer question_id={Answers[0]?.question_id} /> */}
+                <ReactModal
+                  closeHandler={() => setModalOpened(false)}
+                  isOpen={modalOpened}
+                  modalContent={<ChildComponent />}
+                />Modal
               </button>
             </div>
           </div>
