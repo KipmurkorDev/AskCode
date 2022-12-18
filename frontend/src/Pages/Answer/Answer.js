@@ -10,7 +10,7 @@ import "../../Components/AnswerForm/answer.css";
 import Modal from "../../Components/Modal/Modal";
 import Addanswer from "../../Components/AnswerForm/AddAnswer";
 export default function Answer() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(-1);
   const [modalOpened, setModalOpened] = useState(false);
   const dispatch = useDispatch();
   const Answers = useSelector((state) => state.answer.Answers);
@@ -32,9 +32,12 @@ export default function Answer() {
     let newitem = { ...item, Vote: 0 };
     dispatch(addVote(newitem));
   };
-  console.log(Answers);
-  const getComentHandler = () => {
-    setShow((prev) => !prev);
+  const getComentHandler = (currentIndex) => {
+    if (currentIndex === show) {
+      setShow(-1);
+    } else {
+      setShow(currentIndex);
+    }
   };
   if (!loading) return <>Loading</>;
   return (
@@ -65,7 +68,7 @@ export default function Answer() {
           {Answers[0]?.answer_id === null ? (
             <p> There is no answer for this question</p>
           ) : (
-            Answers?.map((item) => (
+            Answers?.map((item, index) => (
               <div className="answe_1">
                 <div className="content-1">
                   <div className="btn">
@@ -149,16 +152,20 @@ export default function Answer() {
                 </div>
 
                 <div className="comment-btn">
-                  <button
+                  <div
                     onClick={() => {
-                      getComentHandler();
+                      getComentHandler(index);
                     }}
                   >
-                    {show ? <span>Hide</span> : <span>Comments</span>}
-                  </button>
+                    {show === index ? (
+                      <i class="fas fa-minus-circle"></i>
+                    ) : (
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    )}
+                  </div>
                 </div>
                 <div className="comment_add">
-                  {show ? (
+                  {show === index ? (
                     <Comment
                       answer_id={item?.answer_id}
                       question_id={item?.question_id}

@@ -21,7 +21,8 @@
 .answe_1 {
   font-size: 14px;
   width: 99%;
-  border: 1px solid green;
+  border: 1px solid #90adc6;
+  border-radius: 3px;
   text-align: left;
   padding-left: 10px;
   padding-bottom: 10px;
@@ -30,6 +31,11 @@
 .comment-btn {
   display: flex;
   justify-content: flex-end;
+}
+.comment-btn div {
+  cursor: pointer;
+  margin-right: 3px;
+  padding: 10px;
 }
 .btn {
   display: flex;
@@ -48,57 +54,6 @@
   background-color: white;
   border: none;
 }
-
-.content {
-  margin-top: 20px;
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  visibility: hidden;
-  width: 30%;
-  height: 30%;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  padding-left: 10px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  background-color: #90adc6;
-}
-.click-me {
-  padding: 2px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#click {
-  background-color: white;
-  display: none;
-}
-#click:checked ~ .content {
-  opacity: 1;
-  visibility: visible;
-}
-.content > input,
-textarea {
-  display: block;
-  text-align: left;
-  margin: 10px;
-  width: 87%;
-}
-.content > label {
-  display: block;
-  text-align: left;
-  margin: 10px;
-}
-.content > input[type="submit"] {
-  width: 30%;
-  color: white;
-  padding: 10px;
-  margin: 3px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .addAnswer {
   display: flex;
   justify-content: flex-end;
@@ -112,6 +67,7 @@ textarea {
 }
 .comment_add {
   display: flex;
+  padding-top: 10px;
 }
 .question-3 span {
   padding-left: 10px;
@@ -119,18 +75,19 @@ textarea {
   font-size: 14px;
 }
 .answer-div {
-  width: 87%;
+  width: 92%;
 }
-.anwer_details span{
+.anwer_details span {
   padding-left: 7px;
   font-style: italic;
   font-size: 13px;
 }
-.btn-accept{
-  width: 2%;
-
+.btn-accept {
+  width: 7%;
+  display: flex;
+  flex-direction: column;
 }
-.btn-accept button{
+.btn-accept button {
   margin: 5px;
   padding-left: 10px;
   background-color: white;

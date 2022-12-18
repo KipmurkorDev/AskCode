@@ -1,7 +1,6 @@
 .addtext {
   font-size: large;
 }
-
 .addtext textarea {
   display: block;
   text-align: left;
@@ -22,38 +21,51 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
 .comment_ {
   display: flex;
   flex-direction: column;
   padding-left: 30%;
 }
-.addcomment {
-  padding-left: 58%;
-}
+
 .comments-box {
   display: flex;
 }
-
 .comment-text {
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 10px;
   border-radius: 4px;
+  width: 100%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   flex: 1;
 }
-
 .comments-box {
   flex: 1;
 }
 .comment-main-box {
-  max-width: 80%;
-  min-width: 80%;
-  margin: auto;
-  display: flex;
+  width: 97%;
+  margin-right: 20px;
 }
 .comment-text-box {
   display: flex;
   flex: 1;
+}
+.addcomment {
+  display: inline;
+  margin-bottom: 1%;
+  margin-right: 2%;
+}
+.addcomment input {
+  width: 85%;
+  height:20px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.addcomment button{
+  width: 12%;
+  height: 26px;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 0cm;
 }
