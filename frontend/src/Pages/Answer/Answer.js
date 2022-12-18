@@ -163,7 +163,7 @@ export default function Answer() {
                   </button>
                 </div>
                 <div className="comment_add">
-                  {show=== index ?  (
+                  {show=== index ? (
                     <Comment
                       answer_id={item?.answer_id}
                       question_id={item?.question_id}

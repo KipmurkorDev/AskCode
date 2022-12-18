@@ -32,6 +32,11 @@
   display: flex;
   justify-content: flex-end;
 }
+.comment-btn button {
+  cursor: pointer;
+  margin-right: 3px;
+  padding: 1px;
+}
 .btn {
   display: flex;
   flex-direction: column;
