@@ -67,6 +67,7 @@
 }
 .comment_add {
   display: flex;
+  padding-top: 10px;
 }
 .question-3 span {
   padding-left: 10px;

@@ -26,9 +26,7 @@
   flex-direction: column;
   padding-left: 30%;
 }
-.addcomment {
-  padding-left: 58%;
-}
+
 .comments-box {
   display: flex;
 }
@@ -51,4 +49,23 @@
 .comment-text-box {
   display: flex;
   flex: 1;
+}
+.addcomment {
+  display: inline;
+  margin-bottom: 1%;
+  margin-right: 2%;
+}
+.addcomment input {
+  width: 85%;
+  height:20px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.addcomment button{
+  width: 12%;
+  height: 26px;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 0cm;
 }
