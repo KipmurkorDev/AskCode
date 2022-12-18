@@ -33,13 +33,12 @@ export default function Answer() {
     dispatch(addVote(newitem));
   };
   const getComentHandler = (currentIndex) => {
-    if(currentIndex===show) {
-      setShow(-1); 
-  }
-  else {
-      setShow(currentIndex)
-  }
-};  
+    if (currentIndex === show) {
+      setShow(-1);
+    } else {
+      setShow(currentIndex);
+    }
+  };
   if (!loading) return <>Loading</>;
   return (
     <div className="conatiner_answer">
@@ -144,7 +143,6 @@ export default function Answer() {
                             style={{
                               color: "red",
                               fontSize: "15px",
-                
                             }}
                           ></i>
                         </button>
@@ -154,16 +152,20 @@ export default function Answer() {
                 </div>
 
                 <div className="comment-btn">
-                  <button
+                  <div
                     onClick={() => {
                       getComentHandler(index);
                     }}
                   >
-                    {show=== index ?<span>Hide</span> : <span>Comments</span>}
-                  </button>
+                    {show === index ? (
+                      <i class="fas fa-minus-circle"></i>
+                    ) : (
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    )}
+                  </div>
                 </div>
                 <div className="comment_add">
-                  {show=== index ? (
+                  {show === index ? (
                     <Comment
                       answer_id={item?.answer_id}
                       question_id={item?.question_id}

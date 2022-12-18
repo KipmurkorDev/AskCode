@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 import cn from "classnames";
 import "./style.css";
+import { addComment } from "../../Redux/Slices/CommentSlice";
+
 
 
 
 const INITIAL_HEIGHT = 20;
 export default function CommentBox() {
+    const navigate=useDispatch()
   const [isExpanded, setIsExpanded] = useState(false);
   const [commentValue, setCommentValue] = useState("");
   const useDynamicHeightField = (element, value) => {
@@ -33,10 +37,10 @@ export default function CommentBox() {
     setCommentValue("");
     setIsExpanded(false);
   };
-
+console.log(commentValue);
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("send the form data somewhere");
+    navigate(addComment(commentValue))
   };
   return (
     <div className="container_container">

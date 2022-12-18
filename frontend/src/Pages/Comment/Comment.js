@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { getComments } from "../../Redux/Slices/CommentSlice";
-// import { addComment } from "../../Redux/Slices/CommentSlice";
 import { useSelector, useDispatch } from "react-redux";
 import "./Comment.css";
 import moment from "moment";
@@ -9,27 +8,6 @@ export default function Comment({ answer_id }) {
   const Comments = useSelector((state) => state.comment.Comments);
   const loading = useSelector((state) => state.comment.isLoading);
   const dispatch = useDispatch();
-  // const [comment, setComment] = useState({
-  //   comment_descprition: "",
-  // });
-  // const handleInputChange = (e) => {
-  //   setComment((prev) => ({
-  //     ...prev,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  // };
-  // console.log(comment);
-  // const validate = (e) => {
-  //   if (comment.comment_descprition === "") {
-  //     alert(" You did not complete  the form, kindly do so.");
-  //   } else {
-  //     dispatch(addComment({ ...comment, answer_id: answer_id }));
-  //     clearForm();
-  //   }
-  // };
-  // const clearForm = () => {
-  //   setComment({ comment_descprition: "" });
-  // };
   useEffect(() => {
     dispatch(getComments(answer_id));
   }, [dispatch, answer_id]);
@@ -37,20 +15,6 @@ export default function Comment({ answer_id }) {
   return (
     <div className="comment_">
       <div className="addcomment">
-        {/* <input
-          type="text"
-          name="comment_descprition"
-          id="comment_descprition"
-          placeholder="add reply"
-          value={comment.comment_descprition}
-          onChange={handleInputChange}
-        />
-        <button
-          onClick={() => {
-            validate();
-          }}
-        > Reply</button> */}
-
       <CommentBox/>
       </div>
       {Comments.length === 0 ? (
