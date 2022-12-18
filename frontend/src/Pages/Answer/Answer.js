@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import authHeader from "../../Redux/Helpers/tokenHeaders";
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../../Redux/Slices/AnswerSlice";
-import AddAnswer from "../../Components/AnswerForm/AddAnswer";
 import { acceptAnswer } from "../../Redux/Slices/AnswerSlice";
 import Comment from "../Comment/Comment";
 import jwt from "jwt-decode";
 import moment from "moment";
 import "../../Components/AnswerForm/answer.css";
-import ReactModal from "../../Components/Modal/Modal";
-import ChildComponent from "../../Components/Modal/ChiildComponent";
+import Modal from "../../Components/Modal/Modal";
+import Addanswer from "../../Components/AnswerForm/AddAnswer";
 export default function Answer() {
   const [show, setShow] = useState(false);
   const [modalOpened, setModalOpened] = useState(false);
@@ -50,13 +49,15 @@ export default function Answer() {
               </h4>
             </div>
             <div className="addAnswer">
-              <button>
-                {/* <AddAnswer question_id={Answers[0]?.question_id} /> */}
-                <ReactModal
+              <button onClick={() => setModalOpened(true)}>
+                <Modal
                   closeHandler={() => setModalOpened(false)}
                   isOpen={modalOpened}
-                  modalContent={<ChildComponent />}
-                />Modal
+                  modalContent={
+                    <Addanswer question_id={Answers[0]?.question_id} />
+                  }
+                />
+                Add Answer
               </button>
             </div>
           </div>
