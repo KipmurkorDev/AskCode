@@ -15,7 +15,6 @@ export default function Comment({ answer_id }) {
     dispatch(getComments(answer_id));
   }, [dispatch, answer_id]);
   if (!loading) return <>Loading</>;
-  console.log(Comments);
   return (
     <div className="comment_">
       <div className="addcomment">

@@ -1,7 +1,6 @@
 .addtext {
   font-size: large;
 }
-
 .addtext textarea {
   display: block;
   text-align: left;
@@ -22,7 +21,6 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
 .comment_ {
   display: flex;
   flex-direction: column;
@@ -34,24 +32,21 @@
 .comments-box {
   display: flex;
 }
-
 .comment-text {
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 10px;
   border-radius: 4px;
+  width: 100%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   flex: 1;
 }
-
 .comments-box {
   flex: 1;
 }
 .comment-main-box {
-  max-width: 80%;
-  min-width: 80%;
-  margin: auto;
-  display: flex;
+  width: 97%;
+  margin-right: 20px;
 }
 .comment-text-box {
   display: flex;
