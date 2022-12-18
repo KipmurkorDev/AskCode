@@ -15,7 +15,7 @@ export default function Comment({ answer_id }) {
   return (
     <div className="comment_">
       <div className="addcomment">
-      <CommentBox/>
+      <CommentBox answer_id={answer_id}/>
       </div>
       {Comments.length === 0 ? (
         <p> The is no comment for this answers</p>

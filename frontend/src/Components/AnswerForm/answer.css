@@ -32,10 +32,10 @@
   display: flex;
   justify-content: flex-end;
 }
-.comment-btn button {
+.comment-btn div {
   cursor: pointer;
   margin-right: 3px;
-  padding: 1px;
+  padding: 10px;
 }
 .btn {
   display: flex;
