@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Profile from "./Profile";
+import Modal from "../../Components/Modal/Modal";
+import Addanswer from "../../Components/AnswerForm/AddAnswer";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteAnswer } from "../../Redux/Slices/userSlice";
 import moment from "moment";
 export default function UserAnswer() {
+  const [isOpen, setIsopen] = useState(false);
   const user = useSelector((state) => state.user.Profile);
   const loading = useSelector((state) => state.user.isLoading);
   const dispatch = useDispatch();
+ 
   if (!loading) return <>Loading</>;
   return (
     <div className="container-profile">
@@ -21,21 +25,26 @@ export default function UserAnswer() {
             {user[2]?.userAnswers?.map((item) => (
               <div className="user-answer">
                 <div className="usercontent">
-                  {" "}
-                  {item?.answer_descprition}{" "}
+                  {item?.answer_descprition}
                   <b>
                     <span>{moment(item?.answer_created).fromNow()}</span>
                   </b>
                 </div>
                 <div className="editbtn">
-                  <div className="btn_user">
+                  <div className="btn_user" onClick={() => setIsopen(true)}>
+                    <Modal
+                      closeHandler={() => setIsopen(false)}
+                      isOpen={isOpen}
+                      modalContent={<Addanswer item={item} />}
+                    />
                     <i class="fas fa-edit"></i>
                   </div>
-                  <div
-                    className="btn_user"
-                    onClick={() => dispatch(deleteAnswer(item?.answer_id))}
-                  >
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  <div className="btn_user">
+                    <i
+                      class="fa fa-trash"
+                      aria-hidden="true"
+                      onClick={() => dispatch(deleteAnswer(item?.answer_id))}
+                    ></i>
                   </div>
                 </div>
               </div>

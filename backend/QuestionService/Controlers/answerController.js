@@ -86,42 +86,10 @@ const iseacceptedAnswer = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-const updateAnswer = async (req, res) => {
-  try {
-    const {
-      user_id,
-      answer_id,
-      answer_descprition,
-      question_id,
-      answer_created,
-    } = req.body;
-    const answerExist = await (
-      await exec("getAnswer", { answer_id })
-    ).recordset;
 
-    if (answerExist.length) {
-      await (
-        await exec("insertUpdateAnswer", {
-          answer_id,
-          user_id,
-          answer_descprition,
-          question_id,
-          answer_created,
-        })
-      ).recordset;
-
-      res.status(201).json({ message: "Answer updated to database" });
-    } else {
-      res.status(201).json({ message: "Answer not existing in the database" });
-    }
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
 module.exports = {
   addAnswer,
   getAnswers,
   downUpvote,
   iseacceptedAnswer,
-  updateAnswer,
 };

@@ -7,7 +7,7 @@ import './sign.css'
 
 
 export default function Login() {
-  const naviagate = useNavigate();
+  const navigate = useNavigate();
   const dispatch=useDispatch()
   const [siginIput, setSiginIput] = useState({
     email: "",
@@ -26,7 +26,7 @@ export default function Login() {
     } else {
       dispatch(getUser(siginIput))
       clearForm();
-      naviagate("/home");
+      navigate("/home");
     }
   };
 

@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAnswers } from "../../Redux/Slices/AnswerSlice";
-import {
-  searchQuestions,
-  getQuestions,
-  getmostAsnswers,
-} from "../../Redux/Slices/QuestionSlice";
-import { useNavigate } from "react-router-dom";
+import { getQuestions, searchQuestions } from "../../Redux/Slices/QuestionSlice";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 
-import "./Home.css";
-export default function Home() {
+const MostAnswer = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [search, setSearch] = useState({ search_value: "" });
-  const Questions = useSelector((state) => state.question.Questions);
+  const navigate = useNavigate();
+  const Questions = useSelector((state) => state.question.MostAnswer);
   useEffect(() => {
     dispatch(getQuestions());
   }, [dispatch]);
@@ -32,9 +26,6 @@ export default function Home() {
     } else {
       alert(" nothing to search");
     }
-  };
-  const getMostAnswer = () => {
-    dispatch(getmostAsnswers());
   };
   const handleAnswers = (question_id) => {
     dispatch(getAnswers(question_id));
@@ -57,8 +48,8 @@ export default function Home() {
       </div>
       <div>
         <div className="home-btn">
-          <div className="most_question ">All </div>
-          <div className="most_answer" onClick={getMostAnswer}>
+          <div className="most_question" onClick={()=>{dispatch(getQuestions());  navigate("/home")}}>All </div>
+          <div className="most_answer">
             <Link to="/most/Answers" className="link_home">
               Most Answered
             </Link>
@@ -73,6 +64,7 @@ export default function Home() {
                 className="question-1"
                 onClick={() => handleAnswers(item?.question_id)}
               >
+                <div className="answe-count"> Answers:{item.count}</div>
                 <div>
                   <button>
                     <p>
@@ -90,4 +82,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default MostAnswer;

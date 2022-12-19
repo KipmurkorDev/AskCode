@@ -5,7 +5,8 @@ const url = "http://localhost:4040/questions";
 
 const initialState = {
   Questions: [],
-  Searches:[]
+  Searches:[],
+  MostAnswer:[]
 };
 export const getQuestions = createAsyncThunk("questions", async () => {
   let Questions = [];
@@ -30,6 +31,16 @@ export const searchQuestions = createAsyncThunk(
     return Searches;  
   },
 );
+export const getmostAsnswers = createAsyncThunk(
+  "mostasnswered",
+  async () => {
+    let MostAnswer = [];
+    const response = await axios.get(`${url}/most/answers`, { headers: authHeader() }).then((data) =>data.data);
+    MostAnswer = [...response];
+    console.log(MostAnswer);
+    return MostAnswer;  
+  },
+);
 
 export const questionSlice = createSlice({
   name: "question",
@@ -44,6 +55,16 @@ export const questionSlice = createSlice({
       state.Questions = payload;
     },
     [getQuestions.rejected]: (state) => {
+      state.loading = false;
+    },
+    [getmostAsnswers.pending]: (state) => {
+      state.loading = true;
+    },
+    [getmostAsnswers.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.MostAnswer = payload;
+    },
+    [getmostAsnswers.rejected]: (state) => {
       state.loading = false;
     },
     [searchQuestions.pending]: (state) => {
