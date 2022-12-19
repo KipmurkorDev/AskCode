@@ -33,6 +33,10 @@ export const updateAnswer= createAsyncThunk("updateanswer", async (data) => {
   console.log(data.answer_id);
   await axios.patch(`${url}/answers/answer/${data.answer_id}`, data).then((data) => data.data);
 });
+export const updateComment= createAsyncThunk("updatecomment", async (data) => {
+  console.log(data);
+  await axios.patch(`${url}/comments/comment/${data.comment_id}`, data).then((data) => data.data);
+});
 export const profileSlice = createSlice({
   name: "user",
   initialState,
