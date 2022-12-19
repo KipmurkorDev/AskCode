@@ -48,35 +48,6 @@ const searchQuestions = async (req, res) => {
   }
 };
 
-
-const updateQuestion = async (req, res) => {
-  try {
-
-    const { user_id, question_id, title, description, created } = req.body;
-
-    const questionsExist = await (
-      await exec("getQuestion", { question_id })
-    ).recordset;
-    if (questionsExist.length) {
-      await (
-        await exec("insertUpdateQuestion", {
-          user_id,
-          question_id,
-          title,
-          description,
-          created,
-        })
-      ).recordset;
-      res.json({ message: "Question updated on database" });
-    } else {
-      res.json({ message: "Question does not exist" });
-    }
-
-    res.json({ message: "Question updated successfull" });
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
 const mostAnswerdQuestion = async (req, res) => {
   try {
     const response = await exec("mostAnswerQuestion");
@@ -90,6 +61,5 @@ module.exports = {
   addQuestion,
   getQuestions,
   searchQuestions,
-  updateQuestion,
   mostAnswerdQuestion,
 };

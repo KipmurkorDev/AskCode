@@ -4,14 +4,13 @@ const {
   addAnswer,
   getAnswers,
   downUpvote,
-  iseacceptedAnswer, updateAnswer
+  iseacceptedAnswer
 } = require("../Controlers/answerController");
 
 answerRouter.post("", addAnswer);
 answerRouter.put("/answer/accepted", iseacceptedAnswer);
 answerRouter.get("/question/:question_id", getAnswers);
 answerRouter.post("/answer/vote/:answer_id", downUpvote);
-answerRouter.put("/answer/:answer_id", updateAnswer);
 
 module.exports = {
   answerRouter,

@@ -33,6 +33,34 @@ const deleQuestion = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const updateQuestion = async (req, res) => {
+  try {
+
+    const { user_id, question_id, title, description, created } = req.body;
+
+    const questionsExist = await (
+      await exec("getQuestion", { question_id })
+    ).recordset;
+    if (questionsExist.length) {
+      await (
+        await exec("insertUpdateQuestion", {
+          user_id,
+          question_id,
+          title,
+          description,
+          created,
+        })
+      ).recordset;
+      res.json({ message: "Question updated on database" });
+    } else {
+      res.json({ message: "Question does not exist" });
+    }
+
+    res.json({ message: "Question updated successfull" });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 const deleteAnswer = async (req, res) => {
   try {
     const { answer_id } = req.params;
@@ -45,6 +73,37 @@ const deleteAnswer = async (req, res) => {
       res.json({ message: "Answer deleted successfull" });
     } else {
       res.json({ message: " Answer already deleted " });
+    }
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const updateAnswer = async (req, res) => {
+  try {
+    const {
+      user_id,
+      answer_id,
+      answer_descprition,
+      question_id,
+      answer_created,
+    } = req.body;
+    const answerExist = await (
+      await exec("getAnswer", { answer_id })
+    ).recordset;
+    if (answerExist.length) {
+      await (
+        await exec("insertUpdateAnswer", {
+          answer_id,
+          user_id,
+          answer_descprition,
+          question_id,
+          answer_created,
+        })
+      ).recordset;
+
+      res.status(201).json({ message: "Answer updated to database" });
+    } else {
+      res.status(201).json({ message: "Answer not existing in the database" });
     }
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -71,5 +130,5 @@ module.exports = {
   getprofile,
   deleQuestion,
   deleteAnswer,
-  deletecomment,
+  deletecomment,updateQuestion, updateAnswer
 };

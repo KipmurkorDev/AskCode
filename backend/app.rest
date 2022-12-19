@@ -73,7 +73,7 @@ Content-Type: application/json
 }
 
 ### up and down votes by users
-post http://localhost:4040/answers/vote/ff6ebd89-9a41-44cb-a7ba-c41a980308fd
+post http://localhost:4040/answer/vote/ff6ebd89-9a41-44cb-a7ba-c41a980308fd
 Content-Type: application/json
 
 {
@@ -85,7 +85,7 @@ Content-Type: application/json
 }
 
 ###
-post http://localhost:4040/answers/vote/ff6ebd89-9a41-44cb-a7ba-c41a980308fd
+post http://localhost:4040/answers/answer/vote/f31c3739-b3fe-4c28-a30c-b6811db16ba1
 Content-Type: application/json
 
 {

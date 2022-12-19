@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addAnswer } from "../../Redux/Slices/AnswerSlice";
-const Addanswer = ({question_id}) => {
+import { updateAnswer } from "../../Redux/Slices/userSlice";
+const Addanswer = ({ question_id, item }) => {
   const [answerInput, setAnswerInput] = useState({
     answer_descprition: "",
   });
@@ -13,12 +14,20 @@ const Addanswer = ({question_id}) => {
     }));
   };
 
+  useEffect(() => {
+    setAnswerInput({answer_descprition:item?.answer_descprition})
+    
+  }, []);
   const validate = (e) => {
     if (answerInput.answer_descprition === "") {
       alert(" You did not complete  the form, kindly do so.");
-    } else {
+    } else if (item?.answer_id===undefined) {
       dispatch(addAnswer({ ...answerInput, question_id: question_id }));
       clearForm();
+    } else {
+      let newItem={ ...item, ...answerInput }
+      console.log(newItem);
+      dispatch(updateAnswer(newItem));
     }
   };
   const clearForm = () => {
@@ -26,7 +35,7 @@ const Addanswer = ({question_id}) => {
   };
   return (
     <div className="addtext">
-      <div >
+      <div>
         <label htmlFor="answer_descprition">Description:</label>
         <textarea
           rows="9"
@@ -48,7 +57,6 @@ const Addanswer = ({question_id}) => {
       </div>
     </div>
   );
-}
-
+};
 
 export default Addanswer;

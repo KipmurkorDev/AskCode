@@ -21,14 +21,18 @@ export const deleteQuestion = createAsyncThunk("delequestion", async (data) => {
   await axios.delete(`${url}/question/${data.question_id}`).then((data) => data.data);
 });
 export const deleteAnswer = createAsyncThunk("delequestion", async (data) => {
-  console.log(data);
   await axios.delete(`${url}/answer/${data}`).then((data) => data.data);
 });
 export const deleteComment= createAsyncThunk("delequestion", async (data) => {
-  console.log(data);
   await axios.delete(`${url}/comment/${data}`).then((data) => data.data);
 });
-
+export const updateQuestion= createAsyncThunk("updateQuestion", async (data) => {
+  await axios.put(`${url}/questions/question/${data.question_id}`).then((data) => data.data);
+});
+export const updateAnswer= createAsyncThunk("updateanswer", async (data) => {
+  console.log(data.answer_id);
+  await axios.patch(`${url}/answers/answer/${data.answer_id}`, data).then((data) => data.data);
+});
 export const profileSlice = createSlice({
   name: "user",
   initialState,
