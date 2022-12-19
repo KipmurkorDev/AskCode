@@ -15,6 +15,7 @@ import UserAnswer from "./Pages/User/UserAnswer";
 import Userprofile from "./Pages/User/Userprofile";
 import UserComment from "./Pages/User/userComment";
 import Search from "./Pages/Search/Search";
+import MostAnswer from "./Pages/MostAnswer/MostAnswer";
 function App() {
   const location = useLocation();
   return (
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route index element={<Login />} />
         <Route exact path="/home" element={<Home />} />
+        <Route exact path="/most/Answers" element={<MostAnswer />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/answers" element={<Answer />} />
