@@ -1,17 +1,17 @@
 const { exec } = require("../DatabaseHelplers/databaseHelpers");
-const jwt_decode = require('jwt-decode');
+const jwt_decode = require("jwt-decode");
 
 const getprofile = async (req, res) => {
   try {
     const token = req.headers["x-access-token"];
-    const decoded=jwt_decode(token);  
-    const user_id=decoded.user_id   
+    const decoded = jwt_decode(token);
+    const user_id = decoded.user_id;
     const response = await (await exec("getProfile", { user_id })).recordsets;
-    let user={user:response[0]}
-    let userQuestions={userQuestions:response[1]}
-    let userAnswers={userAnswers:response[2]}
-    let  userComments={userComments:response[3]}
-    let profile=[user, userQuestions, userAnswers, userComments]
+    let user = { user: response[0] };
+    let userQuestions = { userQuestions: response[1] };
+    let userAnswers = { userAnswers: response[2] };
+    let userComments = { userComments: response[3] };
+    let profile = [user, userQuestions, userAnswers, userComments];
     res.json(profile);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -35,7 +35,6 @@ const deleQuestion = async (req, res) => {
 };
 const updateQuestion = async (req, res) => {
   try {
-
     const { user_id, question_id, title, description, created } = req.body;
 
     const questionsExist = await (
@@ -125,10 +124,41 @@ const deletecomment = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-
+const updateComment = async (req, res) => {
+  try {
+    const {
+      user_id,
+      comment_id,
+      comment_created,
+      comment_descprition,
+      answer_id,
+    } = req.body;
+    const commentExist = await (
+      await exec("getComment", { comment_id })
+    ).recordset;
+    if (commentExist.length) {
+      await (
+        await exec("insertUpdateComment", {
+          answer_id,
+          user_id,
+          comment_id,
+          comment_created,
+          comment_descprition,
+        })
+      ).recordset;
+      res.status(201).json({ message: "Comment updated in the database" });
+    } else {
+      res.status(201).json({ message: "Comment not existing in the database" });
+    }
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 module.exports = {
   getprofile,
   deleQuestion,
   deleteAnswer,
-  deletecomment,updateQuestion, updateAnswer
+  deletecomment,
+  updateQuestion,
+  updateAnswer,updateComment
 };

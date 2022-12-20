@@ -1,12 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
+import React, {useState} from "react";
+import Addanswer from "../../Components/AnswerForm/AddAnswer";
+import Modal from "../../Components/Modal/Modal";
 import { deleteComment } from "../../Redux/Slices/userSlice";
 import Profile from "./Profile";
 import moment from "moment";
 export default function UserComment() {
+  const [isOpen, setIsopen] = useState(false);
   const user = useSelector((state) => state.user.Profile);
+  const [isItem, setIsItem] = useState({});
   const loading = useSelector((state) => state.user.isLoading);
   const dispatch = useDispatch();
-
+  const handleitem = (item) => {
+    setIsItem(item);
+  };
   if (!loading) return <>Loading</>;
   return (
     <>
@@ -28,7 +35,18 @@ export default function UserComment() {
                     </b>
                   </div>
                   <div className="editbtn">
-                    <div className="btn_user">
+                    <div
+                      className="btn_user"
+                      onClick={() => {
+                        setIsopen(true);
+                        handleitem(item);
+                      }}
+                    >
+                      <Modal
+                        closeHandler={() => setIsopen(false)}
+                        isOpen={isOpen}
+                        modalContent={<Addanswer obj={isItem} />}
+                      />
                       <i class="fas fa-edit"></i>
                     </div>
                     <div

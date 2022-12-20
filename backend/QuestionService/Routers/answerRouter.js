@@ -6,11 +6,12 @@ const {
   downUpvote,
   iseacceptedAnswer
 } = require("../Controlers/answerController");
+const { verification } = require("../Midleware/tokenVerification");
 
 answerRouter.post("", addAnswer);
-answerRouter.put("/answer/accepted", iseacceptedAnswer);
-answerRouter.get("/question/:question_id", getAnswers);
-answerRouter.post("/answer/vote/:answer_id", downUpvote);
+answerRouter.put("/answer/accepted",verification, iseacceptedAnswer);
+answerRouter.get("/question/:question_id",verification, getAnswers);
+answerRouter.post("/answer/vote/:answer_id", verification,downUpvote);
 
 module.exports = {
   answerRouter,
