@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import './sign.css'
- import {loginUser} from '../../Redux/Slices/AuthSlice'
- import { useDispatch } from "react-redux";
-// import authHeader from "../../Redux/Helpers/tokenHeaders";
-
+import "./sign.css";
+import { loginUser } from "../../Redux/Slices/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+import authHeader from "../../Redux/Helpers/tokenHeaders";
 
 export default function Login() {
+  const token = useSelector((state) => state.auth.token);
+  const loading = useSelector((state) => state.auth.loading);
+
+  console.log(token, loading);
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [siginIput, setSiginIput] = useState({
     email: "",
     user_password: "",
   });
-  // console.log(authHeader());
+
   const handleInputChange = (e) => {
     setSiginIput((prev) => ({
       ...prev,
@@ -21,18 +24,21 @@ export default function Login() {
     }));
   };
 
-  const validataion = () => {
+  const validataion = async () => {
     if (siginIput.email === "" || siginIput.user_password === "") {
       alert(" You missed");
     } else {
-      dispatch(loginUser(siginIput))
-      if(localStorage.getItem('user')){
-        clearForm();
-        navigate("/home");
+      await dispatch(loginUser(siginIput));
+      let data = await authHeader();
+      console.log(data);
+      if (data["x-access-token"]?.length > 0) {
+        clearForm()        
+        return navigate("/home");
+      } else {
+        return navigate("/");
       }
     }
   };
-
   const clearForm = () => {
     setSiginIput({
       email: "",
@@ -73,9 +79,12 @@ export default function Login() {
             onChange={handleInputChange}
             required
           />
-        </div >
+        </div>
         <div className="input-container-2">
-        <p> Not yet registered? <Link to="/signup">Sign up</Link></p>
+          <p>
+            {" "}
+            Not yet registered? <Link to="/signup">Sign up</Link>
+          </p>
           <button
             type="text"
             className="submit-2"
