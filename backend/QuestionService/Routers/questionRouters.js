@@ -8,10 +8,10 @@ const {
 } = require("../Controlers/questionController");
 const { verification } = require("../Midleware/tokenVerification");
 
-questionRouter.get("/", getQuestions);
+questionRouter.get("/",verification, getQuestions);
 questionRouter.post("/", verification, addQuestion);
-questionRouter.post("/search/:search_value", searchQuestions);
-questionRouter.get("/most/answers", mostAnswerdQuestion);
+questionRouter.post("/search/:search_value", verification, searchQuestions);
+questionRouter.get("/most/answers",verification, mostAnswerdQuestion);
 
 module.exports = {
   questionRouter,

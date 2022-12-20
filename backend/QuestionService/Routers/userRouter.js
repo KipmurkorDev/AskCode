@@ -6,15 +6,17 @@ const {
   deletecomment,
   updateQuestion, updateAnswer, updateComment
 } = require("../Controlers/userController");
+const { verification } = require("../Midleware/tokenVerification");
+
 const userRouter = express.Router();
 
-userRouter.get("", getprofile);
-userRouter.delete("/question/:question_id", deleQuestion);
-userRouter.delete("/answer/:answer_id", deleteAnswer);
-userRouter.delete("/comment/:comment_id", deletecomment);
-userRouter.put("/questions/question/:question_id", updateQuestion);
-userRouter.patch("/answers/answer/:answer_id", updateAnswer);
-userRouter.patch('/comments/comment/:comment_id',updateComment)
+userRouter.get("",verification, getprofile);
+userRouter.delete("/question/:question_id",verification, deleQuestion);
+userRouter.delete("/answer/:answer_id",verification, deleteAnswer);
+userRouter.delete("/comment/:comment_id", verification, deletecomment);
+userRouter.put("/questions/question/:question_id", verification,updateQuestion);
+userRouter.patch("/answers/answer/:answer_id", verification, updateAnswer);
+userRouter.patch('/comments/comment/:comment_id',verification,updateComment)
 
 
 module.exports = {

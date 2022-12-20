@@ -30,10 +30,10 @@ const Addanswer = ({ question_id, list, obj }) => {
     console.log(obj?.comment_id?.length);
     if (answerInput.answer_descprition === "") {
       alert(" You did not complete  the form, kindly do so.");
-    }  else if (obj?.comment_id?.length > 0) {
+    }  else if (obj) {
       dispatch(updateComment({ ...obj, comment_descprition:comment.comment_descprition }));
-      clearForm();
     } else if (list?.answer_id === undefined) {
+      console.log("Hello");
       dispatch(addAnswer({ ...answerInput, question_id: question_id }));
       clearForm();
     }
@@ -41,11 +41,10 @@ const Addanswer = ({ question_id, list, obj }) => {
       let newItem = { ...list, ...answerInput };
       console.log(newItem);
       dispatch(updateAnswer(newItem));
-      clearForm();
     }
   };
   const clearForm = () => {
-    setAnswerInput({ answer_descprition: "" });
+    setAnswerInput("");
   };
   return (
     <div className="addtext">

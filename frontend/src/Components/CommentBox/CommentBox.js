@@ -4,7 +4,7 @@ import cn from "classnames";
 import "./style.css";
 import { addComment } from "../../Redux/Slices/CommentSlice";
 const INITIAL_HEIGHT = 20;
-export default function CommentBox({ answer_id }) {
+export default function CommentBox({ answer_id, question_id}) {
   const dispatch = useDispatch();
   const [isExpanded, setIsExpanded] = useState(false);
   const [commentValue, setCommentValue] = useState("");
@@ -37,7 +37,7 @@ export default function CommentBox({ answer_id }) {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(
-      addComment({ comment_descprition: commentValue, answer_id: answer_id })
+      addComment({ comment_descprition: commentValue, answer_id: answer_id, question_id:question_id })
     );
     setCommentValue("");
   };

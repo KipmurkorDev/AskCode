@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Comment.css";
 import moment from "moment";
 import CommentBox from "../../Components/CommentBox/CommentBox";
-export default function Comment({ answer_id }) {
+export default function Comment({ answer_id, question_id}) {
   const Comments = useSelector((state) => state.comment.Comments);
   const loading = useSelector((state) => state.comment.isLoading);
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function Comment({ answer_id }) {
   return (
     <div className="comment_">
       <div className="addcomment">
-      <CommentBox answer_id={answer_id}/>
+      <CommentBox answer_id={answer_id} question_id={question_id}/>
       </div>
       {Comments.length === 0 ? (
         <p> The is no comment for this answers</p>
