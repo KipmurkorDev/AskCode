@@ -21,8 +21,7 @@ export default function Signup() {
       [e.target.name]: e.target.value,
     }));
   };
-// console.log(message);
-  const validataion = async() => {
+  const validataion = async () => {
     if (
       signUpInput.Name === "" ||
       signUpInput.user_name === "" ||
@@ -31,15 +30,15 @@ export default function Signup() {
     ) {
       alert(" You missed");
     } else {
-      await dispatch(registeUser(signUpInput));
-if(message?.message.length<7){
-    clearForm();
-  return navigate("/");
-}
-else{
-  return navigate('/signup')
-}
-      
+       dispatch(registeUser(signUpInput));
+      if (message?.message.length < 8) {
+        console.log(message?.message);
+        clearForm();
+        return navigate("/");
+      } else {
+        console.log("hello");
+        return navigate("/signup");
+      }
     }
   };
 
@@ -115,7 +114,7 @@ else{
           />
         </div>
         <div className="input-container">
-          <p style={{color:"red"}}>{message.message}</p>
+          <p style={{ color: "red" }}>{message.message}</p>
           <p>
             Are you already register? You can <Link to="/">Login</Link>
           </p>
