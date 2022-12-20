@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {registeUser} from '../../Redux/Slices/AuthSlice'
-
+import { useDispatch, useSelector } from "react-redux";
+import { registeUser } from "../../Redux/Slices/AuthSlice";
 
 import "./signup.css";
 
 export default function Signup() {
+  const message = useSelector((state) => state.auth.users);
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [signUpInput, setSignup] = useState({
     Name: "",
     user_name: "",
@@ -21,8 +21,8 @@ export default function Signup() {
       [e.target.name]: e.target.value,
     }));
   };
-
-  const validataion = () => {
+// console.log(message);
+  const validataion = async() => {
     if (
       signUpInput.Name === "" ||
       signUpInput.user_name === "" ||
@@ -31,9 +31,15 @@ export default function Signup() {
     ) {
       alert(" You missed");
     } else {
-      dispatch(registeUser(signUpInput))
-      navigate("/");
-      clearForm();
+      await dispatch(registeUser(signUpInput));
+if(message?.message.length<7){
+    clearForm();
+  return navigate("/");
+}
+else{
+  return navigate('/signup')
+}
+      
     }
   };
 
@@ -109,7 +115,10 @@ export default function Signup() {
           />
         </div>
         <div className="input-container">
-        <p> Are you already register? You can <Link to="/">Login</Link></p>
+          <p style={{color:"red"}}>{message.message}</p>
+          <p>
+            Are you already register? You can <Link to="/">Login</Link>
+          </p>
 
           <button
             type="text"

@@ -6,46 +6,40 @@ import { useDispatch, useSelector } from "react-redux";
 import authHeader from "../../Redux/Helpers/tokenHeaders";
 
 export default function Login() {
-  const token = useSelector((state) => state.auth.token);
-  const loading = useSelector((state) => state.auth.loading);
-
-  console.log(token, loading);
+  const error=useSelector(state=>state.auth.error)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [siginIput, setSiginIput] = useState({
     email: "",
     user_password: "",
   });
-
   const handleInputChange = (e) => {
     setSiginIput((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-
   const validataion = async () => {
     if (siginIput.email === "" || siginIput.user_password === "") {
       alert(" You missed");
     } else {
-      await dispatch(loginUser(siginIput));
+       await dispatch(loginUser(siginIput));
       let data = await authHeader();
-      console.log(data);
       if (data["x-access-token"]?.length > 0) {
-        clearForm()        
+        clearForm();
         return navigate("/home");
       } else {
         return navigate("/");
       }
     }
   };
+
   const clearForm = () => {
     setSiginIput({
       email: "",
       user_password: "",
     });
   };
-
   return (
     <div className="form-2">
       <div className="title-2">
@@ -82,7 +76,7 @@ export default function Login() {
         </div>
         <div className="input-container-2">
           <p>
-            {" "}
+            <p style={{color:"red"}}>{error}</p>
             Not yet registered? <Link to="/signup">Sign up</Link>
           </p>
           <button
