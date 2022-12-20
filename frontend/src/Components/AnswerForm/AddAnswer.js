@@ -4,9 +4,8 @@ import { updateComment } from "../../Redux/Slices/userSlice";
 import { addAnswer } from "../../Redux/Slices/AnswerSlice";
 import { updateAnswer } from "../../Redux/Slices/userSlice";
 const Addanswer = ({ question_id, list, obj }) => {
-  const [answerInput, setAnswerInput] = useState({
-    answer_descprition: "",
-  });
+  const [answerInput, setAnswerInput] = useState({answer_descprition: ""});
+  const [errors, setErrors] = useState("");
   const [comment, setComment] = useState({ comment_descprition: "" });
   const dispatch = useDispatch();
   const handleInputChange = (e) => {
@@ -27,13 +26,11 @@ const Addanswer = ({ question_id, list, obj }) => {
     setComment({ comment_descprition: obj?.comment_descprition });
   }, [obj]);
   const validate = () => {
-    console.log(obj?.comment_id?.length);
     if (answerInput.answer_descprition === "") {
-      alert(" You did not complete  the form, kindly do so.");
+      setErrors("All Fields Are Required!");
     }  else if (obj) {
       dispatch(updateComment({ ...obj, comment_descprition:comment.comment_descprition }));
     } else if (list?.answer_id === undefined) {
-      console.log("Hello");
       dispatch(addAnswer({ ...answerInput, question_id: question_id }));
       clearForm();
     }
@@ -60,6 +57,7 @@ const Addanswer = ({ question_id, list, obj }) => {
           onChange={handleInputChange}
         />
         <div>
+        {errors ? <p style={{ color: "red", fontSize:"13px"}}>{errors}</p> : null}
           <input
             type="submit"
             onClick={() => {

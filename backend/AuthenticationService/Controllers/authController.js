@@ -43,7 +43,7 @@ const getUser = async (req, res) => {
         );
         res.status(200).send({ token });
       } else {
-        return res.status(400).json({ message: "Wrong Credential" });
+        return res.status(400).json({ message: "Wrong Cridentials" });
       }
     } else {
       return res.status(400).json({ message: "User not found" });

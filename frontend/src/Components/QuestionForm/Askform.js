@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import {addQuestion} from '../../Redux/Slices/QuestionSlice'
 import "./ask.css";
 export default function Askform() {
+  const [errors, setErrors] = useState("");
   const naviagate = useNavigate();
   const dispatch=useDispatch()
   const [question, setQuestion] = useState({
@@ -17,8 +18,8 @@ export default function Askform() {
     }));
   };
   const validataion = () => {
-    if (question.title === "" || question.description === "") {
-      alert(" You missed");
+    if (!question.title || !question.description) {
+      setErrors("All Fields Are Required!");
     } else {
       dispatch(addQuestion(question))
       clearForm();
@@ -69,6 +70,7 @@ export default function Askform() {
             />
           </div>
           <div className="input-container-3">
+          {errors ? <p style={{ color: "red", fontSize:"13px"}}>{errors}</p> : null}
             <button
               type="text"
               className="submit-3"

@@ -7,6 +7,7 @@ import "./signup.css";
 
 export default function Signup() {
   const message = useSelector((state) => state.auth.users);
+  const [errors, setErrors] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [signUpInput, setSignup] = useState({
@@ -21,16 +22,17 @@ export default function Signup() {
       [e.target.name]: e.target.value,
     }));
   };
+
   const validataion = async () => {
     if (
-      signUpInput.Name === "" ||
-      signUpInput.user_name === "" ||
-      signUpInput.email === "" ||
-      signUpInput.user_password === ""
+      !signUpInput.Name ||
+      !signUpInput.user_name ||
+      !signUpInput.email ||
+      !signUpInput.user_password
     ) {
-      alert(" You missed");
+      setErrors("All Fields Are Required!");
     } else {
-       dispatch(registeUser(signUpInput));
+      dispatch(registeUser(signUpInput));
       if (message?.message.length < 8) {
         console.log(message?.message);
         clearForm();
@@ -114,6 +116,7 @@ export default function Signup() {
           />
         </div>
         <div className="input-container">
+          {errors ? <p style={{ color: "red" }}>{errors}</p> : null}
           <p style={{ color: "red" }}>{message.message}</p>
           <p>
             Are you already register? You can <Link to="/">Login</Link>
