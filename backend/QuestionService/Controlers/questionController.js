@@ -30,7 +30,8 @@ const addQuestion = async (req, res) => {
 
 const getQuestions = async (req, res) => {
   try {
-    const questions = await (await exec("getQuestions")).recordset;
+    const {PageNumber}=req.params
+    const questions = await (await exec("getQuestions", {PageNumber})).recordsets;
     res.json(questions);
   } catch (error) {
     res.status(404).json({ error: error.message });

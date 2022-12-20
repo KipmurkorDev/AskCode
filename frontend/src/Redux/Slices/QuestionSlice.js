@@ -8,9 +8,10 @@ const initialState = {
   Searches:[],
   MostAnswer:[]
 };
-export const getQuestions = createAsyncThunk("questions", async () => {
+export const getQuestions = createAsyncThunk("questions", async (data) => {
   let Questions = [];
-  const response = await axios.get(url, { headers: authHeader() }).then((data) => data.data);
+  const response = await axios.get(`${url}/${data}`, { headers: authHeader() }).then((data) => data.data);
+  console.log(response);
   Questions = [...response];
   return Questions;
 });

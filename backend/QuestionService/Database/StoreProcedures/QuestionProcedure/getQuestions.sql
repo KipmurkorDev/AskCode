@@ -1,11 +1,11 @@
-CREATE  or ALTER PROCEDURE getQuestions
+CREATE  or ALTER PROCEDURE getQuestions(
+    @PageNumber int
+)
 AS
 
 BEGIN
-DECLARE @PageNumber AS INT
 DECLARE @RowsOfPage AS INT
-SET @PageNumber=1
-SET @RowsOfPage=6
+SET @RowsOfPage=5
     SELECT * FROM Question
     WHERE  isDelete=0
     ORDER BY title
