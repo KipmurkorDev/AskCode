@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './sign.css'
- import {getUser} from '../../Redux/Slices/AuthSlice'
+ import {loginUser} from '../../Redux/Slices/AuthSlice'
  import { useDispatch } from "react-redux";
 
 
@@ -24,7 +24,7 @@ export default function Login() {
     if (siginIput.email === "" || siginIput.user_password === "") {
       alert(" You missed");
     } else {
-      dispatch(getUser(siginIput))
+      dispatch(loginUser(siginIput))
       clearForm();
       navigate("/home");
     }

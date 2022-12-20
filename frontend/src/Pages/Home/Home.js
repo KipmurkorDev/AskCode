@@ -92,7 +92,7 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <Pagination paginate={paginate} totalPages={Questions[1][0]?.COUNT}/>
+        <Pagination paginate={paginate} totalPages={Questions[1]}/>
       </div>
     </div>
   );

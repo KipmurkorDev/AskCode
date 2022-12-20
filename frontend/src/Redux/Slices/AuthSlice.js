@@ -6,7 +6,7 @@ const url = "http://localhost:4000/auth";
 const initialState = {
 users:""
 };
-export const getUser = createAsyncThunk("users", async (data) => {
+export const loginUser = createAsyncThunk("users", async (data) => {
   await axios.post(`${url}/login`, data).then((response) => {
     if (response.data.token) {
       localStorage.setItem("user", JSON.stringify(response.data));
@@ -15,7 +15,7 @@ export const getUser = createAsyncThunk("users", async (data) => {
   });
 });
 
-export const addusers = createAsyncThunk("register", async (data) => {
+export const registeUser = createAsyncThunk("register", async (data) => {
   const response = await axios
     .post(`${url}/signup`, data)
     .then((data) => data.json());
@@ -27,14 +27,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [getUser.pending]: (state) => {
+    [loginUser.pending]: (state) => {
       state.loading = true;
     },
-    [getUser.fulfilled]: (state, { payload }) => {
+    [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.token = payload;
     },
-    [getUser.rejected]: (state) => {
+    [loginUser.rejected]: (state) => {
       state.loading = false;
     },
   },

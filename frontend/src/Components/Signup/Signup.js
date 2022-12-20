@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {addusers} from '../../Redux/Slices/AuthSlice'
+import {registeUser} from '../../Redux/Slices/AuthSlice'
 
 
 import "./signup.css";
@@ -31,7 +31,7 @@ export default function Signup() {
     ) {
       alert(" You missed");
     } else {
-      dispatch(addusers(signUpInput))
+      dispatch(registeUser(signUpInput))
       navigate("/");
       clearForm();
     }

@@ -2,12 +2,13 @@ import React from "react";
 
 const Pagination = ({ paginate, totalPages }) => {
   const pageNumbers = [];
-  let num = Math.ceil(totalPages / 5);
-  for (let i = 1; i <= num; i++) {
-    console.log(i);
-    pageNumbers.push(i);
+  if (totalPages?.length > 0) {
+    let total = totalPages[0]?.COUNT;
+    let num = Math.ceil(total / 5);
+    for (let i = 1; i <= num; i++) {
+      pageNumbers.push(i);
+    }
   }
-
   return (
     <div className="pagination">
       <ul>
