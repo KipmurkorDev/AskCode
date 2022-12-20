@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import authHeader from "../../Redux/Helpers/tokenHeaders";
 import Pagination from "../../Components/Pagination/Pagination";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +15,6 @@ import "./Home.css";
 export default function Home() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-
   const navigate = useNavigate();
   const [search, setSearch] = useState({ search_value: "" });
   const Questions = useSelector((state) => state.question.Questions);

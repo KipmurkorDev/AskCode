@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import './sign.css'
  import {loginUser} from '../../Redux/Slices/AuthSlice'
  import { useDispatch } from "react-redux";
-
+// import authHeader from "../../Redux/Helpers/tokenHeaders";
 
 
 export default function Login() {
@@ -13,6 +13,7 @@ export default function Login() {
     email: "",
     user_password: "",
   });
+  // console.log(authHeader());
   const handleInputChange = (e) => {
     setSiginIput((prev) => ({
       ...prev,
@@ -25,8 +26,10 @@ export default function Login() {
       alert(" You missed");
     } else {
       dispatch(loginUser(siginIput))
-      clearForm();
-      navigate("/home");
+      if(localStorage.getItem('user')){
+        clearForm();
+        navigate("/home");
+      }
     }
   };
 
