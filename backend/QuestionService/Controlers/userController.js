@@ -129,6 +129,7 @@ const updateComment = async (req, res) => {
     const {
       user_id,
       comment_id,
+      question_id,
       comment_created,
       comment_descprition,
       answer_id,
@@ -140,6 +141,7 @@ const updateComment = async (req, res) => {
       await (
         await exec("insertUpdateComment", {
           answer_id,
+          question_id,
           user_id,
           comment_id,
           comment_created,
