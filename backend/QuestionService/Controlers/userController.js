@@ -36,7 +36,6 @@ const deleQuestion = async (req, res) => {
 const updateQuestion = async (req, res) => {
   try {
     const { user_id, question_id, title, description, created } = req.body;
-
     const questionsExist = await (
       await exec("getQuestion", { question_id })
     ).recordset;
@@ -50,12 +49,10 @@ const updateQuestion = async (req, res) => {
           created,
         })
       ).recordset;
-      res.json({ message: "Question updated on database" });
+      res.status(200).json({ message: "Question updated on database" });
     } else {
-      res.json({ message: "Question does not exist" });
+      res.status(201).json({ message: "Question does not exist" });
     }
-
-    res.json({ message: "Question updated successfull" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -69,9 +66,9 @@ const deleteAnswer = async (req, res) => {
       await (
         await exec("deleAnswer", { answer_id })
       ).recordset;
-      res.json({ message: "Answer deleted successfull" });
+      res.status(200).json({ message: "Answer deleted successfull" });
     } else {
-      res.json({ message: " Answer already deleted " });
+      res.status(200).json({ message: " Answer already deleted " });
     }
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -100,7 +97,7 @@ const updateAnswer = async (req, res) => {
         })
       ).recordset;
 
-      res.status(201).json({ message: "Answer updated to database" });
+      res.status(200).json({ message: "Answer updated to database" });
     } else {
       res.status(201).json({ message: "Answer not existing in the database" });
     }
@@ -116,9 +113,9 @@ const deletecomment = async (req, res) => {
       await (
         await exec("deleComment", { comment_id })
       ).recordset;
-      res.json({ message: "Comment deleted successfull" });
+      res.status(200).json({ message: "Comment deleted successfull" });
     } else {
-      res.json({ message: " Comment already deleted " });
+      res.status(201).json({ message: " Comment already deleted " });
     }
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -148,7 +145,7 @@ const updateComment = async (req, res) => {
           comment_descprition,
         })
       ).recordset;
-      res.status(201).json({ message: "Comment updated in the database" });
+      res.status(200).json({ message: "Comment updated in the database" });
     } else {
       res.status(201).json({ message: "Comment not existing in the database" });
     }
@@ -162,5 +159,6 @@ module.exports = {
   deleteAnswer,
   deletecomment,
   updateQuestion,
-  updateAnswer,updateComment
+  updateAnswer,
+  updateComment,
 };

@@ -23,7 +23,7 @@ export const deleteComment= createAsyncThunk("delequestion", async (data) => {
   await axios.delete(`${url}/comment/${data}`, { headers: authHeader() }).then((data) => data.data);
 });
 export const updateQuestion= createAsyncThunk("updateQuestion", async (data) => {
-  await axios.put(`${url}/questions/question/${data.question_id}`,{ headers: authHeader() }).then((data) => data.data);
+  await axios.put(`${url}/questions/question/${data.question_id}`,data,{ headers: authHeader() }).then((data) => data.data);
 });
 export const updateAnswer= createAsyncThunk("updateanswer", async (data) => {
   await axios.patch(`${url}/answers/answer/${data.answer_id}`, data, { headers: authHeader() }).then((data) => data.data);

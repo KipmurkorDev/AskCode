@@ -6,14 +6,9 @@ import { updateAnswer } from "../../Redux/Slices/userSlice";
 const Addanswer = ({ question_id, list, obj }) => {
   const [answerInput, setAnswerInput] = useState({ answer_descprition: "" });
   const [errors, setErrors] = useState("");
-  const [comment, setComment] = useState({ comment_descprition: "" });
   const dispatch = useDispatch();
   const handleInputChange = (e) => {
     setAnswerInput((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-    setComment((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -21,20 +16,11 @@ const Addanswer = ({ question_id, list, obj }) => {
   useEffect(() => {
     setAnswerInput({ answer_descprition: list?.answer_descprition });
   }, [question_id, list]);
-  useEffect(() => {
-    setComment({ comment_descprition: obj?.comment_descprition });
-  }, [obj]);
+  
   const validate = () => {
     if (answerInput.answer_descprition === "") {
       setErrors("All Fields Are Required!");
-    } else if (obj) {
-      dispatch(
-        updateComment({
-          ...obj,
-          comment_descprition: comment.comment_descprition,
-        })
-      );
-    } else if (list?.answer_id === undefined) {
+    }  else if (list?.answer_id === undefined) {
       dispatch(addAnswer({ ...answerInput, question_id: question_id }));
       setAnswerInput({ answer_descprition: "" });
     } else {
