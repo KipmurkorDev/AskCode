@@ -42,7 +42,7 @@ export default function Answer() {
       setShow(currentIndex);
     }
   };
-  let answer=Answers[0][0]
+  let answer=Answers[0]||[]
   let pages =Answers[1]
   if (!loading) return <>Loading</>;
   return (
@@ -52,8 +52,8 @@ export default function Answer() {
           <div className="question-3">
             <div>
               <h4>
-                {answer?.title}
-                <span>{moment(answer?.created).fromNow()}</span>
+                {answer[0]?.title}
+                <span>{moment(answer[0]?.created).fromNow()}</span>
               </h4>
             </div>
             <div className="addAnswer">
@@ -62,7 +62,7 @@ export default function Answer() {
                   closeHandler={() => setModalOpened(false)}
                   isOpen={modalOpened}
                   modalContent={
-                    <Addanswer question_id={answer?.question_id} />
+                    <Addanswer question_id={answer[0]?.question_id} />
                   }
                 />
                 Add Answer
