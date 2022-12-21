@@ -26,7 +26,6 @@ export const addAnswer = createAsyncThunk(
   getAnswers()
 );
 export const acceptAnswer = createAsyncThunk("accepted", async (data) => {
-  console.log(data);
   const response = await axios
     .put(`${url}/answer/accepted`, data, { headers: authHeader() })
     .then((data) => data.data);

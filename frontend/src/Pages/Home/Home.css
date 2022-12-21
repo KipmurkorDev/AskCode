@@ -82,7 +82,7 @@
   color: #90adc6;
 }
 .answe-count {
-  margin-top: 1.5%;
+  margin-top: 2%;
   font-size: 13px;
   font-weight: 500;
   height: 3%;
@@ -90,8 +90,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 4px;
 }
 .link_home {
   text-decoration: none;

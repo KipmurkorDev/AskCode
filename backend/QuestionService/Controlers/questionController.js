@@ -51,8 +51,9 @@ const searchQuestions = async (req, res) => {
 
 const mostAnswerdQuestion = async (req, res) => {
   try {
-    const response = await exec("mostAnswerQuestion");
-    const questions = await response.recordset;
+    const {PageNumber}=req.params
+    const response = await exec("mostAnswerQuestion", {PageNumber});
+    const questions = await response.recordsets;
     res.json(questions);
   } catch (error) {
     res.status(404).json({ error: error.message });

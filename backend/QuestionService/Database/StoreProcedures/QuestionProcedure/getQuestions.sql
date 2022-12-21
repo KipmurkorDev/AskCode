@@ -11,5 +11,5 @@ SET @RowsOfPage=5
     ORDER BY title
     OFFSET (@PageNumber-1)*@RowsOfPage ROWS
     FETCH NEXT @RowsOfPage ROWS ONLY                 
-
+SELECT COUNT(Question.question_id) as count FROM Question
 END

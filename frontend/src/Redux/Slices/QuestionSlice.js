@@ -10,7 +10,6 @@ const initialState = {
 };
 export const getQuestions = createAsyncThunk("questions", async (data) => {
   let Questions = [];
-  console.log(authHeader());
   const response = await axios
     .get(`${url}/${data}`, { headers: authHeader() })
     .then((data) => data.data);
@@ -38,13 +37,12 @@ export const searchQuestions = createAsyncThunk(
     return Searches;
   }
 );
-export const getmostAsnswers = createAsyncThunk("mostasnswered", async () => {
+export const getmostAsnswers = createAsyncThunk("mostasnswered", async (data) => {
   let MostAnswer = [];
   const response = await axios
-    .get(`${url}/most/answers`, { headers: authHeader() })
+    .get(`${url}/most/answers/${data}`, { headers: authHeader() })
     .then((data) => data.data);
   MostAnswer = [...response];
-  console.log(MostAnswer);
   return MostAnswer;
 });
 

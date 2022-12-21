@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import authHeader from "../../Redux/Helpers/tokenHeaders";
 import Pagination from "../../Components/Pagination/Pagination";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +36,7 @@ export default function Home() {
     }
   };
   const getMostAnswer = () => {
-    dispatch(getmostAsnswers());
+    dispatch(getmostAsnswers(1));
   };
   const handleAnswers = (question_id) => {
     dispatch(getAnswers(question_id));
