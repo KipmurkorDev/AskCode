@@ -1,7 +1,6 @@
 import React from "react";
 
 const Pagination = ({ paginate, totalPages, mostPages,answerPages }) => {
-  console.log(answerPages);
   const pageNumbers = [];
   if (totalPages?.length > 0) {
     let total = totalPages[0]?.COUNT;

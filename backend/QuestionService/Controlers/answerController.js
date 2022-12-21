@@ -34,7 +34,7 @@ const getAnswers = async (req, res) => {
     const response = await (
       await exec("getAnswers", { question_id, value})
     ).recordsets;
-    let answers = [response[0],response[2]];
+    let answers = response[0];
     for (let i of response[0]) {
       i.count = 0;
       let upvote = 0;
@@ -50,6 +50,7 @@ const getAnswers = async (req, res) => {
         i.count = upvote - downvote;
       }
     }
+    console.log(answers);
     res.json(answers);
   } catch (error) {
     res.status(404).json({ error: error.message });

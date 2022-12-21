@@ -22,9 +22,10 @@
   cursor: not-allowed;
 }
 .actions button[type="submit"] {
-  width: 14%;
+  width: 9%;
   color: black;
-  background-color: #90adc6;
+  margin-left: 1%;
+  background-color: white;
 }
 .container_container .comment-box {
   margin: 10px;
@@ -65,7 +66,7 @@
   opacity: 1;
 }
 .container_container .actions button {
-  margin-left: 6px;
+  margin-left: 10px;
   border: none;
   line-height: 1;
 }
