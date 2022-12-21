@@ -73,7 +73,7 @@ export default function Home() {
             Questions[0]?.map((item) => (
               <div
                 className="question-1"
-                onClick={() => handleAnswers(item?.question_id)}
+                onClick={() => handleAnswers({question_id:item?.question_id, value:1})}
               >
                 <div>
                   <button>
