@@ -1,23 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import authHeader from '../Helpers/tokenHeaders'
+import authHeader from "../Helpers/tokenHeaders";
 const url = "http://localhost:4040/questions";
 
 const initialState = {
   Questions: [],
-  Searches:[],
-  MostAnswer:[]
+  Searches: [],
+  MostAnswer: [],
 };
-export const getQuestions = createAsyncThunk("questions", async () => {
+export const getQuestions = createAsyncThunk("questions", async (data) => {
   let Questions = [];
-  const response = await axios.get(url, { headers: authHeader() }).then((data) => data.data);
+  const response = await axios
+    .get(`${url}/${data}`, { headers: authHeader() })
+    .then((data) => data.data);
   Questions = [...response];
   return Questions;
 });
 export const addQuestion = createAsyncThunk(
   "postquestion",
   async (data) => {
-    const response = await axios.post(url, data, {headers:authHeader()}).then((data) => data.data)
+    const response = await axios
+      .post(url, data, { headers: authHeader() })
+      .then((data) => data.data);
     return response;
   },
   getQuestions()
@@ -26,21 +30,21 @@ export const searchQuestions = createAsyncThunk(
   "searchquestions",
   async (data) => {
     let Searches = [];
-    const response = await axios.post(`${url}/search/${data}`, data, { headers: authHeader() }).then((data) =>data.data);
+    const response = await axios
+      .post(`${url}/search/${data}`, data, { headers: authHeader() })
+      .then((data) => data.data);
     Searches = [...response];
-    return Searches;  
-  },
+    return Searches;
+  }
 );
-export const getmostAsnswers = createAsyncThunk(
-  "mostasnswered",
-  async () => {
-    let MostAnswer = [];
-    const response = await axios.get(`${url}/most/answers`, { headers: authHeader() }).then((data) =>data.data);
-    MostAnswer = [...response];
-    console.log(MostAnswer);
-    return MostAnswer;  
-  },
-);
+export const getmostAsnswers = createAsyncThunk("mostasnswered", async (data) => {
+  let MostAnswer = [];
+  const response = await axios
+    .get(`${url}/most/answers/${data}`, { headers: authHeader() })
+    .then((data) => data.data);
+  MostAnswer = [...response];
+  return MostAnswer;
+});
 
 export const questionSlice = createSlice({
   name: "question",

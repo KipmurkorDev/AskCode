@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {addQuestion} from '../../Redux/Slices/QuestionSlice'
+import { updateQuestion } from "../../Redux/Slices/userSlice";
 import "./ask.css";
-export default function Askform() {
+export default function Askform({obj}) {
+  const [errors, setErrors] = useState("");
   const naviagate = useNavigate();
   const dispatch=useDispatch()
   const [question, setQuestion] = useState({
     title: "",
     description: "",
   });
+  useEffect(() => {
+    setQuestion({ title: obj?.title, description:obj?.description});
+  }, [obj]);
   const handleInputChange = (e) => {
     setQuestion((prev) => ({
       ...prev,
@@ -17,12 +22,17 @@ export default function Askform() {
     }));
   };
   const validataion = () => {
-    if (question.title === "" || question.description === "") {
-      alert(" You missed");
-    } else {
+    if (!question.title || !question.description) {
+      setErrors("All Fields Are Required!");
+    } else if(obj?.question_id === undefined){
       dispatch(addQuestion(question))
       clearForm();
       naviagate("/home");
+    }
+    else{
+      let newQuiz={...obj, ...question}
+      dispatch(updateQuestion(newQuiz))
+
     }
   };
 
@@ -69,6 +79,7 @@ export default function Askform() {
             />
           </div>
           <div className="input-container-3">
+          {errors ? <p style={{ color: "red", fontSize:"13px"}}>{errors}</p> : null}
             <button
               type="text"
               className="submit-3"

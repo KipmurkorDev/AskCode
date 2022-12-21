@@ -9,33 +9,28 @@ const initialState = {
 };
 export const getUserProfile = createAsyncThunk("aswers", async () => {
   let Profile = [];
-  const response = await axios
-    .get(url, { headers: authHeader() })
-    .then((data) => data.data);
+  const response = await axios.get(url, { headers: authHeader() }).then((data) => data.data);
   Profile = [...response];
   return Profile;
 });
-
 export const deleteQuestion = createAsyncThunk("delequestion", async (data) => {
-  console.log(data.question_id);
-  await axios.delete(`${url}/question/${data.question_id}`).then((data) => data.data);
+  await axios.delete(`${url}/question/${data.question_id}`, { headers: authHeader() }).then((data) => data.data);
 });
 export const deleteAnswer = createAsyncThunk("delequestion", async (data) => {
-  await axios.delete(`${url}/answer/${data}`).then((data) => data.data);
+  await axios.delete(`${url}/answer/${data}`, { headers: authHeader() }).then((data) => data.data);
 });
 export const deleteComment= createAsyncThunk("delequestion", async (data) => {
-  await axios.delete(`${url}/comment/${data}`).then((data) => data.data);
+  await axios.delete(`${url}/comment/${data}`, { headers: authHeader() }).then((data) => data.data);
 });
 export const updateQuestion= createAsyncThunk("updateQuestion", async (data) => {
-  await axios.put(`${url}/questions/question/${data.question_id}`).then((data) => data.data);
+  await axios.put(`${url}/questions/question/${data.question_id}`,data,{ headers: authHeader() }).then((data) => data.data);
 });
 export const updateAnswer= createAsyncThunk("updateanswer", async (data) => {
-  console.log(data.answer_id);
-  await axios.patch(`${url}/answers/answer/${data.answer_id}`, data).then((data) => data.data);
+  await axios.patch(`${url}/answers/answer/${data.answer_id}`, data, { headers: authHeader() }).then((data) => data.data);
 });
 export const updateComment= createAsyncThunk("updatecomment", async (data) => {
   console.log(data);
-  await axios.patch(`${url}/comments/comment/${data.comment_id}`, data).then((data) => data.data);
+  await axios.patch(`${url}/comments/comment/${data.comment_id}`, data, { headers: authHeader() }).then((data) => data.data);
 });
 export const profileSlice = createSlice({
   name: "user",

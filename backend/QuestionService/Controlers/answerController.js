@@ -30,11 +30,11 @@ const addAnswer = async (req, res) => {
 
 const getAnswers = async (req, res) => {
   try {
-    const { question_id } = req.params;
+    const { question_id, value} = req.params;
     const response = await (
-      await exec("getAnswers", { question_id })
+      await exec("getAnswers", { question_id, value})
     ).recordsets;
-    let answers = response[0];
+    let answers = [response[0],response[2]];
     for (let i of response[0]) {
       i.count = 0;
       let upvote = 0;

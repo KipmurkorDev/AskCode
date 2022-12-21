@@ -3,6 +3,7 @@ import authHeader from "../../Redux/Helpers/tokenHeaders";
 import { useSelector, useDispatch } from "react-redux";
 import { addVote } from "../../Redux/Slices/AnswerSlice";
 import { acceptAnswer } from "../../Redux/Slices/AnswerSlice";
+import Pagination from "../../Components/Pagination/Pagination";
 import Comment from "../Comment/Comment";
 import jwt from "jwt-decode";
 import moment from "moment";
@@ -12,6 +13,7 @@ import Addanswer from "../../Components/AnswerForm/AddAnswer";
 export default function Answer() {
   const [show, setShow] = useState(-1);
   const [modalOpened, setModalOpened] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const Answers = useSelector((state) => state.answer.Answers);
   const loading = useSelector((state) => state.answer.isLoading);
@@ -22,6 +24,7 @@ export default function Answer() {
     let newitem = { ...item, Vote: 1 };
     dispatch(addVote(newitem));
   };
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const handleAccepted = (data) => {
     dispatch(acceptAnswer(data));
   };
@@ -39,6 +42,8 @@ export default function Answer() {
       setShow(currentIndex);
     }
   };
+  let answer=Answers[0][0]
+  let pages =Answers[1]
   if (!loading) return <>Loading</>;
   return (
     <div className="conatiner_answer">
@@ -47,8 +52,8 @@ export default function Answer() {
           <div className="question-3">
             <div>
               <h4>
-                {Answers[0]?.title}
-                <span>{moment(Answers[0]?.created).fromNow()}</span>
+                {answer?.title}
+                <span>{moment(answer?.created).fromNow()}</span>
               </h4>
             </div>
             <div className="addAnswer">
@@ -57,7 +62,7 @@ export default function Answer() {
                   closeHandler={() => setModalOpened(false)}
                   isOpen={modalOpened}
                   modalContent={
-                    <Addanswer question_id={Answers[0]?.question_id} />
+                    <Addanswer question_id={answer?.question_id} />
                   }
                 />
                 Add Answer
@@ -68,7 +73,7 @@ export default function Answer() {
           {Answers[0]?.answer_id === null ? (
             <p> There is no answer for this question</p>
           ) : (
-            Answers?.map((item, index) => (
+            Answers[0]?.map((item, index) => (
               <div className="answe_1">
                 <div className="content-1">
                   <div className="btn">
@@ -176,6 +181,9 @@ export default function Answer() {
             ))
           )}
         </div>
+      </div>
+      <div>
+        <Pagination paginate={paginate} answerPages={pages} />
       </div>
     </div>
   );

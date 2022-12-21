@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {addusers} from '../../Redux/Slices/AuthSlice'
-
+import { useDispatch, useSelector } from "react-redux";
+import { registeUser } from "../../Redux/Slices/AuthSlice";
 
 import "./signup.css";
 
 export default function Signup() {
+  const message = useSelector((state) => state.auth.users);
+  const [errors, setErrors] = useState("");
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [signUpInput, setSignup] = useState({
     Name: "",
     user_name: "",
@@ -22,18 +23,24 @@ export default function Signup() {
     }));
   };
 
-  const validataion = () => {
+  const validataion = async () => {
     if (
-      signUpInput.Name === "" ||
-      signUpInput.user_name === "" ||
-      signUpInput.email === "" ||
-      signUpInput.user_password === ""
+      !signUpInput.Name ||
+      !signUpInput.user_name ||
+      !signUpInput.email ||
+      !signUpInput.user_password
     ) {
-      alert(" You missed");
+      setErrors("All Fields Are Required!");
     } else {
-      dispatch(addusers(signUpInput))
-      navigate("/");
-      clearForm();
+      dispatch(registeUser(signUpInput));
+      if (message?.message.length < 8) {
+        console.log(message?.message);
+        clearForm();
+        return navigate("/");
+      } else {
+        console.log("hello");
+        return navigate("/signup");
+      }
     }
   };
 
@@ -109,7 +116,11 @@ export default function Signup() {
           />
         </div>
         <div className="input-container">
-        <p> Are you already register? You can <Link to="/">Login</Link></p>
+          {errors ? <p style={{ color: "red" }}>{errors}</p> : null}
+          <p style={{ color: "red" }}>{message.message}</p>
+          <p>
+            Are you already register? You can <Link to="/">Login</Link>
+          </p>
 
           <button
             type="text"

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, {useState} from "react";
-import Addanswer from "../../Components/AnswerForm/AddAnswer";
+import Addcomment from "../../Components/AnswerForm/CommentForm";
 import Modal from "../../Components/Modal/Modal";
 import { deleteComment } from "../../Redux/Slices/userSlice";
 import Profile from "./Profile";
@@ -45,7 +45,7 @@ export default function UserComment() {
                       <Modal
                         closeHandler={() => setIsopen(false)}
                         isOpen={isOpen}
-                        modalContent={<Addanswer obj={isItem} />}
+                        modalContent={<Addcomment obj={isItem} />}
                       />
                       <i class="fas fa-edit"></i>
                     </div>

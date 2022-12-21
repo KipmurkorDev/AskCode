@@ -1,11 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import moment from "moment";
 import { getAnswers } from "../../Redux/Slices/AnswerSlice";
 import { useNavigate } from "react-router-dom";
 import Profile from "./Profile";
+import Modal from "../../Components/Modal/Modal";
+import Askform from "../../Components/QuestionForm/Askform";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteQuestion } from "../../Redux/Slices/userSlice";
 export default function UserQuestions() {
+  const [isItem, setIsItem] = useState({});
+  const [isOpen, setIsopen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.Profile);
@@ -13,6 +17,9 @@ export default function UserQuestions() {
   const handleAnswers = (question_id) => {
     dispatch(getAnswers(question_id));
     navigate("/answers");
+  };
+  const handleitem = (item) => {
+    setIsItem(item);
   };
   const deletequestion = (data) => {
     console.log(data);
@@ -41,7 +48,15 @@ export default function UserQuestions() {
                   </b>
                 </div>
                 <div className="editbtn">
-                  <div className="btn_user">
+                  <div className="btn_user" onClick={() => {
+                        setIsopen(true);
+                        handleitem(item);
+                      }}>
+                  <Modal
+                        closeHandler={() => setIsopen(false)}
+                        isOpen={isOpen}
+                        modalContent={<Askform obj={isItem} />}
+                      />
                     <i class="fas fa-edit"></i>
                   </div>
                   <div

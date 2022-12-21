@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Pagination from "../../Components/Pagination/Pagination";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAnswers } from "../../Redux/Slices/AnswerSlice";
@@ -9,16 +10,17 @@ import {
 } from "../../Redux/Slices/QuestionSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-
 import "./Home.css";
 export default function Home() {
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const [search, setSearch] = useState({ search_value: "" });
   const Questions = useSelector((state) => state.question.Questions);
   useEffect(() => {
-    dispatch(getQuestions());
-  }, [dispatch]);
+    dispatch(getQuestions(currentPage));
+  }, [dispatch, currentPage]);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const handleInputChange = (e) => {
     setSearch((prev) => ({
       ...prev,
@@ -34,7 +36,7 @@ export default function Home() {
     }
   };
   const getMostAnswer = () => {
-    dispatch(getmostAsnswers());
+    dispatch(getmostAsnswers(1));
   };
   const handleAnswers = (question_id) => {
     dispatch(getAnswers(question_id));
@@ -55,7 +57,7 @@ export default function Home() {
           <i class="fa fa-search" aria-hidden="true"></i>
         </button>
       </div>
-      <div>
+      <div className="home_display">
         <div className="home-btn">
           <div className="most_question ">All </div>
           <div className="most_answer" onClick={getMostAnswer}>
@@ -65,13 +67,13 @@ export default function Home() {
           </div>
         </div>
         <div className="question">
-          {Questions.length === 0 ? (
+          {Questions[0]?.length === 0 ? (
             <p> There is no questions </p>
           ) : (
-            Questions?.map((item) => (
+            Questions[0]?.map((item) => (
               <div
                 className="question-1"
-                onClick={() => handleAnswers(item?.question_id)}
+                onClick={() => handleAnswers({question_id:item?.question_id, value:1})}
               >
                 <div>
                   <button>
@@ -87,6 +89,9 @@ export default function Home() {
             ))
           )}
         </div>
+      </div>
+      <div>
+        <Pagination paginate={paginate} totalPages={Questions[1]}/>
       </div>
     </div>
   );

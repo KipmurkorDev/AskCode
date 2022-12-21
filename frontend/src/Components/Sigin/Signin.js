@@ -1,42 +1,42 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import './sign.css'
- import {getUser} from '../../Redux/Slices/AuthSlice'
- import { useDispatch } from "react-redux";
-
-
+import "./sign.css";
+import { loginUser } from "../../Redux/Slices/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+import authHeader from "../../Redux/Helpers/tokenHeaders";
 
 export default function Login() {
+  const [errors, setErrors] = useState("");
+  const error = useSelector((state) => state.auth.error);
   const navigate = useNavigate();
-  const dispatch=useDispatch()
-  const [siginIput, setSiginIput] = useState({
-    email: "",
-    user_password: "",
-  });
-  const handleInputChange = (e) => {
-    setSiginIput((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const dispatch = useDispatch();
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
-  const validataion = () => {
-    if (siginIput.email === "" || siginIput.user_password === "") {
-      alert(" You missed");
+  const validataion = async () => {
+    if (!Email || !Password) {
+      setErrors("All Fields Are Required!");
     } else {
-      dispatch(getUser(siginIput))
-      clearForm();
-      navigate("/home");
+      await dispatch(loginUser({ email: Email, user_password: Password }));
+      let data = await authHeader();
+      if (data["x-access-token"]?.length > 0) {
+        clearForm();
+        return navigate("/home");
+      } else {
+        return navigate("/");
+      }
     }
   };
-
-  const clearForm = () => {
-    setSiginIput({
-      email: "",
-      user_password: "",
-    });
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
-
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const clearForm = () => {
+    setEmail("");
+    setPassword("");
+  };
   return (
     <div className="form-2">
       <div className="title-2">
@@ -52,8 +52,8 @@ export default function Login() {
             className="input-2"
             type="email"
             name="email"
-            value={siginIput.email}
-            onChange={handleInputChange}
+            value={Email}
+            onChange={handleEmailChange}
             required
           />
         </div>
@@ -66,13 +66,17 @@ export default function Login() {
             className="input-2"
             type="password"
             name="user_password"
-            value={siginIput.user_password}
-            onChange={handleInputChange}
+            value={Password}
+            onChange={handlePasswordChange}
             required
           />
-        </div >
+        </div>
         <div className="input-container-2">
-        <p> Not yet registered? <Link to="/signup">Sign up</Link></p>
+          <p>
+            {errors ? <p style={{ color: "red" }}>{errors}</p> : null}
+            <p style={{ color: "red" }}>{error}</p>
+            Not yet registered? <Link to="/signup">Sign up</Link>
+          </p>
           <button
             type="text"
             className="submit-2"

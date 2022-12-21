@@ -82,7 +82,7 @@
   color: #90adc6;
 }
 .answe-count {
-  margin-top: 1.5%;
+  margin-top: 2%;
   font-size: 13px;
   font-weight: 500;
   height: 3%;
@@ -90,8 +90,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 4px;
 }
 .link_home {
   text-decoration: none;
@@ -100,4 +98,25 @@
 .link_home:hover {
   color: #90adc6;
   font-size: 20px;
+}
+.page-item{
+  display: inline;
+  padding-left: 3%;
+}
+.pagination{
+  text-align: left;
+  padding-left: 16%;
+}
+.home_display{
+  height: 88%;
+}
+.page-link{
+  cursor: pointer;
+  color: blue;
+}
+.page-link:hover{
+  color: black;
+}
+.page-link:focus{
+  color: black;
 }

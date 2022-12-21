@@ -4,37 +4,73 @@ import axios from "axios";
 const url = "http://localhost:4000/auth";
 
 const initialState = {
-users:""
+users:"",
+token:{},
+error:"",
+loading: true,
 };
-export const getUser = createAsyncThunk("users", async (data) => {
-  await axios.post(`${url}/login`, data).then((response) => {
-    if (response.data.token) {
-      localStorage.setItem("user", JSON.stringify(response.data));
+export const loginUser = createAsyncThunk("users", async (data, {rejectWithValue}) => {
+  try {
+    const userinfo=await axios.post(`${url}/login`, data).then((response) => {
+      if (response.data.token) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      return response.data;
+    });
+    return userinfo
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      return rejectWithValue(error.response.data.message);
+    } else {
+      return rejectWithValue(error.message);
     }
-    return response.data;
-  });
+  }
 });
 
-export const addusers = createAsyncThunk("register", async (data) => {
+export const registeUser = createAsyncThunk("register", async (data, rejectWithValue) => {
+
+try {
   const response = await axios
-    .post(`${url}/signup`, data)
-    .then((data) => data.json());
-  return response;
-});
+  .post(`${url}/signup`, data)
+  .then((data) => data.data);
+return response;
+} catch (error) {
+  if (error.response && error.response.data.message) {
+    return rejectWithValue(error.response.data.message);
+  } else {
+    return rejectWithValue(error.message);
+  }
+}
 
+
+})
 const userSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
   extraReducers: {
-    [getUser.pending]: (state) => {
+    [loginUser.pending]: (state) => {
       state.loading = true;
     },
-    [getUser.fulfilled]: (state, { payload }) => {
+    [loginUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.loading = false;
       state.token = payload;
     },
-    [getUser.rejected]: (state) => {
+    [loginUser.rejected]: (state, {payload}) => {
+      state.error=payload
+      state.loading = false;
+    },
+    [registeUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [registeUser.fulfilled]: (state, { payload }) => {
+      console.log(payload);
+      state.loading = false;
+      state.users = payload;
+    },
+    [registeUser.rejected]: (state, {payload}) => {
+      state.error=payload
       state.loading = false;
     },
   },

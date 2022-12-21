@@ -33,7 +33,6 @@ export default function CommentBox({ answer_id, question_id}) {
     setCommentValue("");
     setIsExpanded(false);
   };
-  console.log(commentValue);
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(

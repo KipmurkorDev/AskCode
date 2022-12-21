@@ -4,7 +4,7 @@
 }
 .answer_question {
   display: flex;
-  height: 80%;
+  height: 90%;
   flex-direction: column;
   align-items: center;
 }

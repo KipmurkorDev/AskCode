@@ -18,9 +18,9 @@ const addUser = async (req, res) => {
         email,
         user_password: hashpaword,
       });
-      return res.status(201).send({ message: "User Added Successfully" });
+      return res.status(200).json({message:"success"});
     } else {
-      res.send({ message: "User Already registered" });
+      res.json({ message: "User Already registered" });
     }
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -43,10 +43,10 @@ const getUser = async (req, res) => {
         );
         res.status(200).send({ token });
       } else {
-        return res.status(400).json({ message: "wrong  password" });
+        return res.status(400).json({ message: "Wrong Credentials" });
       }
     } else {
-      return res.status(400).json({ message: "User Not Found" });
+      return res.status(400).json({ message: "User not found" });
     }
   } catch (error) {
     return res.status(400).json({ error: error.message });
