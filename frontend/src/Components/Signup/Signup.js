@@ -32,13 +32,11 @@ export default function Signup() {
     ) {
       setErrors("All Fields Are Required!");
     } else {
-      dispatch(registeUser(signUpInput));
+      await dispatch(registeUser(signUpInput));
       if (message?.message.length < 8) {
-        console.log(message?.message);
         clearForm();
         return navigate("/");
       } else {
-        console.log("hello");
         return navigate("/signup");
       }
     }
