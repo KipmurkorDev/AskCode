@@ -1,198 +1,116 @@
-# Stackoverflow_Lite
-BUILD A PRODUCT: Stack Overflow-lite 
+# AskCode
 
-Project Overview` 
+## Project Overview
 
-Stack Overflow-lite is a platform where people can ask questions and provide answers.  
+AskCode is a web platform where users can ask questions and provide answers. It offers features for user authentication, posting and managing questions, posting answers, and interacting with questions and answers.
 
-Technologies to use 
+## Technologies Used
 
-Reactjs 
+- React.js
+- Express.js
+- Microsoft SQL Server (MSSQL)
 
-Exressjs 
+## Services
 
-Mssql 
+The project consists of two services:
 
- 
+1. Authentication Service: Responsible for user registration, authentication, and authorization.
+2. Questions Service: Manages the creation, retrieval, and interaction with questions and answers.
 
-Have two services 
+## Preparation Guidelines
 
-Authentication service	 
+To get ready to start building the project, follow these steps:
 
-Questions service 
+1. Create a GitHub Repository, add a README, and clone it to your computer.
+2. Ensure you have Node.js and Microsoft SQL Server installed and set up.
+3. Work with different branches for the various services (Microservices).
 
- 
+## Required Features
 
- 
+1. Users can create an account and log in.
+2. Users can post questions.
+3. Users can delete the questions they post.
+4. Users can post answers.
+5. Users can view the answers to questions.
+6. Users can accept an answer out of all the answers to their question as the preferred answer.
+7. Users can upvote or downvote an answer.
+8. Users can comment on an answer.
+9. Users can fetch all questions they have ever asked on the platform.
+10. Users can search for questions on the platform.
+11. Users can view questions with the most answers.
 
- 
+## Challenge 1 - Create UI Templates
 
- 
+### Challenge Summary
 
- 
+Create UI templates for the project using React.js.
 
- 
+### Guidelines
 
- 
+1. Create user stories for setting up the User Interface elements.
+2. Design the following pages:
+   - User signup and signin pages.
+   - Pages to:
+     - View a list of recently asked questions on the platform.
+     - View a question with all the answers posted for it and add an answer.
+     - Post a question.
+   - User's profile page, displaying:
+     - The number of questions asked.
+     - The number of answers given.
+     - The list of questions asked by the user with the most answers.
+     - The list of recent questions asked by the user.
 
- 
+## Challenge 2: Create API Endpoints
 
- 
+### Tools
 
- 
+- Server-Side Framework: Express.js
+- Linting Library: (not specified)
+- Testing Framework: (not specified)
 
- 
+### Guidelines
 
- 
+1. Create the following API endpoints:
+   - Create user accounts for signing in and out.
+   - Get all questions.
+   - Get a specific question.
+   - Post a question.
+   - Delete a question.
+   - Post an answer to a question.
+   - Mark an answer as preferred.
+   - Allow users to upvote or downvote an answer.
+   - Allow users to comment on an answer.
+   - Allow users to fetch all questions they have ever asked on the platform.
+   - Implement a search feature for questions.
+   - Implement a feature to view questions with the most answers.
 
- 
+## API Routes
 
-Preparation Guidelines 
+### Authentication Service
 
-These are the steps you ought to take to get ready to start building the project 
+#### User Signup and Signin
 
- 
+- `POST /login`: User login.
+- `POST /signup`: User registration.
 
-Steps 
+### Questions Service
 
-               
+#### Questions
 
-Create a Github Repository, add a README, and clone it to your computer 
+- `GET /:PageNumber`: Get all questions.
+- `POST /`: Post a question.
+- `POST /search/:search_value`: Search for questions.
+- `GET /most/answers/:PageNumber`: Get questions with the most answers.
 
-Make sure you have Nodejs and MsSql installed and set up 
+#### Answers
 
-Work with different branches for the different services(Microservices) 
+- `POST /`: Post an answer.
+- `PUT /answer/accepted`: Mark an answer as accepted.
+- `GET /question/:question_id/:value`: Get answers to a specific question.
+- `POST /answer/vote/:answer_id`: Upvote or downvote an answer.
 
-Required Features 
+#### Comments
 
-Users can create an account and log in. 
+- `POST /comment`: Add a comment.
+- `GET /comment/:answer_id`: Get comments for an answer.
 
-Users can post questions. 
-
-Users can delete the questions they post. 
-
-Users can post answers. 
-
-Users can view the answers to questions. 
-
-Users can accept an answer out of all the answers to his/her question as the preferred answer.  
-
-Users can upvote or downvote an answer. 
-
-Users can comment on an answer. 
-
-Users can fetch all questions he/she has ever asked on the platform 
-
-Users can search for questions on the platform 
-
-Users can view questions with the most answers. 
-
-Challenge 1 - Create UI Templates 
-
-Challenge Summary 
-
-You are required to create UI templates with Reactjs 
-
- 
-
-Guidelines 
-
-On Pivotal Tracker, create user stories to setup the User Interface elements: 
-
-User signup and signin pages. 
-
-A page/pages where a user can do the following: 
-
-View a list of recently asked questions on the platform 
-
-View a question with all the answers posted for it and add an answer. 
-
-Post a question. 
-
-A page/pages for a user’s profile which, at minimum displays: 
-
-The number of questions asked. 
-
-The number of answers given. 
-
-The list of questions asked by the user with the most answers. 
-
-The list of recent questions asked by the user.  
-
- 
-
- 
-
-Challenge 2: Create API endpoints 
-
-Tools 
-
-Server-Side Framework: <Express Framework> 
-
-Linting Library: <EsLint> 
-
-Testing Framework: <Cypress> 
-
-Guidelines 
-
-You should have at least these endpoints 
-
-Create user accounts that can signin/signout from the app.  
-
-Get all questions. 
-
-Get a question 
-
-Post a question. 
-
-Delete a question. 
-
-Post an answer to a question. 
-
-Mark an answer as preferred. 
-
-Users can upvote or downvote an answer. 
-
-Users can comment on an answer. 
-
-Users can fetch all questions he/she has ever asked on the platform. 
-
-Users can search for questions on the platform. 
-
-Users can view questions with the most answers. 
-
- 
-
-Guidelines 
-
-Create these stored procedures 
-
-Create user accounts that can signin/signout from the app.  
-
-Get all questions. 
-
-Get a question 
-
-Post a question. 
-
-Delete a question. 
-
-Post an answer to a question. 
-
-Mark an answer as preferred. 
-
-Users can upvote or downvote an answer. 
-
-Users can comment on an answer. 
-
-Users can fetch all questions he/she has ever asked on the platform. 
-
-Users can search for questions on the platform. 
-
-Users can view questions with the most answers. 
-
-      
-
- 
-
- 
